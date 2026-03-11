@@ -5,7 +5,7 @@
 
 const SITE_NAME_JA = '加藤裕幸事務所';
 const SITE_NAME_EN = 'Katoh Office';
-const SITE_URL = 'https://katoh-office.ny-hero.workers.dev';
+const SITE_URL = 'https://katoh-office-site.pages.dev';
 
 const SEO = ({ title, description, path = '/', language = 'ja' }) => {
   const siteName = language === 'ja' ? SITE_NAME_JA : SITE_NAME_EN;
