@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow:
 
-Sitemap: https://katoh-office-site.pages.dev/sitemap.xml
+Sitemap: https://katoh-office.pages.dev/sitemap.xml

@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://katoh-office-site.pages.dev/</loc>
+    <loc>https://katoh-office.pages.dev/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://katoh-office-site.pages.dev/about</loc>
+    <loc>https://katoh-office.pages.dev/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://katoh-office-site.pages.dev/services</loc>
+    <loc>https://katoh-office.pages.dev/services</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://katoh-office-site.pages.dev/patient-education</loc>
+    <loc>https://katoh-office.pages.dev/patient-education</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://katoh-office-site.pages.dev/support</loc>
+    <loc>https://katoh-office.pages.dev/support</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://katoh-office-site.pages.dev/privacy-policy</loc>
+    <loc>https://katoh-office.pages.dev/privacy-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://katoh-office-site.pages.dev/terms-of-service</loc>
+    <loc>https://katoh-office.pages.dev/terms-of-service</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://katoh-office-site.pages.dev/specified-commercial-transaction</loc>
+    <loc>https://katoh-office.pages.dev/specified-commercial-transaction</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

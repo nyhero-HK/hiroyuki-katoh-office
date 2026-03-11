@@ -31,7 +31,7 @@ const SpecifiedCommercial = ({ language }) => {
         },
         {
           label: 'ウェブサイトURL',
-          value: 'https://katoh-office-site.pages.dev/',
+          value: 'https://katoh-office.pages.dev/',
         },
         {
           label: '販売価格',
@@ -95,7 +95,7 @@ const SpecifiedCommercial = ({ language }) => {
         },
         {
           label: 'Website URL',
-          value: 'https://katoh-office-site.pages.dev/',
+          value: 'https://katoh-office.pages.dev/',
         },
         {
           label: 'Pricing',
