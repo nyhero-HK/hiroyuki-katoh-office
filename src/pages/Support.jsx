@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import logo from '../assets/Logo small.png';
+import SEO from '../components/SEO';
 
 const Support = ({ language }) => {
   const [formData, setFormData] = useState({
@@ -80,7 +81,14 @@ const Support = ({ language }) => {
   };
 
   return (
-    <div className="min-h-screen pt-20">
+    <>
+      <SEO
+        title={language === 'ja' ? 'お問い合わせ' : 'Contact & Support'}
+        description={language === 'ja' ? '加藤裕幸事務所へのお問い合わせ。医療教育コンサルティング、患者教育プラットフォーム導入のご相談。' : 'Contact Katoh Office for medical education consulting and patient education platform inquiries.'}
+        path="/support"
+        language={language}
+      />
+      <div className="min-h-screen pt-20">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-stone-50 via-cyan-50/30 to-stone-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -263,6 +271,7 @@ const Support = ({ language }) => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 
 const SpecifiedCommercial = ({ language }) => {
   const content = {
@@ -135,7 +136,14 @@ const SpecifiedCommercial = ({ language }) => {
   const t = content[language];
 
   return (
-    <div className="min-h-screen pt-20 bg-stone-50">
+    <>
+      <SEO
+        title={language === 'ja' ? '特定商取引法に基づく表記' : 'Specified Commercial Transaction Act'}
+        description={language === 'ja' ? '特定商取引法に基づく表記。加藤事務所の事業者情報。' : 'Disclosure under the Specified Commercial Transaction Act.'}
+        path="/specified-commercial-transaction"
+        language={language}
+      />
+      <div className="min-h-screen pt-20 bg-stone-50">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-gray-900 to-gray-700 py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -195,6 +203,7 @@ const SpecifiedCommercial = ({ language }) => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

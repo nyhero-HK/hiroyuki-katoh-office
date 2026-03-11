@@ -77,6 +77,11 @@ const Footer = ({ language }) => {
                 </Link>
               </li>
               <li>
+                <Link to="/patient-education" className="text-gray-400 hover:text-white transition-colors font-body">
+                  {language === 'ja' ? '患者教育' : 'Patient Education'}
+                </Link>
+              </li>
+              <li>
                 <Link to="/support" className="text-gray-400 hover:text-white transition-colors font-body">
                   {t.support}
                 </Link>

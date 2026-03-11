@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 
 const PrivacyPolicy = ({ language }) => {
   const content = {
@@ -119,7 +120,14 @@ const PrivacyPolicy = ({ language }) => {
   const t = content[language];
 
   return (
-    <div className="min-h-screen pt-20 bg-stone-50">
+    <>
+      <SEO
+        title={language === 'ja' ? 'プライバシーポリシー' : 'Privacy Policy'}
+        description={language === 'ja' ? '加藤裕幸事務所のプライバシーポリシー。個人情報の取り扱いについて。' : 'Katoh Office privacy policy. How we handle your personal information.'}
+        path="/privacy-policy"
+        language={language}
+      />
+      <div className="min-h-screen pt-20 bg-stone-50">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-neo-teal-500 to-cyan-600 py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -162,6 +170,7 @@ const PrivacyPolicy = ({ language }) => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

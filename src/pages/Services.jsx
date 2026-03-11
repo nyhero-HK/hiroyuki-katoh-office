@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 
 const Services = ({ language }) => {
   const content = {
@@ -426,7 +427,14 @@ const Services = ({ language }) => {
   };
 
   return (
-    <div className="min-h-screen">
+    <>
+      <SEO
+        title={language === 'ja' ? 'サービス' : 'Services'}
+        description={language === 'ja' ? '医学教育コンサルティング、教育テクノロジー開発、SCS臨床サポート。医療機関と医療従事者の成長をサポートします。' : 'Medical education consulting, education technology development, and SCS clinical support for healthcare institutions.'}
+        path="/services"
+        language={language}
+      />
+      <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative py-24 md:py-32 bg-gradient-to-br from-stone-50 via-cyan-50/20 to-stone-50 overflow-hidden">
         <div className="absolute top-20 right-10 w-72 h-72 bg-neo-teal-500/10 rounded-full blur-3xl animate-pulse"></div>
@@ -640,6 +648,7 @@ const Services = ({ language }) => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

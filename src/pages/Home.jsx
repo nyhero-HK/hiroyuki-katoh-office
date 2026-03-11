@@ -1,159 +1,248 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import hiroPhoto from '../assets/Katoh2.jpeg';
+import SEO from '../components/SEO';
 
 const Home = ({ language }) => {
   const content = {
     ja: {
       hero: {
         title: '医療教育の未来を',
-        titleHighlight: '創造する',
-        subtitle: '医療コンサルティングと教育ソフトウェアで、次世代の医療従事者をサポートします。',
-        cta: '詳しく見る',
+        titleHighlight: '患者とともに創る',
+        subtitle: '25年以上の臨床経験とAI技術を融合し、医療従事者と患者をつなぐ新しい教育プラットフォームを構築しています。',
+        cta: '患者教育プラットフォーム',
         contact: 'お問い合わせ',
+      },
+      platform: {
+        badge: 'FLAGSHIP PROJECT',
+        title: '患者教育プラットフォーム',
+        subtitle: '腰部脊柱管狭窄症（LCS）から脊髄刺激療法（SCS）まで — 患者の治療ジャーニー全体をカバーする教育コンテンツ',
+        description: '腰部脊柱管狭窄症と診断された患者が、疾患の理解から治療選択、そして脊髄刺激療法の検討まで、正確な情報に基づいて意思決定できるよう支援します。2つのモジュールが患者の治療ジャーニーに沿って連携しています。',
+        modules: [
+          {
+            title: 'LCSモジュール',
+            subtitle: '腰部脊柱管狭窄症を理解する',
+            desc: '疾患の仕組み、症状、診断から保存療法まで。「自分の病気」を正しく理解するための基礎知識を、分かりやすい記事と解説で提供します。',
+            color: 'neo-coral',
+          },
+          {
+            title: 'SCSモジュール',
+            subtitle: '脊髄刺激療法を検討する',
+            desc: 'SCSの仕組み、効果、リスク、費用、日常生活への影響を、包括的な教育コンテンツとQ&Aで解説します。',
+            color: 'neo-teal',
+          },
+        ],
+        features: [
+          {
+            icon: 'content',
+            title: '専門家による教育コンテンツ',
+            desc: '脊椎外科医が執筆した記事・解説で、疾患と治療を体系的に理解できる構成',
+          },
+          {
+            icon: 'evidence',
+            title: 'エビデンスベース',
+            desc: '最新の臨床研究と25年以上の実臨床経験に基づく正確な医学情報',
+          },
+          {
+            icon: 'patient',
+            title: '患者中心の設計',
+            desc: '医学用語を分かりやすく解説し、60代以上の患者にも理解しやすい構成',
+          },
+          {
+            icon: 'japanese',
+            title: '日本語コンテンツ',
+            desc: '日本の医療制度・保険制度に即した、専門的な患者教育資料',
+          },
+        ],
+        cta: 'プラットフォームを見る',
+        comingSoon: '近日公開',
       },
       services: {
         title: 'サービス',
-        subtitle: '加藤事務所が提供する専門サービス',
+        subtitle: '医療教育と臨床実践の架け橋として',
         consulting: {
-          title: 'コンサルティング',
-          desc: '整形外科・慢性疼痛・医学教育について専門的なコンサルティングを提供します。',
+          title: '医学教育コンサルティング',
+          desc: '整形外科・慢性疼痛管理の豊富な臨床経験を活かし、医療機関の教育プログラム設計と改善を支援します。',
           details: [
-            '医療機関の業務最適化',
-            '手術チームのトレーニング設計',
-            '慢性疼痛管理プロトコル',
+            'カリキュラム設計と教育効果測定',
+            '患者教育プログラムの開発',
+            '国際基準に基づく教育プログラム',
           ],
         },
         software: {
-          title: '教育ソフトウェア',
-          desc: 'AI技術を活用した医学教育アプリケーション。学習効率を最大化します。',
+          title: '教育テクノロジー',
+          desc: 'AI技術を活用した医学教育アプリケーション。患者教育から医療従事者の研修まで、学習効率を最大化します。',
           details: [
-            'AI活用の学習支援アプリ',
+            'SCS患者教育プラットフォーム',
+            'AI活用の学習支援ツール',
             'インタラクティブ教材開発',
-            'ユーザー分析による改善',
           ],
         },
         support: {
-          title: '継続的サポート',
-          desc: 'サブスクリプション型の継続サポートで、長期的な成長をお手伝いします。',
+          title: 'SCS臨床サポート',
+          desc: '脊髄刺激療法の導入から運用まで、施設に合わせた包括的なサポートを提供します。',
           details: [
-            '定期的なフォローアップ',
-            '最新医学教育トレンド共有',
-            '個別カスタマイズ対応',
+            '脊髄刺激療法の導入支援',
+            '患者選択基準の最適化',
+            '治療効果測定と継続的改善',
           ],
         },
       },
       credentials: {
         title: '実績と信頼',
-        subtitle: '確かな経験と専門性',
+        subtitle: '臨床・教育・研究の確かな専門性',
         experience: {
           number: '25+',
-          label: '年の医療経験',
+          label: '年の臨床経験',
         },
-        publications: {
-          number: '3',
-          label: '国際誌編集委員',
+        education: {
+          number: '8',
+          label: '教育コンテンツ領域',
         },
         societies: {
           number: '11',
           label: '専門学会所属',
         },
-        international: {
+        editorial: {
           number: '3',
-          label: '国際学会会員',
+          label: '国際誌編集委員',
         },
         highlights: {
           title: '主な実績',
           items: [
-            '東海大学医学部 准教授・国際関係担当',
+            '東海大学医学部 准教授（2026年4月より医学教育学教授就任予定）',
             'Toronto Western Hospital 研究員 (2018-2019)',
             '日本脊髄障害医学会 評議員',
             '東日本整形災害外科学会 評議員',
-            '日本医学教育学会 会員',
+            'Medtronic・Boston Scientific SCS KOL',
             '慶應義塾大学医学部 博士（医学）',
           ],
         },
       },
       cta: {
-        title: '今すぐ始めましょう',
-        subtitle: 'あなたの医療教育をサポートします。',
-        button: '無料相談を予約',
+        title: '医療教育の未来を、一緒に創りましょう',
+        subtitle: '患者教育プラットフォームの導入や医学教育コンサルティングについて、お気軽にご相談ください。',
+        button: 'お問い合わせ',
       },
     },
     en: {
       hero: {
         title: 'Shaping the Future of',
-        titleHighlight: 'Medical Education',
-        subtitle: 'Supporting the next generation of healthcare professionals with medical consulting and educational software.',
-        cta: 'Learn More',
+        titleHighlight: 'Patient Education',
+        subtitle: 'Building innovative education platforms that connect clinicians and patients, powered by 25+ years of clinical experience and AI technology.',
+        cta: 'Patient Education Platform',
         contact: 'Contact Us',
+      },
+      platform: {
+        badge: 'FLAGSHIP PROJECT',
+        title: 'Patient Education Platform',
+        subtitle: 'From lumbar canal stenosis (LCS) to spinal cord stimulation (SCS) — educational content covering the entire patient treatment journey',
+        description: 'Empowering patients diagnosed with lumbar canal stenosis to make informed decisions from understanding their condition through treatment options, including spinal cord stimulation. Two interconnected modules guide patients along their treatment journey.',
+        modules: [
+          {
+            title: 'LCS Module',
+            subtitle: 'Understanding Lumbar Canal Stenosis',
+            desc: 'Disease mechanisms, symptoms, diagnosis, and conservative treatment. Building foundational knowledge through clear articles and explanations.',
+            color: 'neo-coral',
+          },
+          {
+            title: 'SCS Module',
+            subtitle: 'Considering Spinal Cord Stimulation',
+            desc: 'How SCS works, efficacy, risks, costs, and daily life impact — through comprehensive educational content and Q&A resources.',
+            color: 'neo-teal',
+          },
+        ],
+        features: [
+          {
+            icon: 'content',
+            title: 'Expert-Authored Content',
+            desc: 'Articles and guides written by a spine surgeon, structured for systematic understanding of conditions and treatments',
+          },
+          {
+            icon: 'evidence',
+            title: 'Evidence-Based',
+            desc: 'Accurate medical information grounded in latest research and 25+ years of clinical practice',
+          },
+          {
+            icon: 'patient',
+            title: 'Patient-Centered Design',
+            desc: 'Medical terminology explained clearly, designed for accessibility by patients aged 60+',
+          },
+          {
+            icon: 'japanese',
+            title: 'Japanese-Language Content',
+            desc: 'Professional patient education materials adapted for the Japanese healthcare and insurance system',
+          },
+        ],
+        cta: 'Visit Platform',
+        comingSoon: 'Coming Soon',
       },
       services: {
         title: 'Services',
-        subtitle: 'Professional services offered by Katoh Office',
+        subtitle: 'Bridging medical education and clinical practice',
         consulting: {
-          title: 'Consulting',
-          desc: 'Expert consulting in orthopedic surgery, chronic pain management, and medical education.',
+          title: 'Medical Education Consulting',
+          desc: 'Leveraging extensive clinical experience in orthopedics and chronic pain to design and improve institutional education programs.',
           details: [
-            'Healthcare workflow optimization',
-            'Surgical team training programs',
-            'Chronic pain management protocols',
+            'Curriculum design & effectiveness measurement',
+            'Patient education program development',
+            'Internationally benchmarked education programs',
           ],
         },
         software: {
-          title: 'Educational Software',
-          desc: 'AI-powered medical education applications that maximize learning efficiency.',
+          title: 'Education Technology',
+          desc: 'AI-powered applications for medical education — from patient education to healthcare professional training.',
           details: [
-            'AI-enhanced learning apps',
+            'SCS Patient Education Platform',
+            'AI-enhanced learning tools',
             'Interactive educational materials',
-            'User analytics and improvements',
           ],
         },
         support: {
-          title: 'Ongoing Support',
-          desc: 'Subscription-based continuous support for long-term growth.',
+          title: 'SCS Clinical Support',
+          desc: 'Comprehensive support for SCS therapy implementation, from program setup to ongoing optimization.',
           details: [
-            'Regular follow-up sessions',
-            'Latest medical education trends',
-            'Customized solutions',
+            'SCS therapy implementation guidance',
+            'Patient selection criteria optimization',
+            'Outcome measurement & continuous improvement',
           ],
         },
       },
       credentials: {
-        title: 'Achievements & Credentials',
-        subtitle: 'Proven expertise and experience',
+        title: 'Credentials & Achievements',
+        subtitle: 'Proven expertise across clinical practice, education, and research',
         experience: {
           number: '25+',
-          label: 'Years of Medical Practice',
+          label: 'Years of Clinical Practice',
         },
-        publications: {
-          number: '3',
-          label: 'Editorial Boards',
+        education: {
+          number: '8',
+          label: 'Education Content Areas',
         },
         societies: {
           number: '11',
           label: 'Professional Societies',
         },
-        international: {
+        editorial: {
           number: '3',
-          label: 'International Societies',
+          label: 'Editorial Boards',
         },
         highlights: {
           title: 'Key Achievements',
           items: [
-            'Associate Professor & Chair of International Relations, Tokai University',
+            'Associate Professor, Tokai University (Professor of Medical Education from April 2026)',
             'Research Fellow, Toronto Western Hospital (2018-2019)',
             'Board Member, Japan Medical Society of Spinal Cord Lesion',
             'Board Member, Eastern Japan Association of Orthopaedics',
-            'Member, Japan Society for Medical Education',
+            'KOL for Medtronic & Boston Scientific SCS',
             'PhD in Medicine, Keio University School of Medicine',
           ],
         },
       },
       cta: {
-        title: "Let's Get Started",
-        subtitle: 'Supporting your medical education journey.',
-        button: 'Book Free Consultation',
+        title: "Let's Shape the Future of Medical Education Together",
+        subtitle: 'Contact us about patient education platform implementation or medical education consulting.',
+        button: 'Contact Us',
       },
     },
   };
@@ -175,11 +264,41 @@ const Home = ({ language }) => {
     visible: { opacity: 1, y: 0 },
   };
 
+  const featureIcons = {
+    content: (
+      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+      </svg>
+    ),
+    evidence: (
+      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+    ),
+    patient: (
+      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+      </svg>
+    ),
+    japanese: (
+      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+      </svg>
+    ),
+  };
+
   return (
-    <div className="min-h-screen">
-      {/* Hero Section - Enhanced */}
+    <>
+      <SEO
+        title={language === 'ja' ? '医療教育の未来を患者とともに創る' : 'Shaping the Future of Patient Education'}
+        description={language === 'ja' ? '医療教育コンサルティング・患者教育プラットフォーム・SCS臨床サポート。25年以上の臨床経験とAI技術を融合。' : 'Medical education consulting, patient education platforms, and SCS clinical support. 25+ years of clinical experience.'}
+        path="/"
+        language={language}
+      />
+      <div className="min-h-screen">
+      {/* Hero Section */}
       <section className="relative min-h-screen flex items-center bg-gradient-to-br from-stone-50 via-cyan-50/20 to-stone-50 overflow-hidden">
-        {/* Enhanced Decorative Elements */}
+        {/* Decorative Elements */}
         <div className="absolute top-20 right-10 w-72 h-72 bg-neo-teal-500/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-20 left-10 w-96 h-96 bg-neo-coral-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
         <div className="absolute top-1/2 left-1/4 w-48 h-48 bg-neo-amber-400/5 rounded-full blur-2xl"></div>
@@ -191,7 +310,6 @@ const Home = ({ language }) => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              {/* Enhanced Typography Hierarchy */}
               <h1 className="text-6xl md:text-7xl lg:text-8xl font-display font-bold mb-6 leading-tight">
                 {t.hero.title}
                 <span className="block text-gradient mt-3 text-7xl md:text-8xl lg:text-9xl">{t.hero.titleHighlight}</span>
@@ -201,7 +319,7 @@ const Home = ({ language }) => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
-                  to="/support"
+                  to="/patient-education"
                   className="px-10 py-5 bg-neo-teal-500 text-white rounded-xl font-body font-bold text-lg hover:bg-neo-teal-600 transition-all transform hover:scale-105 hover:shadow-2xl text-center"
                 >
                   {t.hero.cta}
@@ -222,15 +340,15 @@ const Home = ({ language }) => {
               className="relative flex justify-center lg:justify-end"
             >
               <div className="relative max-w-md w-full">
-                {/* Enhanced decorative floating elements */}
+                {/* Decorative floating elements */}
                 <div className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-neo-coral-500 to-neo-amber-400 rounded-3xl opacity-80 z-0 animate-bounce" style={{ animationDuration: '3s' }}></div>
                 <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-br from-neo-teal-500 to-cyan-500 rounded-3xl opacity-80 z-0 animate-bounce" style={{ animationDuration: '4s', animationDelay: '0.5s' }}></div>
 
-                {/* Enhanced photo card with border accent */}
+                {/* Photo card */}
                 <div className="relative z-10 bg-white rounded-3xl overflow-hidden card-glow transform hover:scale-105 transition-transform duration-500 border-t-4 border-neo-teal-500">
                   <img
                     src={hiroPhoto}
-                    alt={language === 'ja' ? '加藤裕幸 - 医療教育コンサルタント' : 'Hiroyuki Katoh - Medical Education Consultant'}
+                    alt={language === 'ja' ? '加藤裕幸 - 医療教育イノベーター' : 'Hiroyuki Katoh - Medical Education Innovator'}
                     className="w-full h-auto"
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900/95 via-gray-900/80 to-transparent p-6">
@@ -238,10 +356,10 @@ const Home = ({ language }) => {
                       {language === 'ja' ? '加藤裕幸' : 'Hiroyuki Katoh'}
                     </h3>
                     <p className="text-cyan-100 font-body text-sm">
-                      {language === 'ja' ? '東海大学医学部准教授' : 'Associate Professor, Tokai University School of Medicine'}
+                      {language === 'ja' ? '東海大学医学部 准教授' : 'Associate Professor, Tokai University'}
                     </p>
                     <p className="text-cyan-200 font-body text-xs mt-1">
-                      {language === 'ja' ? '国際関係担当' : 'Chair of International Relations'}
+                      {language === 'ja' ? '2026年4月より 医学教育学教授' : 'Professor of Medical Education from April 2026'}
                     </p>
                   </div>
                 </div>
@@ -251,8 +369,121 @@ const Home = ({ language }) => {
         </div>
       </section>
 
-      {/* Services Section - Enhanced with unique card designs */}
-      <section className="py-24 bg-white">
+      {/* Patient Education Platform Section - FLAGSHIP */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neo-teal-500 via-neo-coral-500 to-neo-amber-400"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <span className="inline-block px-4 py-1.5 bg-neo-coral-500/10 text-neo-coral-500 rounded-full text-sm font-body font-bold tracking-wider mb-6">
+              {t.platform.badge}
+            </span>
+            <h2 className="text-5xl md:text-6xl font-display font-bold mb-6">
+              {t.platform.title}
+            </h2>
+            <p className="text-2xl text-gray-600 font-body max-w-3xl mx-auto leading-relaxed">
+              {t.platform.subtitle}
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-gradient-to-br from-stone-50 to-cyan-50/30 rounded-3xl p-8 md:p-12 mb-12 border border-gray-100"
+          >
+            <p className="text-lg text-gray-700 font-body leading-relaxed max-w-4xl mx-auto text-center mb-10">
+              {t.platform.description}
+            </p>
+
+            {/* Two Module Cards */}
+            <div className="grid md:grid-cols-2 gap-6">
+              {t.platform.modules.map((mod, index) => (
+                <div
+                  key={index}
+                  className={`bg-white rounded-2xl p-6 border-l-4 ${index === 0 ? 'border-neo-coral-500' : 'border-neo-teal-500'} shadow-md hover:shadow-lg transition-shadow duration-300`}
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className={`px-3 py-1 rounded-full text-xs font-body font-bold ${index === 0 ? 'bg-neo-coral-500/10 text-neo-coral-500' : 'bg-neo-teal-500/10 text-neo-teal-500'}`}>
+                      {mod.title}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-display font-bold text-gray-900 mb-2">{mod.subtitle}</h3>
+                  <p className="text-gray-600 font-body text-sm leading-relaxed">{mod.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Journey arrow connecting the two */}
+            <div className="hidden md:flex justify-center my-4">
+              <div className="flex items-center text-gray-400">
+                <div className="w-16 h-px bg-gray-300"></div>
+                <svg className="w-6 h-6 mx-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+                <span className="text-sm font-body">{language === 'ja' ? '患者の治療ジャーニー' : 'Patient Treatment Journey'}</span>
+                <svg className="w-6 h-6 mx-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+                <div className="w-16 h-px bg-gray-300"></div>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
+          >
+            {t.platform.features.map((feature, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100"
+              >
+                <div className="w-14 h-14 bg-gradient-to-br from-neo-teal-500 to-cyan-500 rounded-xl flex items-center justify-center mb-4">
+                  {featureIcons[feature.icon]}
+                </div>
+                <h3 className="text-lg font-display font-bold mb-2 text-gray-900">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600 font-body text-sm leading-relaxed">
+                  {feature.desc}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-center"
+          >
+            <Link
+              to="/patient-education"
+              className="inline-flex items-center px-10 py-5 bg-gradient-to-r from-neo-teal-500 to-cyan-600 text-white rounded-xl font-body font-bold text-lg hover:from-neo-teal-600 hover:to-cyan-700 transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
+            >
+              {t.platform.cta}
+              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-24 bg-gradient-to-br from-stone-50 to-cyan-50/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -276,14 +507,14 @@ const Home = ({ language }) => {
             viewport={{ once: true }}
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
           >
-            {/* Service Card 1 - Teal Accent */}
+            {/* Service Card 1 - Consulting */}
             <motion.div
               variants={itemVariants}
               className="group bg-white rounded-2xl p-8 border-t-4 border-neo-teal-500 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
             >
               <div className="w-20 h-20 bg-gradient-to-br from-neo-teal-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                 </svg>
               </div>
               <h3 className="text-2xl font-display font-bold mb-4 text-gray-900">
@@ -304,7 +535,7 @@ const Home = ({ language }) => {
               </ul>
             </motion.div>
 
-            {/* Service Card 2 - Coral Accent */}
+            {/* Service Card 2 - Education Technology */}
             <motion.div
               variants={itemVariants}
               className="group bg-white rounded-2xl p-8 border-t-4 border-neo-coral-500 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
@@ -332,14 +563,14 @@ const Home = ({ language }) => {
               </ul>
             </motion.div>
 
-            {/* Service Card 3 - Amber Accent */}
+            {/* Service Card 3 - SCS Clinical Support */}
             <motion.div
               variants={itemVariants}
               className="group bg-white rounded-2xl p-8 border-t-4 border-neo-amber-400 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
             >
               <div className="w-20 h-20 bg-gradient-to-br from-cyan-500 to-neo-teal-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
               </div>
               <h3 className="text-2xl font-display font-bold mb-4 text-gray-900">
@@ -363,8 +594,8 @@ const Home = ({ language }) => {
         </div>
       </section>
 
-      {/* Achievements & Credentials Section - NEW */}
-      <section className="py-24 bg-gradient-to-br from-stone-50 to-cyan-50/20">
+      {/* Credentials Section */}
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -387,26 +618,20 @@ const Home = ({ language }) => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            onViewportEnter={() => {
-              // Trigger counter animations
-              document.querySelectorAll('[data-counter]').forEach(el => {
-                el.dispatchEvent(new Event('animate'));
-              });
-            }}
             className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20"
           >
             {[
               { key: 'experience', color: 'neo-teal-500' },
-              { key: 'publications', color: 'neo-coral-500' },
+              { key: 'education', color: 'neo-coral-500' },
               { key: 'societies', color: 'neo-amber-400' },
-              { key: 'international', color: 'cyan-500' }
+              { key: 'editorial', color: 'cyan-500' }
             ].map(({ key, color }) => {
               const data = t.credentials[key];
               return (
                 <motion.div
                   key={key}
                   variants={itemVariants}
-                  className="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  className="bg-gradient-to-br from-stone-50 to-white rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow duration-300"
                 >
                   <div className={`text-5xl md:text-6xl font-display font-bold text-${color} mb-3`}>
                     {data.number}
@@ -425,7 +650,7 @@ const Home = ({ language }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="bg-white rounded-3xl p-10 md:p-12 shadow-xl"
+            className="bg-gradient-to-br from-stone-50 to-cyan-50/30 rounded-3xl p-10 md:p-12 shadow-xl border border-gray-100"
           >
             <h3 className="text-3xl md:text-4xl font-display font-bold mb-8 text-center md:text-left">
               {t.credentials.highlights.title}
@@ -449,9 +674,8 @@ const Home = ({ language }) => {
         </div>
       </section>
 
-      {/* CTA Section - Enhanced */}
+      {/* CTA Section */}
       <section className="relative py-24 bg-gradient-to-br from-neo-teal-500 via-cyan-600 to-neo-teal-600 overflow-hidden">
-        {/* Enhanced decorative elements */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-neo-coral-500/20 rounded-full blur-3xl"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-white/5 rounded-full blur-2xl"></div>
@@ -479,6 +703,7 @@ const Home = ({ language }) => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

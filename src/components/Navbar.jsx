@@ -10,12 +10,14 @@ const Navbar = ({ language, setLanguage }) => {
       home: 'ホーム',
       about: '事務所について',
       services: 'サービス',
+      education: '患者教育',
       contact: 'お問い合わせ',
     },
     en: {
       home: 'Home',
       about: 'About',
       services: 'Services',
+      education: 'Patient Education',
       contact: 'Contact',
     },
   };
@@ -45,6 +47,9 @@ const Navbar = ({ language, setLanguage }) => {
             </Link>
             <Link to="/services" className="text-gray-700 hover:text-neo-teal-500 font-body font-medium transition-colors">
               {t.services}
+            </Link>
+            <Link to="/patient-education" className="text-gray-700 hover:text-neo-teal-500 font-body font-medium transition-colors">
+              {t.education}
             </Link>
             <Link to="/support" className="text-gray-700 hover:text-neo-teal-500 font-body font-medium transition-colors">
               {t.contact}
@@ -102,6 +107,9 @@ const Navbar = ({ language, setLanguage }) => {
               </Link>
               <Link to="/services" className="text-gray-700 hover:text-neo-teal-500 font-body font-medium py-2">
                 {t.services}
+              </Link>
+              <Link to="/patient-education" className="text-gray-700 hover:text-neo-teal-500 font-body font-medium py-2">
+                {t.education}
               </Link>
               <Link to="/support" className="text-gray-700 hover:text-neo-teal-500 font-body font-medium py-2">
                 {t.contact}

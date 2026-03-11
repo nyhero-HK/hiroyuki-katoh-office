@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 
 const TermsOfService = ({ language }) => {
   const content = {
@@ -133,7 +134,14 @@ Service content may change without prior notice.`,
   const t = content[language];
 
   return (
-    <div className="min-h-screen pt-20 bg-stone-50">
+    <>
+      <SEO
+        title={language === 'ja' ? '利用規約' : 'Terms of Service'}
+        description={language === 'ja' ? '加藤裕幸事務所のサービス利用規約。' : 'Katoh Office terms of service.'}
+        path="/terms-of-service"
+        language={language}
+      />
+      <div className="min-h-screen pt-20 bg-stone-50">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-neo-coral-500 to-neo-amber-400 py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -176,6 +184,7 @@ Service content may change without prior notice.`,
         </div>
       </section>
     </div>
+    </>
   );
 };
 

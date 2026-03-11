@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import hiroPhoto from '../assets/Katoh2.jpeg';
+import SEO from '../components/SEO';
 
 const About = ({ language }) => {
   const content = {
@@ -11,10 +12,10 @@ const About = ({ language }) => {
       bio: {
         title: 'プロフィール',
         content: [
-          '加藤裕幸は、東海大学医学部整形外科学教室の准教授であり、国際関係担当として医学教育のグローバル化を推進しています。',
-          '慶應義塾大学医学部を卒業後、整形外科医として臨床経験を積み、特に脊椎外科と慢性疼痛管理の分野で専門性を確立しました。',
+          '加藤裕幸は、東海大学医学部整形外科学教室の准教授であり、2026年4月より医学教育学教授に就任予定です。',
+          '慶應義塾大学医学部を卒業後、整形外科医として25年以上の臨床経験を積み、特に脊椎外科と慢性疼痛管理（脊髄刺激療法）の分野で専門性を確立しました。MedtronicおよびBoston ScientificのSCS領域においてKOLとして活動しています。',
           '2018年から2019年にかけて、カナダのToronto Western HospitalにてDr. Michael G. Fehlingsの指導の下、脊髄損傷の基礎研究に従事し、国際的な研究ネットワークを構築しました。',
-          '現在は、臨床医療と医学教育の両面で活躍し、次世代の医療従事者の育成とAI技術を活用した教育イノベーションに取り組んでいます。',
+          '現在は、臨床医療と医学教育の両面で活躍し、AI技術を活用したSCS患者教育プラットフォームの開発や、次世代の医療従事者育成に取り組んでいます。',
         ],
       },
       education: {
@@ -41,7 +42,12 @@ const About = ({ language }) => {
         title: '職歴',
         items: [
           {
-            period: '2021年-現在',
+            period: '2026年4月-',
+            role: '東海大学医学部',
+            title: '医学教育学教授（就任予定）',
+          },
+          {
+            period: '2021-2026年',
             role: '東海大学医学部整形外科学教室',
             title: '准教授・国際関係担当',
           },
@@ -114,10 +120,10 @@ const About = ({ language }) => {
       bio: {
         title: 'Biography',
         content: [
-          'Dr. Hiroyuki Katoh is an Associate Professor in the Department of Orthopedic Surgery at Tokai University School of Medicine, where he also serves as Chair of International Relations, promoting the globalization of medical education.',
-          'After graduating from Keio University School of Medicine, he gained extensive clinical experience as an orthopedic surgeon, establishing expertise particularly in spinal surgery and chronic pain management.',
+          'Dr. Hiroyuki Katoh is an Associate Professor in the Department of Orthopedic Surgery at Tokai University School of Medicine, and will assume the role of Professor of Medical Education in April 2026.',
+          'After graduating from Keio University School of Medicine, he gained 25+ years of clinical experience as an orthopedic surgeon, establishing expertise in spinal surgery and chronic pain management, particularly spinal cord stimulation (SCS) therapy. He serves as a Key Opinion Leader for Medtronic and Boston Scientific in the SCS field.',
           'From 2018 to 2019, he conducted fundamental research on spinal cord injury under the guidance of Dr. Michael G. Fehlings at Toronto Western Hospital, Canada, building an international research network.',
-          'Currently, he is active in both clinical medicine and medical education, committed to training the next generation of healthcare professionals and developing educational innovations using AI technology.',
+          'Currently, he is active in both clinical medicine and medical education, developing an AI-powered SCS patient education platform and training the next generation of healthcare professionals.',
         ],
       },
       education: {
@@ -144,7 +150,12 @@ const About = ({ language }) => {
         title: 'Professional Experience',
         items: [
           {
-            period: '2021-Present',
+            period: 'April 2026-',
+            role: 'Tokai University School of Medicine',
+            title: 'Professor of Medical Education (Incoming)',
+          },
+          {
+            period: '2021-2026',
             role: 'Tokai University School of Medicine',
             title: 'Associate Professor & Chair of International Relations',
           },
@@ -229,7 +240,14 @@ const About = ({ language }) => {
   };
 
   return (
-    <div className="min-h-screen">
+    <>
+      <SEO
+        title={language === 'ja' ? '事務所について' : 'About'}
+        description={language === 'ja' ? '加藤裕幸 — 東海大学医学部准教授、2026年4月より医学教育学教授。25年以上の整形外科・脊椎外科の臨床経験。' : 'Hiroyuki Katoh — Associate Professor, Tokai University. Professor of Medical Education from April 2026. 25+ years in orthopedic surgery.'}
+        path="/about"
+        language={language}
+      />
+      <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative py-24 md:py-32 bg-gradient-to-br from-stone-50 via-cyan-50/20 to-stone-50 overflow-hidden">
         <div className="absolute top-20 right-10 w-72 h-72 bg-neo-teal-500/10 rounded-full blur-3xl animate-pulse"></div>
@@ -482,6 +500,7 @@ const About = ({ language }) => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 
