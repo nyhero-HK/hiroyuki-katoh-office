@@ -26,7 +26,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages project create katoh-office --production-branch=main
+          command: pages project create katoh-office-site --production-branch=main
         continue-on-error: true
 
       - name: Deploy to Cloudflare Pages
@@ -34,4 +34,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=katoh-office
+          command: pages deploy dist --project-name=katoh-office-site
