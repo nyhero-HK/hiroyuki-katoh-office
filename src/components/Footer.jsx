@@ -7,6 +7,7 @@ const Footer = ({ language }) => {
       office: '加藤事務所について',
       officeDesc: '医療教育コンサルティングと教育ソフトウェアを提供しています。',
       quickLinks: 'クイックリンク',
+      projects: '患者教育サイト',
       legal: '法的情報',
       support: 'お問い合わせ',
       privacy: 'プライバシーポリシー',
@@ -19,6 +20,7 @@ const Footer = ({ language }) => {
       office: 'About Katoh Office',
       officeDesc: 'Providing medical education consulting and educational software.',
       quickLinks: 'Quick Links',
+      projects: 'Education Sites',
       legal: 'Legal',
       support: 'Support',
       privacy: 'Privacy Policy',
@@ -34,7 +36,7 @@ const Footer = ({ language }) => {
   return (
     <footer className="bg-gray-900 text-gray-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* About Section */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
@@ -85,6 +87,23 @@ const Footer = ({ language }) => {
                 <Link to="/support" className="text-gray-400 hover:text-white transition-colors font-body">
                   {t.support}
                 </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Patient Education Sites */}
+          <div>
+            <h3 className="font-display font-semibold text-white mb-4">{t.projects}</h3>
+            <ul className="space-y-2">
+              <li>
+                <a href="https://scs-for-lcs.com/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-neo-teal-400 transition-colors font-body">
+                  SCS for LCS
+                </a>
+              </li>
+              <li>
+                <a href="https://no-porosis.com/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-neo-coral-400 transition-colors font-body">
+                  NO-POROSIS
+                </a>
               </li>
             </ul>
           </div>

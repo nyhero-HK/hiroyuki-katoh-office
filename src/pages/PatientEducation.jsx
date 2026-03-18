@@ -6,14 +6,39 @@ const PatientEducation = ({ language }) => {
   const content = {
     ja: {
       hero: {
-        title: '患者教育プラットフォーム',
-        subtitle: '腰部脊柱管狭窄症（LCS）から脊髄刺激療法（SCS）まで — 患者の治療ジャーニー全体をカバーする教育コンテンツ',
+        title: '患者教育プロジェクト',
+        subtitle: '専門医が執筆した、患者のための教育サイト — 正確な医学情報で、治療の意思決定を支援します',
       },
       mission: {
         title: 'ミッション',
-        content: '腰部脊柱管狭窄症と診断された患者が、自分の疾患を正しく理解し、保存療法から脊髄刺激療法まで、十分な情報に基づいた治療選択ができるよう支援することが、本プラットフォームの使命です。',
+        content: '慢性疾患と診断された患者が、自分の病気を正しく理解し、十分な情報に基づいた治療選択ができるよう支援することが、私たちの使命です。現在2つの患者教育サイトを運営しています。',
         quote: '「患者教育は治療の一部である」',
         quoteAuthor: '— 加藤裕幸',
+      },
+      sites: {
+        title: '運営サイト',
+        items: [
+          {
+            name: 'SCS for LCS',
+            url: 'https://scs-for-lcs.com/',
+            tagline: '腰痛・狭窄症 相談室',
+            desc: '腰部脊柱管狭窄症・慢性腰痛の患者さんが、疾患の理解から治療選択、脊髄刺激療法の検討まで、正確な情報に基づいて意思決定できるよう支援します。',
+            highlights: ['30+記事（10無料 + 会員）', '5カテゴリの体系的コンテンツ', '患者ポータル（経過記録・薬手帳OCR）', 'YouTube動画シリーズ', 'LINE公式アカウント'],
+            gradient: 'from-neo-teal-500 to-cyan-600',
+            iconColor: 'text-neo-teal-500',
+            buttonText: 'サイトを見る',
+          },
+          {
+            name: 'NO-POROSIS',
+            url: 'https://no-porosis.com/',
+            tagline: '骨粗鬆症 まなびサイト',
+            desc: '骨粗鬆症と診断された患者さんやご家族が、病気の仕組み・検査・治療薬・食事・運動・予防法を体系的に学べる教育サイトです。',
+            highlights: ['28記事（5つの柱で構成）', '7つの学習パスウェイ', 'FAQ（23問・6カテゴリ）', '編集方針・COI開示の透明性', '高齢者に優しいデザイン'],
+            gradient: 'from-neo-coral-500 to-rose-600',
+            iconColor: 'text-neo-coral-500',
+            buttonText: 'サイトを見る',
+          },
+        ],
       },
       problem: {
         title: '課題',
@@ -147,20 +172,45 @@ const PatientEducation = ({ language }) => {
         title: 'お問い合わせ',
         subtitle: 'プラットフォームの詳細やパートナーシップについて、お気軽にお問い合わせください。',
         button: 'お問い合わせ',
-        platformButton: 'プラットフォームにアクセス',
-        platformUrl: 'https://scs-for-lcs.com/',
+        scsButton: 'SCS for LCS',
+        noPorosisButton: 'NO-POROSIS',
       },
     },
     en: {
       hero: {
-        title: 'Patient Education Platform',
-        subtitle: 'From lumbar canal stenosis (LCS) to spinal cord stimulation (SCS) — educational content covering the entire patient treatment journey',
+        title: 'Patient Education Projects',
+        subtitle: 'Expert-authored educational sites for patients — empowering informed treatment decisions through accurate medical information',
       },
       mission: {
         title: 'Mission',
-        content: 'Our mission is to empower patients diagnosed with lumbar canal stenosis to understand their condition and make informed treatment decisions — from conservative therapy through spinal cord stimulation — through accurate, accessible education.',
+        content: 'Our mission is to empower patients diagnosed with chronic conditions to understand their disease and make informed treatment decisions through accurate, accessible education. We currently operate two patient education sites.',
         quote: '"Patient education is part of the treatment."',
         quoteAuthor: '— Hiroyuki Katoh, MD, PhD',
+      },
+      sites: {
+        title: 'Our Sites',
+        items: [
+          {
+            name: 'SCS for LCS',
+            url: 'https://scs-for-lcs.com/',
+            tagline: 'Back Pain & Spinal Stenosis Guide',
+            desc: 'Empowering patients with lumbar canal stenosis and chronic low back pain to make informed treatment decisions — from understanding their condition through spinal cord stimulation.',
+            highlights: ['30+ articles (free + member)', '5 systematic content categories', 'Patient portal (progress tracking, drug OCR)', 'YouTube video series', 'LINE official account'],
+            gradient: 'from-neo-teal-500 to-cyan-600',
+            iconColor: 'text-neo-teal-500',
+            buttonText: 'Visit Site',
+          },
+          {
+            name: 'NO-POROSIS',
+            url: 'https://no-porosis.com/',
+            tagline: 'Osteoporosis Education',
+            desc: 'A comprehensive educational site helping osteoporosis patients and their families understand the disease, diagnostics, medications, nutrition, exercise, and prevention.',
+            highlights: ['28 articles across 5 pillars', '7 guided learning pathways', 'FAQ (23 questions, 6 categories)', 'Editorial policy & COI transparency', 'Elderly-friendly design'],
+            gradient: 'from-neo-coral-500 to-rose-600',
+            iconColor: 'text-neo-coral-500',
+            buttonText: 'Visit Site',
+          },
+        ],
       },
       problem: {
         title: 'The Problem',
@@ -295,8 +345,8 @@ const PatientEducation = ({ language }) => {
         title: 'Get in Touch',
         subtitle: 'For platform details or partnership inquiries, please contact us.',
         button: 'Contact Us',
-        platformButton: 'Access Platform',
-        platformUrl: 'https://scs-for-lcs.com/',
+        scsButton: 'SCS for LCS',
+        noPorosisButton: 'NO-POROSIS',
       },
     },
   };
@@ -344,8 +394,8 @@ const PatientEducation = ({ language }) => {
   return (
     <>
       <SEO
-        title={language === 'ja' ? '患者教育プラットフォーム' : 'Patient Education Platform'}
-        description={language === 'ja' ? '腰部脊柱管狭窄症（LCS）から脊髄刺激療法（SCS）まで、患者の治療ジャーニー全体をカバーする教育コンテンツ。' : 'Educational content covering the entire patient treatment journey, from lumbar canal stenosis to spinal cord stimulation.'}
+        title={language === 'ja' ? '患者教育プロジェクト' : 'Patient Education Projects'}
+        description={language === 'ja' ? '腰部脊柱管狭窄症・慢性腰痛・骨粗鬆症 — 専門医が執筆した患者教育サイトを運営しています。' : 'Expert-authored patient education sites for lumbar canal stenosis, chronic low back pain, and osteoporosis.'}
         path="/patient-education"
         language={language}
       />
@@ -403,8 +453,77 @@ const PatientEducation = ({ language }) => {
         </div>
       </section>
 
-      {/* Problem Section */}
+      {/* Our Sites Section */}
       <section className="py-20 bg-gradient-to-br from-stone-50 to-cyan-50/20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-display font-bold">
+              {t.sites.title}
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {t.sites.items.map((site, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
+                className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100"
+              >
+                {/* Gradient header */}
+                <div className={`bg-gradient-to-r ${site.gradient} p-8`}>
+                  <h3 className="text-3xl font-display font-bold text-white mb-2">
+                    {site.name}
+                  </h3>
+                  <p className="text-white/90 font-body text-lg">{site.tagline}</p>
+                </div>
+
+                {/* Body */}
+                <div className="p-8">
+                  <p className="text-gray-600 font-body leading-relaxed mb-6">
+                    {site.desc}
+                  </p>
+
+                  {/* Feature highlights */}
+                  <ul className="space-y-3 mb-8">
+                    {site.highlights.map((item, i) => (
+                      <li key={i} className="flex items-start text-sm text-gray-700">
+                        <svg className={`w-5 h-5 ${site.iconColor} mr-3 mt-0.5 flex-shrink-0`} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span className="font-body">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <a
+                    href={site.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center px-8 py-4 bg-gradient-to-r ${site.gradient} text-white rounded-xl font-body font-bold hover:opacity-90 transition-all transform hover:scale-105 shadow-md`}
+                  >
+                    {site.buttonText}
+                    <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Problem Section */}
+      <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -666,12 +785,20 @@ const PatientEducation = ({ language }) => {
                 {t.cta.button}
               </Link>
               <a
-                href={t.cta.platformUrl}
+                href="https://scs-for-lcs.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-12 py-6 bg-white/10 text-white border-2 border-white/30 rounded-xl font-body font-bold text-xl hover:bg-white/20 transition-all transform hover:scale-105"
+                className="inline-flex items-center px-8 py-6 bg-white/10 text-white border-2 border-white/30 rounded-xl font-body font-bold text-lg hover:bg-white/20 transition-all transform hover:scale-105"
               >
-                {t.cta.platformButton} →
+                {t.cta.scsButton} →
+              </a>
+              <a
+                href="https://no-porosis.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-8 py-6 bg-white/10 text-white border-2 border-white/30 rounded-xl font-body font-bold text-lg hover:bg-white/20 transition-all transform hover:scale-105"
+              >
+                {t.cta.noPorosisButton} →
               </a>
             </div>
           </motion.div>

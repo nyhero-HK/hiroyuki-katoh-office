@@ -13,23 +13,30 @@ const Home = ({ language }) => {
         cta: '患者教育プラットフォーム',
         contact: 'お問い合わせ',
       },
-      platform: {
-        badge: 'FLAGSHIP PROJECT',
-        title: '患者教育プラットフォーム',
-        subtitle: '腰部脊柱管狭窄症（LCS）から脊髄刺激療法（SCS）まで — 患者の治療ジャーニー全体をカバーする教育コンテンツ',
-        description: '腰部脊柱管狭窄症と診断された患者が、疾患の理解から治療選択、そして脊髄刺激療法の検討まで、正確な情報に基づいて意思決定できるよう支援します。2つのモジュールが患者の治療ジャーニーに沿って連携しています。',
-        modules: [
+      projects: {
+        badge: 'PATIENT EDUCATION',
+        title: '患者教育プロジェクト',
+        subtitle: '専門医が執筆した、患者のための教育サイト',
+        sites: [
           {
-            title: 'LCSモジュール',
-            subtitle: '腰部脊柱管狭窄症を理解する',
-            desc: '疾患の仕組み、症状、診断から保存療法まで。「自分の病気」を正しく理解するための基礎知識を、分かりやすい記事と解説で提供します。',
-            color: 'neo-coral',
+            name: 'SCS for LCS',
+            url: 'https://scs-for-lcs.com/',
+            tagline: '腰痛・狭窄症 相談室',
+            desc: '腰部脊柱管狭窄症・慢性腰痛の患者さんが、疾患の理解から治療選択、脊髄刺激療法の検討まで、正確な情報に基づいて意思決定できるよう支援するサイトです。',
+            stats: { articles: '30+', categories: '5', videos: '5' },
+            statsLabels: { articles: '記事', categories: 'カテゴリ', videos: '動画' },
+            color: 'neo-teal',
+            gradient: 'from-neo-teal-500 to-cyan-600',
           },
           {
-            title: 'SCSモジュール',
-            subtitle: '脊髄刺激療法を検討する',
-            desc: 'SCSの仕組み、効果、リスク、費用、日常生活への影響を、包括的な教育コンテンツとQ&Aで解説します。',
-            color: 'neo-teal',
+            name: 'NO-POROSIS',
+            url: 'https://no-porosis.com/',
+            tagline: '骨粗鬆症 まなびサイト',
+            desc: '骨粗鬆症と診断された患者さんやそのご家族が、病気の仕組み・検査・治療薬・予防法を体系的に学べる教育サイトです。',
+            stats: { articles: '28', categories: '5', pathways: '7' },
+            statsLabels: { articles: '記事', categories: 'カテゴリ', pathways: '学習パス' },
+            color: 'neo-coral',
+            gradient: 'from-neo-coral-500 to-rose-600',
           },
         ],
         features: [
@@ -54,8 +61,7 @@ const Home = ({ language }) => {
             desc: '日本の医療制度・保険制度に即した、専門的な患者教育資料',
           },
         ],
-        cta: 'プラットフォームを見る',
-        comingSoon: '近日公開',
+        cta: '詳しく見る',
       },
       services: {
         title: 'サービス',
@@ -73,7 +79,7 @@ const Home = ({ language }) => {
           title: '教育テクノロジー',
           desc: 'AI技術を活用した医学教育アプリケーション。患者教育から医療従事者の研修まで、学習効率を最大化します。',
           details: [
-            'SCS患者教育プラットフォーム',
+            '患者教育プラットフォーム（SCS for LCS / NO-POROSIS）',
             'AI活用の学習支援ツール',
             'インタラクティブ教材開発',
           ],
@@ -110,7 +116,7 @@ const Home = ({ language }) => {
         highlights: {
           title: '主な実績',
           items: [
-            '東海大学医学部 准教授（2026年4月より医学教育学教授就任予定）',
+            '東海大学医学部 基礎医学系医学教育学 教授',
             'Toronto Western Hospital 研究員 (2018-2019)',
             '日本脊髄障害医学会 評議員',
             '東日本整形災害外科学会 評議員',
@@ -133,23 +139,30 @@ const Home = ({ language }) => {
         cta: 'Patient Education Platform',
         contact: 'Contact Us',
       },
-      platform: {
-        badge: 'FLAGSHIP PROJECT',
-        title: 'Patient Education Platform',
-        subtitle: 'From lumbar canal stenosis (LCS) to spinal cord stimulation (SCS) — educational content covering the entire patient treatment journey',
-        description: 'Empowering patients diagnosed with lumbar canal stenosis to make informed decisions from understanding their condition through treatment options, including spinal cord stimulation. Two interconnected modules guide patients along their treatment journey.',
-        modules: [
+      projects: {
+        badge: 'PATIENT EDUCATION',
+        title: 'Patient Education Projects',
+        subtitle: 'Expert-authored educational sites for patients',
+        sites: [
           {
-            title: 'LCS Module',
-            subtitle: 'Understanding Lumbar Canal Stenosis',
-            desc: 'Disease mechanisms, symptoms, diagnosis, and conservative treatment. Building foundational knowledge through clear articles and explanations.',
-            color: 'neo-coral',
+            name: 'SCS for LCS',
+            url: 'https://scs-for-lcs.com/',
+            tagline: 'Back Pain & Spinal Stenosis Guide',
+            desc: 'Empowering patients with lumbar canal stenosis and chronic low back pain to make informed treatment decisions — from understanding their condition through spinal cord stimulation.',
+            stats: { articles: '30+', categories: '5', videos: '5' },
+            statsLabels: { articles: 'Articles', categories: 'Categories', videos: 'Videos' },
+            color: 'neo-teal',
+            gradient: 'from-neo-teal-500 to-cyan-600',
           },
           {
-            title: 'SCS Module',
-            subtitle: 'Considering Spinal Cord Stimulation',
-            desc: 'How SCS works, efficacy, risks, costs, and daily life impact — through comprehensive educational content and Q&A resources.',
-            color: 'neo-teal',
+            name: 'NO-POROSIS',
+            url: 'https://no-porosis.com/',
+            tagline: 'Osteoporosis Education',
+            desc: 'A comprehensive educational site helping osteoporosis patients and their families understand the disease, diagnostics, medications, and prevention strategies.',
+            stats: { articles: '28', categories: '5', pathways: '7' },
+            statsLabels: { articles: 'Articles', categories: 'Categories', pathways: 'Pathways' },
+            color: 'neo-coral',
+            gradient: 'from-neo-coral-500 to-rose-600',
           },
         ],
         features: [
@@ -174,8 +187,7 @@ const Home = ({ language }) => {
             desc: 'Professional patient education materials adapted for the Japanese healthcare and insurance system',
           },
         ],
-        cta: 'Visit Platform',
-        comingSoon: 'Coming Soon',
+        cta: 'Learn More',
       },
       services: {
         title: 'Services',
@@ -193,7 +205,7 @@ const Home = ({ language }) => {
           title: 'Education Technology',
           desc: 'AI-powered applications for medical education — from patient education to healthcare professional training.',
           details: [
-            'SCS Patient Education Platform',
+            'Patient Education Platforms (SCS for LCS / NO-POROSIS)',
             'AI-enhanced learning tools',
             'Interactive educational materials',
           ],
@@ -230,7 +242,7 @@ const Home = ({ language }) => {
         highlights: {
           title: 'Key Achievements',
           items: [
-            'Associate Professor, Tokai University (Professor of Medical Education from April 2026)',
+            'Professor of Medical Education, Tokai University School of Medicine',
             'Research Fellow, Toronto Western Hospital (2018-2019)',
             'Board Member, Japan Medical Society of Spinal Cord Lesion',
             'Board Member, Eastern Japan Association of Orthopaedics',
@@ -356,10 +368,7 @@ const Home = ({ language }) => {
                       {language === 'ja' ? '加藤裕幸' : 'Hiroyuki Katoh'}
                     </h3>
                     <p className="text-cyan-100 font-body text-sm">
-                      {language === 'ja' ? '東海大学医学部 准教授' : 'Associate Professor, Tokai University'}
-                    </p>
-                    <p className="text-cyan-200 font-body text-xs mt-1">
-                      {language === 'ja' ? '2026年4月より 医学教育学教授' : 'Professor of Medical Education from April 2026'}
+                      {language === 'ja' ? '東海大学医学部 基礎医学系医学教育学 教授' : 'Professor of Medical Education, Tokai University'}
                     </p>
                   </div>
                 </div>
@@ -369,7 +378,7 @@ const Home = ({ language }) => {
         </div>
       </section>
 
-      {/* Patient Education Platform Section - FLAGSHIP */}
+      {/* Patient Education Projects Section */}
       <section className="py-24 bg-white relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neo-teal-500 via-neo-coral-500 to-neo-amber-400"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -381,61 +390,66 @@ const Home = ({ language }) => {
             className="text-center mb-16"
           >
             <span className="inline-block px-4 py-1.5 bg-neo-coral-500/10 text-neo-coral-500 rounded-full text-sm font-body font-bold tracking-wider mb-6">
-              {t.platform.badge}
+              {t.projects.badge}
             </span>
             <h2 className="text-5xl md:text-6xl font-display font-bold mb-6">
-              {t.platform.title}
+              {t.projects.title}
             </h2>
             <p className="text-2xl text-gray-600 font-body max-w-3xl mx-auto leading-relaxed">
-              {t.platform.subtitle}
+              {t.projects.subtitle}
             </p>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-gradient-to-br from-stone-50 to-cyan-50/30 rounded-3xl p-8 md:p-12 mb-12 border border-gray-100"
-          >
-            <p className="text-lg text-gray-700 font-body leading-relaxed max-w-4xl mx-auto text-center mb-10">
-              {t.platform.description}
-            </p>
-
-            {/* Two Module Cards */}
-            <div className="grid md:grid-cols-2 gap-6">
-              {t.platform.modules.map((mod, index) => (
-                <div
-                  key={index}
-                  className={`bg-white rounded-2xl p-6 border-l-4 ${index === 0 ? 'border-neo-coral-500' : 'border-neo-teal-500'} shadow-md hover:shadow-lg transition-shadow duration-300`}
-                >
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className={`px-3 py-1 rounded-full text-xs font-body font-bold ${index === 0 ? 'bg-neo-coral-500/10 text-neo-coral-500' : 'bg-neo-teal-500/10 text-neo-teal-500'}`}>
-                      {mod.title}
-                    </span>
+          {/* Two Site Cards */}
+          <div className="grid md:grid-cols-2 gap-8 mb-16">
+            {t.projects.sites.map((site, index) => (
+              <motion.a
+                key={index}
+                href={site.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
+                className="group block"
+              >
+                <div className={`relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100`}>
+                  {/* Gradient header */}
+                  <div className={`bg-gradient-to-r ${site.gradient} p-8 pb-6`}>
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-3xl font-display font-bold text-white">
+                        {site.name}
+                      </h3>
+                      <svg className="w-6 h-6 text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </div>
+                    <p className="text-white/90 font-body text-lg">{site.tagline}</p>
                   </div>
-                  <h3 className="text-xl font-display font-bold text-gray-900 mb-2">{mod.subtitle}</h3>
-                  <p className="text-gray-600 font-body text-sm leading-relaxed">{mod.desc}</p>
+
+                  {/* Body */}
+                  <div className="p-8">
+                    <p className="text-gray-600 font-body leading-relaxed mb-6">
+                      {site.desc}
+                    </p>
+
+                    {/* Stats row */}
+                    <div className="flex gap-6">
+                      {Object.entries(site.stats).map(([key, value]) => (
+                        <div key={key} className="text-center">
+                          <div className={`text-2xl font-display font-bold text-${site.color}-500`}>{value}</div>
+                          <div className="text-xs text-gray-500 font-body">{site.statsLabels[key]}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              ))}
-            </div>
+              </motion.a>
+            ))}
+          </div>
 
-            {/* Journey arrow connecting the two */}
-            <div className="hidden md:flex justify-center my-4">
-              <div className="flex items-center text-gray-400">
-                <div className="w-16 h-px bg-gray-300"></div>
-                <svg className="w-6 h-6 mx-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-                <span className="text-sm font-body">{language === 'ja' ? '患者の治療ジャーニー' : 'Patient Treatment Journey'}</span>
-                <svg className="w-6 h-6 mx-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-                <div className="w-16 h-px bg-gray-300"></div>
-              </div>
-            </div>
-          </motion.div>
-
+          {/* Feature highlights */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -443,7 +457,7 @@ const Home = ({ language }) => {
             viewport={{ once: true }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
           >
-            {t.platform.features.map((feature, index) => (
+            {t.projects.features.map((feature, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
@@ -473,7 +487,7 @@ const Home = ({ language }) => {
               to="/patient-education"
               className="inline-flex items-center px-10 py-5 bg-gradient-to-r from-neo-teal-500 to-cyan-600 text-white rounded-xl font-body font-bold text-lg hover:from-neo-teal-600 hover:to-cyan-700 transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
-              {t.platform.cta}
+              {t.projects.cta}
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>

@@ -12,7 +12,7 @@ const About = ({ language }) => {
       bio: {
         title: 'プロフィール',
         content: [
-          '加藤裕幸は、東海大学医学部整形外科学教室の准教授であり、2026年4月より医学教育学教授に就任予定です。',
+          '加藤裕幸は、東海大学医学部 基礎医学系医学教育学の教授です。',
           '慶應義塾大学医学部を卒業後、整形外科医として25年以上の臨床経験を積み、特に脊椎外科と慢性疼痛管理（脊髄刺激療法）の分野で専門性を確立しました。MedtronicおよびBoston ScientificのSCS領域においてKOLとして活動しています。',
           '2018年から2019年にかけて、カナダのToronto Western HospitalにてDr. Michael G. Fehlingsの指導の下、脊髄損傷の基礎研究に従事し、国際的な研究ネットワークを構築しました。',
           '現在は、臨床医療と医学教育の両面で活躍し、AI技術を活用したSCS患者教育プラットフォームの開発や、次世代の医療従事者育成に取り組んでいます。',
@@ -43,13 +43,13 @@ const About = ({ language }) => {
         items: [
           {
             period: '2026年4月-',
-            role: '東海大学医学部',
-            title: '医学教育学教授（就任予定）',
+            role: '東海大学医学部 基礎医学系',
+            title: '医学教育学 教授',
           },
           {
             period: '2021-2026年',
             role: '東海大学医学部整形外科学教室',
-            title: '准教授・国際関係担当',
+            title: '整形外科学 准教授・国際関係担当',
           },
           {
             period: '2013-2021年',
@@ -120,7 +120,7 @@ const About = ({ language }) => {
       bio: {
         title: 'Biography',
         content: [
-          'Dr. Hiroyuki Katoh is an Associate Professor in the Department of Orthopedic Surgery at Tokai University School of Medicine, and will assume the role of Professor of Medical Education in April 2026.',
+          'Dr. Hiroyuki Katoh is a Professor of Medical Education in the Department of Basic Medical Sciences at Tokai University School of Medicine.',
           'After graduating from Keio University School of Medicine, he gained 25+ years of clinical experience as an orthopedic surgeon, establishing expertise in spinal surgery and chronic pain management, particularly spinal cord stimulation (SCS) therapy. He serves as a Key Opinion Leader for Medtronic and Boston Scientific in the SCS field.',
           'From 2018 to 2019, he conducted fundamental research on spinal cord injury under the guidance of Dr. Michael G. Fehlings at Toronto Western Hospital, Canada, building an international research network.',
           'Currently, he is active in both clinical medicine and medical education, developing an AI-powered SCS patient education platform and training the next generation of healthcare professionals.',
@@ -150,14 +150,14 @@ const About = ({ language }) => {
         title: 'Professional Experience',
         items: [
           {
-            period: 'April 2026-',
-            role: 'Tokai University School of Medicine',
-            title: 'Professor of Medical Education (Incoming)',
+            period: '2026-',
+            role: 'Tokai University School of Medicine, Dept. of Basic Medical Sciences',
+            title: 'Professor of Medical Education',
           },
           {
             period: '2021-2026',
             role: 'Tokai University School of Medicine',
-            title: 'Associate Professor & Chair of International Relations',
+            title: 'Associate Professor, Orthopedic Surgery & Chair of International Relations',
           },
           {
             period: '2013-2021',
@@ -243,7 +243,7 @@ const About = ({ language }) => {
     <>
       <SEO
         title={language === 'ja' ? '事務所について' : 'About'}
-        description={language === 'ja' ? '加藤裕幸 — 東海大学医学部准教授、2026年4月より医学教育学教授。25年以上の整形外科・脊椎外科の臨床経験。' : 'Hiroyuki Katoh — Associate Professor, Tokai University. Professor of Medical Education from April 2026. 25+ years in orthopedic surgery.'}
+        description={language === 'ja' ? '加藤裕幸 — 東海大学医学部 基礎医学系医学教育学 教授。25年以上の整形外科・脊椎外科の臨床経験。' : 'Hiroyuki Katoh — Professor of Medical Education, Tokai University School of Medicine. 25+ years in orthopedic surgery.'}
         path="/about"
         language={language}
       />
