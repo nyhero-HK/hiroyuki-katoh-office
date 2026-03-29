@@ -1,27 +1,13 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import logo from '../assets/Logo small.png';
 import SEO from '../components/SEO';
 
 const Support = ({ language }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
-
   const content = {
     ja: {
       title: 'お問い合わせ',
       subtitle: 'ご質問やご相談がございましたら、お気軽にお問い合わせください。',
-      form: {
-        name: 'お名前',
-        email: 'メールアドレス',
-        subject: '件名',
-        message: 'メッセージ',
-        submit: '送信する',
-      },
+      sendEmail: 'メールで問い合わせる',
       contact: {
         title: '連絡先情報',
         email: 'メールアドレス',
@@ -40,13 +26,7 @@ const Support = ({ language }) => {
     en: {
       title: 'Contact & Support',
       subtitle: 'Have questions or need consultation? Feel free to reach out to us.',
-      form: {
-        name: 'Full Name',
-        email: 'Email Address',
-        subject: 'Subject',
-        message: 'Message',
-        submit: 'Send Message',
-      },
+      sendEmail: 'Send us an email',
       contact: {
         title: 'Contact Information',
         email: 'Email',
@@ -65,20 +45,6 @@ const Support = ({ language }) => {
   };
 
   const t = content[language];
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission (integrate with your backend)
-    console.log('Form submitted:', formData);
-    alert(language === 'ja' ? 'お問い合わせありがとうございます！' : 'Thank you for contacting us!');
-  };
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
 
   return (
     <>
@@ -107,131 +73,61 @@ const Support = ({ language }) => {
         </div>
       </section>
 
-      {/* Contact Form & Info Section */}
+      {/* Contact Info Section */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="space-y-8">
+            {/* Email Card */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <div className="bg-stone-50 rounded-2xl p-8 card-glow">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-body font-semibold text-gray-700 mb-2">
-                      {t.form.name}
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-neo-teal-500 focus:border-transparent transition-all font-body"
-                    />
+              <div className="bg-gradient-to-br from-neo-teal-500 to-cyan-500 rounded-2xl p-8 text-white">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
                   </div>
-
                   <div>
-                    <label htmlFor="email" className="block text-sm font-body font-semibold text-gray-700 mb-2">
-                      {t.form.email}
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-neo-teal-500 focus:border-transparent transition-all font-body"
-                    />
+                    <div className="font-body font-semibold mb-1">{t.contact.email}</div>
+                    <a href="mailto:hiroyuki.katoh.office@gmail.com" className="text-lg font-body hover:underline">
+                      hiroyuki.katoh.office@gmail.com
+                    </a>
+                    <p className="text-sm text-cyan-100 mt-2">{t.contact.response}</p>
                   </div>
-
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-body font-semibold text-gray-700 mb-2">
-                      {t.form.subject}
-                    </label>
-                    <input
-                      type="text"
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-neo-teal-500 focus:border-transparent transition-all font-body"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-body font-semibold text-gray-700 mb-2">
-                      {t.form.message}
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={6}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-neo-teal-500 focus:border-transparent transition-all font-body resize-none"
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full px-8 py-4 bg-neo-teal-500 text-white rounded-xl font-body font-semibold hover:bg-neo-teal-600 transition-all transform hover:scale-105 card-glow"
-                  >
-                    {t.form.submit}
-                  </button>
-                </form>
+                </div>
+                <a
+                  href="mailto:hiroyuki.katoh.office@gmail.com"
+                  className="mt-6 block w-full px-8 py-4 bg-white text-neo-teal-600 rounded-xl font-body font-semibold text-center hover:bg-cyan-50 transition-all transform hover:scale-105 card-glow"
+                >
+                  {t.sendEmail}
+                </a>
               </div>
             </motion.div>
 
-            {/* Contact Information */}
+            {/* Office Card */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="space-y-8"
+              transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <div>
-                <h2 className="text-3xl font-display font-bold mb-6">{t.contact.title}</h2>
-
-                <div className="bg-gradient-to-br from-neo-teal-500 to-cyan-500 rounded-2xl p-8 text-white mb-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <div className="font-body font-semibold mb-1">{t.contact.email}</div>
-                      <a href="mailto:hiroyuki.katoh.office@gmail.com" className="text-lg font-body hover:underline">
-                        hiroyuki.katoh.office@gmail.com
-                      </a>
-                      <p className="text-sm text-cyan-100 mt-2">{t.contact.response}</p>
-                    </div>
+              <div className="bg-stone-50 rounded-2xl p-6 card-glow">
+                <div className="flex items-center space-x-3 mb-4">
+                  <img src={logo} alt="Katoh Office Logo" className="w-12 h-12" />
+                  <div>
+                    <div className="font-display font-bold text-gray-900">加藤事務所</div>
+                    <div className="text-sm text-gray-600 font-body">Katoh Office</div>
                   </div>
                 </div>
-
-                <div className="bg-stone-50 rounded-2xl p-6">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <img src={logo} alt="Katoh Office Logo" className="w-12 h-12" />
-                    <div>
-                      <div className="font-display font-bold text-gray-900">加藤事務所</div>
-                      <div className="text-sm text-gray-600 font-body">Katoh Office</div>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 font-body text-sm">
-                    {language === 'ja'
-                      ? '医療教育コンサルティングと教育ソフトウェアを提供しています。'
-                      : 'Providing medical education consulting and educational software.'}
-                  </p>
-                </div>
+                <p className="text-gray-600 font-body text-sm">
+                  {language === 'ja'
+                    ? '医療教育コンサルティングと教育ソフトウェアを提供しています。'
+                    : 'Providing medical education consulting and educational software.'}
+                </p>
               </div>
             </motion.div>
           </div>
