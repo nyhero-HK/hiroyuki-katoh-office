@@ -15,7 +15,7 @@ const About = ({ language }) => {
           '加藤裕幸は、東海大学医学部 基礎医学系医学教育学の教授です。',
           '慶應義塾大学医学部を卒業後、整形外科医として25年以上の臨床経験を積み、特に脊椎外科と慢性疼痛管理（脊髄刺激療法）の分野で専門性を確立しました。MedtronicおよびBoston ScientificのSCS領域においてKOLとして活動しています。',
           '2018年から2019年にかけて、カナダのToronto Western HospitalにてDr. Michael G. Fehlingsの指導の下、脊髄損傷の基礎研究に従事し、国際的な研究ネットワークを構築しました。',
-          '現在は、臨床医療と医学教育の両面で活躍し、AI技術を活用したSCS患者教育プラットフォームの開発や、次世代の医療従事者育成に取り組んでいます。',
+          '現在は、臨床医療と医学教育の両面で活躍し、AI技術を活用した患者教育プラットフォーム（腰部脊柱管狭窄症の「SCS for LCS」、骨粗鬆症の「NO-POROSIS」）の開発や、次世代の医療従事者育成に取り組んでいます。',
         ],
       },
       education: {
@@ -123,7 +123,7 @@ const About = ({ language }) => {
           'Dr. Hiroyuki Katoh is a Professor of Medical Education in the Department of Basic Medical Sciences at Tokai University School of Medicine.',
           'After graduating from Keio University School of Medicine, he gained 25+ years of clinical experience as an orthopedic surgeon, establishing expertise in spinal surgery and chronic pain management, particularly spinal cord stimulation (SCS) therapy. He serves as a Key Opinion Leader for Medtronic and Boston Scientific in the SCS field.',
           'From 2018 to 2019, he conducted fundamental research on spinal cord injury under the guidance of Dr. Michael G. Fehlings at Toronto Western Hospital, Canada, building an international research network.',
-          'Currently, he is active in both clinical medicine and medical education, developing an AI-powered SCS patient education platform and training the next generation of healthcare professionals.',
+          'Currently, he is active in both clinical medicine and medical education, developing AI-powered patient education platforms — SCS for LCS (lumbar canal stenosis) and NO-POROSIS (osteoporosis) — and training the next generation of healthcare professionals.',
         ],
       },
       education: {

@@ -46,70 +46,56 @@ const PatientEducation = ({ language }) => {
         items: [
           {
             title: '情報格差',
-            desc: 'SCSに関する日本語の正確な患者向け情報は極めて限られています。多くの患者がインターネット上の不正確な情報に頼らざるを得ない状況です。',
+            desc: '脊柱管狭窄症や骨粗鬆症など、慢性疾患に関する日本語の正確な患者向け情報は限られています。多くの患者が、インターネット上の断片的・不正確な情報に頼らざるを得ない状況です。',
           },
           {
-            title: '意思決定の困難さ',
-            desc: 'SCSは侵襲的な治療法であり、患者は治療の効果、リスク、手術の流れ、術後の生活について包括的に理解する必要があります。',
+            title: '意思決定の難しさ',
+            desc: '手術や脊髄刺激療法、あるいは骨粗鬆症の長期薬物治療など、患者は効果・リスク・費用・生活への影響を包括的に理解したうえで選択する必要があります。',
           },
           {
             title: '治療継続率への影響',
-            desc: '十分な教育を受けた患者は、治療への期待値が適切に設定され、結果として治療満足度と継続率が向上することが示されています。',
+            desc: '十分な教育を受けた患者は治療への期待値が適切に設定され、満足度と継続率が向上することが示されています。特に骨粗鬆症では「治療を続けられること」が成果を大きく左右します。',
           },
         ],
       },
       solution: {
         title: 'コンテンツ',
         subtitle: '基礎知識から治療選択まで — 患者の理解に沿って構成された教育記事',
-        description: '脊椎外科専門医が25年以上の臨床経験をもとに執筆した、体系的な教育コンテンツです。「背骨のしくみ」から始まり、疾患の理解、治療の選択肢、そして日常生活まで、患者の治療ジャーニーに沿った記事と解説で構成されています。',
-        categories: [
+        description: '両サイトとも、脊椎外科・整形外科の専門医が25年以上の臨床経験をもとに執筆した体系的な教育コンテンツです。疾患の理解から検査・治療の選択、そして日常生活まで、患者の治療ジャーニーに沿った記事と解説で構成されています。',
+        libraries: [
           {
-            title: '背骨のしくみ',
-            type: '基礎解説',
-            desc: '椎骨、脊柱管、椎間板の構造を「積み木」「あんパン」などの身近なたとえで解説',
-            module: 'LCS',
+            site: 'SCS for LCS',
+            tagline: '腰部脊柱管狭窄症・慢性腰痛',
+            meta: '5カテゴリ・30+記事',
+            accent: 'teal',
+            categories: [
+              { title: '背骨のしくみ', type: '基礎解説', desc: '椎骨、脊柱管、椎間板の構造を「積み木」「あんパン」などの身近なたとえで解説' },
+              { title: '腰部脊柱管狭窄症を知る', type: '疾患理解', desc: '病名の意味、なぜ起こるのか、痛みのメカニズム、似ている病気との違い' },
+              { title: '検査と診断', type: '検査ガイド', desc: 'MRI・レントゲンなどの検査の流れ、画像の見方、診断のポイント' },
+              { title: '治療の全体像', type: '治療戦略', desc: 'どんな治療法があるか一覧、治療の流れ（ステップ）、何を基準に選ぶか' },
+              { title: '保存療法', type: '非手術治療', desc: '薬物療法、リハビリ・理学療法、神経ブロック注射、装具療法（コルセット）' },
+              { title: '手術療法', type: '手術解説', desc: '除圧術・固定術の種類、手術の流れ、低侵襲手術、術後の回復' },
+              { title: '脊髄刺激療法（SCS）', type: 'SCS', desc: '仕組み、トライアルから本植込みの流れ、効果と限界、費用と保険' },
+              { title: '日常生活と用語集', type: '実践ガイド', desc: '姿勢・動作・運動のコツ、医学用語のやさしい解説集' },
+            ],
           },
           {
-            title: '腰部脊柱管狭窄症を知る',
-            type: '疾患理解',
-            desc: '病名の意味、なぜ起こるのか、痛みのメカニズム、似ている病気との違い',
-            module: 'LCS',
-          },
-          {
-            title: '検査と診断',
-            type: '検査ガイド',
-            desc: 'MRI・レントゲンなどの検査の流れ、画像の見方、診断のポイント',
-            module: 'LCS',
-          },
-          {
-            title: '治療の全体像',
-            type: '治療戦略',
-            desc: 'どんな治療法があるか一覧、治療の流れ（ステップ）、何を基準に選ぶか',
-          },
-          {
-            title: '保存療法',
-            type: '非手術治療',
-            desc: '薬物療法、リハビリ・理学療法、神経ブロック注射、装具療法（コルセット）',
-          },
-          {
-            title: '手術療法',
-            type: '手術解説',
-            desc: '除圧術・固定術の種類、手術の流れ、低侵襲手術、術後の回復',
-          },
-          {
-            title: '脊髄刺激療法（SCS）',
-            type: 'SCS',
-            desc: '仕組み、トライアルから本植込みの流れ、効果と限界、費用と保険',
-          },
-          {
-            title: '日常生活と用語集',
-            type: '実践ガイド',
-            desc: '姿勢・動作・運動のコツ、医学用語のやさしい解説集',
+            site: 'NO-POROSIS',
+            tagline: '骨粗鬆症',
+            meta: '5つの柱・28記事',
+            accent: 'coral',
+            categories: [
+              { title: '骨と体のしくみ', type: '基礎解説', desc: '「骨は生きている」骨のリモデリング、女性ホルモンと骨の関係、「静かな病気」とよくある誤解' },
+              { title: 'あなたのリスクを知る', type: 'リスク評価', desc: 'リスクチェック、壁立ちテスト、骨密度検査（DEXA）、骨代謝マーカー、FRAX骨折リスク' },
+              { title: '今日からできること', type: '予防', desc: '骨を強くする食事（カルシウム・ビタミンD/K2）、運動と転倒予防、生活習慣の見直し' },
+              { title: '検査と治療を理解する', type: '治療解説', desc: '治療の全体像、お薬ガイド（ビスホスホネート・デノスマブ・ロモソズマブ・テリパラチド）、安全性と継続' },
+              { title: 'ご家族と一緒に', type: '実践ガイド', desc: '大切な人の骨を守る家族向けガイド、自己注射のサポート、住まいの転倒予防' },
+            ],
           },
         ],
         premium: {
           title: '会員限定コンテンツ',
-          items: ['治療法の比較表', '症状別の治療選択ガイド', '医師への質問リスト', 'SCS詳細ガイド'],
+          items: ['治療法の比較表', '症状別の治療選択ガイド', '医師への質問リスト', '詳細治療ガイド'],
         },
       },
       features: {
@@ -117,18 +103,18 @@ const PatientEducation = ({ language }) => {
         items: [
           {
             icon: 'evidence',
-            title: '脊椎外科専門医が執筆',
-            desc: '25年以上の臨床経験と最新の研究に基づき、脊椎外科専門医が直接執筆。医学的正確性と患者への配慮を両立しています。',
+            title: '専門医が執筆',
+            desc: '脊椎外科・骨粗鬆症診療における25年以上の臨床経験と最新の研究に基づき、専門医が直接執筆。医学的正確性と患者への配慮を両立しています。',
           },
           {
             icon: 'accessible',
             title: '身近なたとえで理解',
-            desc: '「背骨は積み木」「椎間板はあんパン」「脊柱管はホース」— 日本の文化に根ざした身近な例えで、60代以上の患者にも直感的に理解できる解説。',
+            desc: '「背骨は積み木」「椎間板はあんパン」、「骨のリモデリングは解体チームと建設チーム」— 日本の文化に根ざした身近な例えで、脊椎疾患も骨粗鬆症も、60代以上の患者が直感的に理解できる解説。',
           },
           {
             icon: 'journey',
             title: 'あなたの状況に合わせたガイド',
-            desc: '「まだ病院に行っていない方」「病名を告げられた方」「治療法を検討中の方」「手術を勧められた方」— 5つの状況別に最適な記事をご案内。',
+            desc: '脊椎疾患では「まだ受診していない方」「診断された方」「手術を勧められた方」、骨粗鬆症では「圧迫骨折と言われた方」「お薬が始まる方」「予防したい方」— 状況別に最適な記事をご案内。',
           },
           {
             icon: 'premium',
@@ -145,16 +131,16 @@ const PatientEducation = ({ language }) => {
           {
             title: '医療機関向け',
             items: [
-              'SCS導入施設向け患者教育ツールとしての提供',
+              'SCS導入施設・骨粗鬆症リエゾンサービス向けの患者教育ツールとしての提供',
               '施設のブランドに合わせたカスタマイズ版',
               '患者教育の効果測定データの共有',
             ],
           },
           {
-            title: 'デバイスメーカー向け',
+            title: 'デバイス・製薬企業向け',
             items: [
-              '製品教育と連携した患者教育コンテンツ',
-              '治験参加者向けの教育資料',
+              '製品・治療と連携した患者教育コンテンツ',
+              '治験参加者・服薬継続支援向けの教育資料',
               'ポストマーケット患者サポートの強化',
             ],
           },
@@ -218,71 +204,57 @@ const PatientEducation = ({ language }) => {
         items: [
           {
             title: 'Information Gap',
-            desc: 'Accurate, patient-friendly information about SCS in Japanese is extremely limited. Many patients rely on inaccurate online sources for their understanding.',
+            desc: 'Accurate, patient-friendly Japanese information on chronic conditions — from spinal stenosis to osteoporosis — is limited. Many patients rely on fragmented or inaccurate online sources.',
           },
           {
             title: 'Decision Complexity',
-            desc: 'SCS is an invasive therapy. Patients need comprehensive understanding of efficacy, risks, surgical procedures, and post-operative lifestyle implications.',
+            desc: 'Whether facing spine surgery, spinal cord stimulation, or years of osteoporosis medication, patients must weigh efficacy, risks, cost, and lifestyle impact to choose well.',
           },
           {
             title: 'Impact on Outcomes',
-            desc: 'Well-educated patients develop appropriate treatment expectations, leading to improved satisfaction rates and better long-term therapy adherence.',
+            desc: 'Well-educated patients set appropriate expectations, improving satisfaction and adherence. In osteoporosis especially, staying on therapy is what determines results.',
           },
         ],
       },
       solution: {
         title: 'Content',
         subtitle: 'From Fundamentals to Treatment — Systematic Articles Along the Patient Journey',
-        description: 'A comprehensive Japanese-language educational library authored by a spine surgeon with 25+ years of clinical experience. Articles and illustrated explanations guide patients from understanding spinal anatomy through treatment decision-making.',
+        description: 'Comprehensive Japanese-language libraries authored by a spine surgeon and orthopedic specialist with 25+ years of clinical experience. Both sites guide patients from understanding their condition through diagnosis, treatment choices, and everyday life.',
         note: '* All patient education content is currently available in Japanese only.',
-        categories: [
+        libraries: [
           {
-            title: 'Spinal Anatomy',
-            type: 'Foundation',
-            desc: 'Vertebrae, spinal canal, and disc structure explained through familiar analogies',
-            module: 'LCS',
+            site: 'SCS for LCS',
+            tagline: 'Lumbar canal stenosis & chronic low back pain',
+            meta: '5 categories · 30+ articles',
+            accent: 'teal',
+            categories: [
+              { title: 'Spinal Anatomy', type: 'Foundation', desc: 'Vertebrae, spinal canal, and disc structure explained through familiar analogies' },
+              { title: 'Understanding LCS', type: 'Disease', desc: 'What lumbar canal stenosis means, why it happens, pain mechanisms, differential diagnosis' },
+              { title: 'Tests & Diagnosis', type: 'Diagnosis', desc: 'MRI, X-ray, and other examinations; how to read imaging results' },
+              { title: 'Treatment Overview', type: 'Strategy', desc: 'Full landscape of treatment options, decision framework, step-by-step treatment flow' },
+              { title: 'Conservative Treatment', type: 'Non-Surgical', desc: 'Medication, physical therapy, nerve blocks, bracing (corsets)' },
+              { title: 'Surgical Options', type: 'Surgery', desc: 'Decompression, fusion, minimally invasive approaches, recovery process' },
+              { title: 'SCS Therapy', type: 'SCS', desc: 'How it works, trial-to-implant process, efficacy & limitations, cost & insurance' },
+              { title: 'Daily Life & Glossary', type: 'Practical', desc: 'Posture, movement, and exercise tips; plain-language medical terminology reference' },
+            ],
           },
           {
-            title: 'Understanding LCS',
-            type: 'Disease',
-            desc: 'What lumbar canal stenosis means, why it happens, pain mechanisms, differential diagnosis',
-            module: 'LCS',
-          },
-          {
-            title: 'Tests & Diagnosis',
-            type: 'Diagnosis',
-            desc: 'MRI, X-ray, and other examinations; how to read imaging results',
-            module: 'LCS',
-          },
-          {
-            title: 'Treatment Overview',
-            type: 'Strategy',
-            desc: 'Full landscape of treatment options, decision framework, step-by-step treatment flow',
-          },
-          {
-            title: 'Conservative Treatment',
-            type: 'Non-Surgical',
-            desc: 'Medication, physical therapy, nerve blocks, bracing (corsets)',
-          },
-          {
-            title: 'Surgical Options',
-            type: 'Surgery',
-            desc: 'Decompression, fusion, minimally invasive approaches, recovery process',
-          },
-          {
-            title: 'SCS Therapy',
-            type: 'SCS',
-            desc: 'How it works, trial-to-implant process, efficacy & limitations, cost & insurance',
-          },
-          {
-            title: 'Daily Life & Glossary',
-            type: 'Practical',
-            desc: 'Posture, movement, and exercise tips; plain-language medical terminology reference',
+            site: 'NO-POROSIS',
+            tagline: 'Osteoporosis',
+            meta: '5 pillars · 28 articles',
+            accent: 'coral',
+            categories: [
+              { title: 'How Bone Works', type: 'Foundation', desc: '"Bone is alive" — remodeling, the role of estrogen, the "silent disease," and common myths' },
+              { title: 'Know Your Risk', type: 'Risk', desc: 'Risk check, wall-stand self-test, DEXA bone density, bone turnover markers, FRAX fracture risk' },
+              { title: 'Start Today', type: 'Prevention', desc: 'Bone-strengthening nutrition (calcium, vitamin D/K2), exercise, fall prevention, lifestyle' },
+              { title: 'Tests & Treatment', type: 'Treatment', desc: 'Treatment overview and medication guide (bisphosphonates, denosumab, romosozumab, teriparatide), safety & adherence' },
+              { title: 'Together With Family', type: 'Practical', desc: 'Guidance for families, support with self-injection, and making the home safer' },
+            ],
           },
         ],
         premium: {
           title: 'Premium Content',
-          items: ['Treatment comparison tables', 'Personalized treatment selection guide', 'Questions for your doctor checklist', 'Detailed SCS guide'],
+          items: ['Treatment comparison tables', 'Personalized treatment selection guide', 'Questions for your doctor checklist', 'Detailed treatment guides'],
         },
       },
       features: {
@@ -290,18 +262,18 @@ const PatientEducation = ({ language }) => {
         items: [
           {
             icon: 'evidence',
-            title: 'Spine Surgeon-Authored',
-            desc: 'Written directly by a board-certified spine surgeon with 25+ years of clinical experience. Combines medical accuracy with genuine patient empathy.',
+            title: 'Specialist-Authored',
+            desc: 'Written directly by a board-certified spine surgeon and orthopedic specialist with 25+ years treating spinal disorders and osteoporosis. Combines medical accuracy with genuine patient empathy.',
           },
           {
             icon: 'accessible',
             title: 'Culturally Adapted Education',
-            desc: 'Not translated — authored in Japanese with culturally resonant analogies and reading level optimized for patients aged 60+. True localization, not translation.',
+            desc: 'Not translated — authored in Japanese with culturally resonant analogies (the spine as stacking blocks; bone remodeling as demolition and construction crews) at a reading level optimized for patients aged 60+.',
           },
           {
             icon: 'journey',
             title: 'Situation-Based Patient Pathways',
-            desc: 'Five guided pathways: "Haven\'t seen a doctor yet," "Just diagnosed," "Considering treatment," "Surgery recommended," and "Surgery not an option."',
+            desc: 'Guided pathways for both conditions — from "just diagnosed" or "surgery recommended" for spinal stenosis, to "told you have a compression fracture," "starting medication," or "want to prevent it" for osteoporosis.',
           },
           {
             icon: 'premium',
@@ -318,16 +290,16 @@ const PatientEducation = ({ language }) => {
           {
             title: 'Healthcare Institutions',
             items: [
-              'Patient education tool for SCS-implementing facilities',
+              'Patient education tool for SCS-implementing facilities & osteoporosis liaison services',
               'Customized versions matching institutional branding',
               'Shared patient education effectiveness data',
             ],
           },
           {
-            title: 'Device Manufacturers',
+            title: 'Device & Pharmaceutical Companies',
             items: [
-              'Patient education content aligned with product education',
-              'Educational materials for clinical trial participants',
+              'Patient education content aligned with product and therapy',
+              'Materials for clinical trial participants & medication adherence support',
               'Enhanced post-market patient support',
             ],
           },
@@ -413,7 +385,7 @@ const PatientEducation = ({ language }) => {
             className="text-center"
           >
             <span className="inline-block px-4 py-1.5 bg-neo-coral-500/10 text-neo-coral-500 rounded-full text-sm font-body font-bold tracking-wider mb-6">
-              FLAGSHIP PROJECT
+              PATIENT EDUCATION
             </span>
             <h1 className="text-5xl md:text-7xl font-display font-bold mb-6">
               {t.hero.title}
@@ -591,33 +563,52 @@ const PatientEducation = ({ language }) => {
             )}
           </motion.div>
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12"
-          >
-            {t.solution.categories.map((category, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className={`bg-gradient-to-br from-stone-50 to-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-shadow duration-300 ${index <= 2 ? 'border-l-4 border-l-neo-coral-500/30' : index === 6 ? 'border-l-4 border-l-neo-teal-500/30' : ''}`}
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <span className={`px-2.5 py-0.5 ${category.module === 'LCS' ? 'bg-neo-coral-500/10 text-neo-coral-500' : category.type === 'SCS' ? 'bg-neo-teal-500/10 text-neo-teal-500' : 'bg-gray-100 text-gray-600'} rounded-full text-xs font-body font-bold`}>
-                    {category.type}
-                  </span>
+          <div className="mt-12 space-y-14">
+            {t.solution.libraries.map((lib, li) => {
+              const accent = lib.accent === 'teal'
+                ? { text: 'text-neo-teal-500', chip: 'bg-neo-teal-500/10 text-neo-teal-500', bar: 'from-neo-teal-500 to-cyan-600', edge: 'border-l-neo-teal-500/40' }
+                : { text: 'text-neo-coral-500', chip: 'bg-neo-coral-500/10 text-neo-coral-500', bar: 'from-neo-coral-500 to-rose-600', edge: 'border-l-neo-coral-500/40' };
+              return (
+                <div key={li}>
+                  {/* Library header */}
+                  <div className="flex items-center gap-3 mb-6">
+                    <span className={`inline-block h-9 w-1.5 rounded-full bg-gradient-to-b ${accent.bar}`}></span>
+                    <div>
+                      <h3 className={`text-2xl font-display font-bold ${accent.text}`}>{lib.site}</h3>
+                      <p className="text-gray-500 font-body text-sm">{lib.tagline} ・ {lib.meta}</p>
+                    </div>
+                  </div>
+                  <motion.div
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+                  >
+                    {lib.categories.map((category, index) => (
+                      <motion.div
+                        key={index}
+                        variants={itemVariants}
+                        className={`bg-gradient-to-br from-stone-50 to-white rounded-2xl p-6 border border-gray-100 border-l-4 ${accent.edge} hover:shadow-lg transition-shadow duration-300`}
+                      >
+                        <div className="mb-3">
+                          <span className={`px-2.5 py-0.5 ${accent.chip} rounded-full text-xs font-body font-bold`}>
+                            {category.type}
+                          </span>
+                        </div>
+                        <h4 className="text-base font-display font-bold text-gray-900 mb-2">
+                          {category.title}
+                        </h4>
+                        <p className="text-gray-600 font-body text-sm leading-relaxed">
+                          {category.desc}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </motion.div>
                 </div>
-                <h3 className="text-base font-display font-bold text-gray-900 mb-2">
-                  {category.title}
-                </h3>
-                <p className="text-gray-600 font-body text-sm leading-relaxed">
-                  {category.desc}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
+              );
+            })}
+          </div>
 
           {/* Premium content callout */}
           {t.solution.premium && (

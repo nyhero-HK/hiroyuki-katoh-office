@@ -11,11 +11,43 @@
 @font-face { font-family: 'Outfit'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/outfit-700.ttf') format('truetype'); }
 @font-face { font-family: 'Outfit'; font-style: normal; font-weight: 800; font-display: swap; src: url('/fonts/outfit-800.ttf') format('truetype'); }
 
+/* Fallback font metrics — match local system fonts to the web fonts so text
+   doesn't reflow (CLS) while Noto Sans JP / Outfit / Manrope are loading. */
+@font-face {
+  font-family: 'Noto Sans JP Fallback';
+  src: local('Hiragino Kaku Gothic ProN'), local('Hiragino Sans'), local('Yu Gothic'), local('Meiryo');
+  size-adjust: 100%;
+  ascent-override: 96%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Outfit Fallback';
+  src: local('Arial'), local('Helvetica Neue'), local('Helvetica');
+  size-adjust: 100%;
+  ascent-override: 96%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Manrope Fallback';
+  src: local('Arial'), local('Helvetica Neue'), local('Helvetica');
+  size-adjust: 101%;
+  ascent-override: 93%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
   body {
     @apply font-body text-gray-900 bg-stone-50;
     margin: 0;

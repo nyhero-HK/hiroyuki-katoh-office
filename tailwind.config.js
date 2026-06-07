@@ -7,17 +7,29 @@ export default {
   theme: {
     extend: {
       colors: {
+        // True monotonic teal ramp anchored on the brand #0B5563.
+        // (Was: 50–400 bright turquoise then a jump to dark 500 — broke predictable styling.)
         'neo-teal': {
-          50: '#f0fdfa',
-          100: '#ccfbf1',
-          200: '#99f6e4',
-          300: '#5eead4',
-          400: '#2dd4bf',
+          50: '#f0f7f8',
+          100: '#d9ebee',
+          200: '#b3d6dc',
+          300: '#7fb6c0',
+          400: '#4d909d',
           500: '#0B5563', // Primary
           600: '#0A4A55',
           700: '#083D47',
           800: '#062E36',
           900: '#042228',
+        },
+        // Bright accent for "live"/highlight moments (was implicitly the old neo-teal-400).
+        'neo-mint': {
+          50: '#f0fdfa',
+          100: '#ccfbf1',
+          200: '#99f6e4',
+          300: '#5eead4',
+          400: '#2dd4bf',
+          500: '#14b8a6',
+          600: '#0d9488',
         },
         'neo-coral': {
           50: '#fff5f5',
@@ -45,8 +57,17 @@ export default {
         },
       },
       fontFamily: {
-        'display': ['Outfit', 'sans-serif'],
-        'body': ['Manrope', 'sans-serif'],
+        'display': ['Outfit', '"Outfit Fallback"', 'sans-serif'],
+        'body': ['"Noto Sans JP"', '"Noto Sans JP Fallback"', 'Manrope', '"Manrope Fallback"', 'sans-serif'],
+      },
+      fontSize: {
+        // Larger base + generous line-heights tuned for Japanese readability.
+        'base': ['1.125rem', { lineHeight: '1.8' }],
+        'lg': ['1.25rem', { lineHeight: '1.8' }],
+        'xl': ['1.375rem', { lineHeight: '1.7' }],
+        '2xl': ['1.625rem', { lineHeight: '1.5' }],
+        '3xl': ['2rem', { lineHeight: '1.4' }],
+        '4xl': ['2.5rem', { lineHeight: '1.3' }],
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out',

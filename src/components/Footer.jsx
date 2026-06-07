@@ -96,7 +96,7 @@ const Footer = ({ language }) => {
             <h3 className="font-display font-semibold text-white mb-4">{t.projects}</h3>
             <ul className="space-y-2">
               <li>
-                <a href="https://scs-for-lcs.com/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-neo-teal-400 transition-colors font-body">
+                <a href="https://scs-for-lcs.com/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-neo-mint-400 transition-colors font-body">
                   SCS for LCS
                 </a>
               </li>
