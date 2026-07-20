@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import SEO from '../components/SEO';
 
 const SpecifiedCommercial = ({ language }) => {
@@ -31,7 +30,7 @@ const SpecifiedCommercial = ({ language }) => {
         },
         {
           label: 'ウェブサイトURL',
-          value: 'https://katoh-office.pages.dev/',
+          value: 'https://katoh-office-site.pages.dev/',
         },
         {
           label: '販売価格',
@@ -95,7 +94,7 @@ const SpecifiedCommercial = ({ language }) => {
         },
         {
           label: 'Website URL',
-          value: 'https://katoh-office.pages.dev/',
+          value: 'https://katoh-office-site.pages.dev/',
         },
         {
           label: 'Pricing',
@@ -143,66 +142,57 @@ const SpecifiedCommercial = ({ language }) => {
         path="/specified-commercial-transaction"
         language={language}
       />
-      <div className="min-h-screen pt-20 bg-stone-50">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-gray-900 to-gray-700 py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-4">
+      <div className="min-h-screen bg-washi-50">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-24">
+          {/* ——— Document header ——— */}
+          <header className="mb-12">
+            <p className="section-label mb-6">
+              {language === 'ja' ? '加藤事務所 — 公式文書' : 'Katoh Office — Official Document'}
+            </p>
+            <h1 className="text-3xl md:text-4xl font-display font-bold leading-snug mb-5">
               {t.title}
             </h1>
-            <p className="text-gray-300 font-body">{t.lastUpdated}</p>
-          </motion.div>
-        </div>
-      </section>
+            <p className="text-sm text-ink-500 font-body">{t.lastUpdated}</p>
+            <div className="rule-double mt-8"></div>
+          </header>
 
-      {/* Content Section */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-white rounded-2xl p-8 md:p-12 card-glow"
-          >
-            <div className="space-y-8">
-              {t.sections.map((section, index) => (
-                <div key={index} className="border-b border-gray-200 pb-6 last:border-0">
-                  <h3 className="text-lg font-display font-bold text-gray-900 mb-3">
-                    {section.label}
-                  </h3>
-                  <p className="text-gray-700 font-body whitespace-pre-line leading-relaxed">
+          {/* ——— Disclosure table ——— */}
+          <dl className="divide-y divide-washi-300 border-y border-washi-300">
+            {t.sections.map((section, index) => (
+              <div key={index} className="grid grid-cols-1 sm:grid-cols-12 gap-1 sm:gap-6 py-6">
+                <dt className="sm:col-span-4 font-body font-bold text-ink-500 text-sm leading-relaxed pt-0.5">
+                  {section.label}
+                </dt>
+                <dd className="sm:col-span-8">
+                  <p className="text-ink-800 font-body text-base whitespace-pre-line leading-relaxed">
                     {section.value}
                   </p>
                   {section.subtext && (
-                    <p className="text-sm text-gray-500 font-body mt-2">
+                    <p className="text-sm text-ink-500 font-body mt-2 leading-relaxed">
                       {section.subtext}
                     </p>
                   )}
-                </div>
-              ))}
-            </div>
+                </dd>
+              </div>
+            ))}
+          </dl>
 
-            {/* Additional Notes */}
-            <div className="mt-12 p-6 bg-stone-50 rounded-xl">
-              <h3 className="text-lg font-display font-bold text-gray-900 mb-3">
-                {language === 'ja' ? 'お問い合わせ' : 'Contact'}
-              </h3>
-              <p className="text-gray-600 font-body">
-                {language === 'ja'
-                  ? '本表記に関するご質問や詳細情報のご要望は、hiroyuki.katoh.office@gmail.comまでお問い合わせください。'
-                  : 'For questions about this disclosure or to request detailed information, please contact us at hiroyuki.katoh.office@gmail.com'}
-              </p>
-            </div>
-          </motion.div>
+          {/* ——— Additional notes ——— */}
+          <div className="mt-12 border-l-2 border-kin-300 pl-6">
+            <h2 className="text-lg font-display font-bold text-ink-900 mb-3">
+              {language === 'ja' ? 'お問い合わせ' : 'Contact'}
+            </h2>
+            <p className="text-ink-600 font-body text-base leading-relaxed">
+              {language === 'ja'
+                ? '本表記に関するご質問や詳細情報のご要望は、hiroyuki.katoh.office@gmail.comまでお問い合わせください。'
+                : 'For questions about this disclosure or to request detailed information, please contact us at hiroyuki.katoh.office@gmail.com'}
+            </p>
+          </div>
+
+          {/* ——— Document close ——— */}
+          <div className="rule-double mt-12"></div>
         </div>
-      </section>
-    </div>
+      </div>
     </>
   );
 };

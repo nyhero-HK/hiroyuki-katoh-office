@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>ロゴ検討シート | 加藤裕幸事務所</title>
+<link rel="stylesheet" href="/assets/index-C1c0mGli.css">
+<style>
+  body { background: #FBF8F1; color: #142536; font-family: 'Noto Sans JP', sans-serif; margin: 0; padding: 3rem 1.5rem 6rem; }
+  .sheet { max-width: 1100px; margin: 0 auto; }
+  h1, h2, .serif { font-family: 'Fraunces', 'Noto Serif JP', serif; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+  .card { background: #fff; border: 1px solid #B4C2D1; padding: 1.5rem; display: flex; flex-direction: column; }
+  .stage { height: 190px; display: flex; align-items: center; justify-content: center; background: #FBF8F1; border: 1px dashed #E0D2B4; margin-bottom: 1rem; }
+  .stage.dark { background: #0E1B28; border-color: #264059; }
+  .label { font-weight: 700; font-size: 0.95rem; margin: 0 0 0.25rem; }
+  .label span { color: #C73E3A; font-family: 'Fraunces', serif; font-style: italic; margin-right: 0.5rem; }
+  .note { font-size: 0.8rem; color: #54718E; line-height: 1.7; margin: 0; }
+  img.gen { max-height: 170px; max-width: 90%; object-fit: contain; mix-blend-mode: multiply; }
+  .navdemo { display: flex; align-items: center; gap: 0.7rem; }
+  .navdemo .wordmark { display: flex; flex-direction: column; }
+  .navdemo .wm-main { font-family: 'Fraunces', 'Noto Serif JP', serif; font-weight: 700; font-size: 1.35rem; color: #0E1B28; line-height: 1.2; }
+  .navdemo .wm-sub { font-size: 0.55rem; letter-spacing: 0.18em; color: #35516C; text-transform: uppercase; }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <p style="color:#C73E3A; font-weight:700; font-size:0.8rem; letter-spacing:0.18em; margin:0 0 0.75rem;">LOGO CONCEPTS — 2026-07</p>
+  <h1 style="font-size:2.2rem; margin:0 0 0.5rem;">加藤裕幸事務所 ロゴ検討シート</h1>
+  <p style="color:#54718E; max-width:46rem; line-height:1.9; margin:0 0 2.5rem;">赤い判子に代わる案。A〜Fはサイトのフォント／SVGでそのまま実装できる案、G〜IはAI生成のエンブレム探索案（採用時はベクター化して整えます）。各案とも紙色・紺・（一部のみ）朱のパレットに収まります。</p>
+
+  <div class="grid">
+
+    <!-- A: Kamon circle 加 (SVG) -->
+    <div class="card">
+      <div class="stage">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="54" fill="none" stroke="#142536" stroke-width="2.5"/>
+          <circle cx="60" cy="60" r="47" fill="none" stroke="#142536" stroke-width="1"/>
+          <text x="60" y="63" text-anchor="middle" dominant-baseline="middle" font-family="'Noto Serif JP', serif" font-weight="700" font-size="52" fill="#142536">加</text>
+        </svg>
+      </div>
+      <p class="label"><span>A.</span>家紋サークル「加」</p>
+      <p class="note">細い二重円に「加」。判子の"押した"感を消し、家紋・蔵書票の品格に。紺一色で、名刺・favicon・透かしまで展開しやすい。</p>
+    </div>
+
+    <!-- B: HK. editorial monogram -->
+    <div class="card">
+      <div class="stage">
+        <div class="serif" style="font-weight:700; font-size:4.2rem; letter-spacing:-0.04em; color:#0E1B28;">HK<span style="color:#C73E3A;">.</span></div>
+      </div>
+      <p class="label"><span>B.</span>HK.（エディトリアル・モノグラム）</p>
+      <p class="note">Fraunces の太字で「HK.」— 朱はピリオド一点だけ。雑誌の署名のような潔さ。横長スペース（ナビ・フッター）で特に映える。</p>
+    </div>
+
+    <!-- C: Vertical wordmark with rules -->
+    <div class="card">
+      <div class="stage">
+        <div style="display:flex; gap:8px; align-items:stretch; height:165px;">
+          <div style="width:3px; background:#142536;"></div>
+          <div style="width:1px; background:#142536;"></div>
+          <div class="serif" style="writing-mode:vertical-rl; font-weight:700; font-size:1.15rem; letter-spacing:0.12em; color:#0E1B28; font-family:'Noto Serif JP', serif; line-height:1;">加藤裕幸事務所</div>
+        </div>
+      </div>
+      <p class="label"><span>C.</span>縦書きワードマーク＋二重罫</p>
+      <p class="note">マークを持たず、縦書きの所名と太細の二重罫だけで構成。和書の背表紙・奥付の佇まい。最も「Academic Press」らしい案。</p>
+    </div>
+
+    <!-- D: Press device lozenge -->
+    <div class="card">
+      <div class="stage">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <rect x="25" y="25" width="70" height="70" transform="rotate(45 60 60)" fill="none" stroke="#142536" stroke-width="2"/>
+          <rect x="31" y="31" width="58" height="58" transform="rotate(45 60 60)" fill="none" stroke="#142536" stroke-width="0.75"/>
+          <text x="60" y="64" text-anchor="middle" dominant-baseline="middle" font-family="'Fraunces', serif" font-weight="600" font-size="34" fill="#142536">K</text>
+          <text x="60" y="22" text-anchor="middle" font-family="'Fraunces', serif" font-size="10" fill="#B08D3E">✳</text>
+          <text x="60" y="106" text-anchor="middle" font-family="'Fraunces', serif" font-size="10" fill="#B08D3E">✳</text>
+        </svg>
+      </div>
+      <p class="label"><span>D.</span>出版社エンブレム（菱形）</p>
+      <p class="note">老舗出版社の刊記マークの様式。菱形の二重枠に K、金茶の飾りアスタリスク。「事務所＝小さな出版社」という物語に合う。</p>
+    </div>
+
+    <!-- E: Spine-bars K -->
+    <div class="card">
+      <div class="stage">
+        <svg width="130" height="120" viewBox="0 0 130 120">
+          <rect x="20" y="18" width="14" height="84" fill="#142536"/>
+          <rect x="44" y="18" width="58" height="12" fill="#142536"/>
+          <rect x="44" y="42" width="44" height="12" fill="#35516C"/>
+          <rect x="44" y="66" width="52" height="12" fill="#35516C"/>
+          <rect x="44" y="90" width="64" height="12" fill="#142536"/>
+        </svg>
+      </div>
+      <p class="label"><span>E.</span>ジオメトリック「本＝椎骨」</p>
+      <p class="note">積み重なる横棒＝本の頁でもあり椎骨でもある抽象マーク。脊椎外科×教育という二面性を静かに象徴。モダン寄りの選択肢。</p>
+    </div>
+
+    <!-- F: Pure wordmark -->
+    <div class="card">
+      <div class="stage">
+        <div style="text-align:center;">
+          <div class="serif" style="font-weight:700; font-size:1.7rem; color:#0E1B28; font-family:'Noto Serif JP', serif;">加藤裕幸事務所</div>
+          <div style="height:1px; background:#B08D3E; margin:0.6rem 2rem;"></div>
+          <div style="font-size:0.6rem; letter-spacing:0.3em; color:#35516C;">KATOH OFFICE · MEDICAL EDUCATION</div>
+        </div>
+      </div>
+      <p class="label"><span>F.</span>ワードマークのみ（無紋）</p>
+      <p class="note">マークを一切持たない最小案。明朝の所名＋金茶の罫＋欧文レタースペーシング。タイポグラフィの自信で見せる、最も上品な選択。</p>
+    </div>
+
+    <!-- G: AI kamon -->
+    <div class="card">
+      <div class="stage"><img class="gen" src="/logo-assets/concept-g-kamon.png" alt="家紋風 加 ロゴ案"></div>
+      <p class="label"><span>G.</span>〔AI探索〕家紋「加」・筆致あり</p>
+      <p class="note">Aと同系だが筆の抑揚が残る描き文字。より和的・工芸的な印象。採用ならベクター化して線を整える。</p>
+    </div>
+
+    <!-- H: AI book-spine -->
+    <div class="card">
+      <div class="stage"><img class="gen" src="/logo-assets/concept-h-book-spine.png" alt="本と脊椎のロゴ案"></div>
+      <p class="label"><span>H.</span>〔AI探索〕開いた本×脊椎</p>
+      <p class="note">本の中央の綴じが椎骨の連なりになっているエンブレム。専門性の物語が最も直接的。患者教育サイト群の親マークにも使える。</p>
+    </div>
+
+    <!-- I: AI monogram -->
+    <div class="card">
+      <div class="stage"><img class="gen" src="/logo-assets/concept-i-monogram.png" alt="HKモノグラムのロゴ案"></div>
+      <p class="label"><span>I.</span>〔AI探索〕HK組み文字・楕円枠</p>
+      <p class="note">19世紀の出版社魂を宿す組みモノグラム。クラシック度は最高。小さいサイズでは潰れやすいので、ナビでは簡略版が必要。</p>
+    </div>
+
+  </div>
+
+  <h2 style="font-size:1.4rem; margin:3rem 0 1rem;">ナビバーでの見え方（例）</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="stage" style="height:100px;">
+        <div class="navdemo">
+          <svg width="44" height="44" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="54" fill="none" stroke="#142536" stroke-width="3.5"/>
+            <circle cx="60" cy="60" r="45" fill="none" stroke="#142536" stroke-width="1.5"/>
+            <text x="60" y="64" text-anchor="middle" dominant-baseline="middle" font-family="'Noto Serif JP', serif" font-weight="700" font-size="52" fill="#142536">加</text>
+          </svg>
+          <div class="wordmark"><span class="wm-main">加藤裕幸事務所</span><span class="wm-sub">Katoh Office · Medical Education</span></div>
+        </div>
+      </div>
+      <p class="note">A案をナビに置いた場合</p>
+    </div>
+    <div class="card">
+      <div class="stage" style="height:100px;">
+        <div class="navdemo">
+          <div class="serif" style="font-weight:700; font-size:1.9rem; letter-spacing:-0.04em; color:#0E1B28;">HK<span style="color:#C73E3A;">.</span></div>
+          <div style="width:1px; height:38px; background:#B4C2D1;"></div>
+          <div class="wordmark"><span class="wm-main">加藤裕幸事務所</span><span class="wm-sub">Katoh Office · Medical Education</span></div>
+        </div>
+      </div>
+      <p class="note">B案をナビに置いた場合</p>
+    </div>
+    <div class="card">
+      <div class="stage dark" style="height:100px;">
+        <div class="navdemo">
+          <svg width="44" height="44" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="54" fill="none" stroke="#F6F0E3" stroke-width="3.5"/>
+            <circle cx="60" cy="60" r="45" fill="none" stroke="#F6F0E3" stroke-width="1.5"/>
+            <text x="60" y="64" text-anchor="middle" dominant-baseline="middle" font-family="'Noto Serif JP', serif" font-weight="700" font-size="52" fill="#F6F0E3">加</text>
+          </svg>
+          <div class="wordmark"><span class="wm-main" style="color:#FBF8F1;">加藤裕幸事務所</span><span class="wm-sub" style="color:#8299B0;">Katoh Office</span></div>
+        </div>
+      </div>
+      <p class="note">フッター（紺地）での反転例 — A案</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

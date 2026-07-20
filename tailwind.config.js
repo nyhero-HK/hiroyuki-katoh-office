@@ -7,21 +7,62 @@ export default {
   theme: {
     extend: {
       colors: {
-        // True monotonic teal ramp anchored on the brand #0B5563.
-        // (Was: 50–400 bright turquoise then a jump to dark 500 — broke predictable styling.)
+        // ——— Academic Press palette (2026-07 redesign) ———
+        // Warm paper ground. 50 is the page background; deeper steps for panels/rules.
+        'washi': {
+          50: '#FBF8F1',
+          100: '#F6F0E3',
+          200: '#EDE3CE',
+          300: '#E0D2B4',
+          400: '#CBB88F',
+        },
+        // Ink navy — primary text and structural rules.
+        'ink': {
+          50: '#F0F3F6',
+          100: '#DCE3EA',
+          200: '#B4C2D1',
+          300: '#8299B0',
+          400: '#54718E',
+          500: '#35516C',
+          600: '#264059',
+          700: '#1C3247',
+          800: '#142536',
+          900: '#0E1B28',
+        },
+        // 朱 vermillion — the single loud accent: seal, links, active states.
+        'shu': {
+          50: '#FCF1EF',
+          100: '#F8DCD8',
+          200: '#EFB4AD',
+          300: '#E3867C',
+          400: '#D45C50',
+          500: '#C73E3A', // 真朱
+          600: '#A93331',
+          700: '#872826',
+          800: '#651E1D',
+          900: '#471514',
+        },
+        // Muted gold ochre — fine rules, small ornaments only.
+        'kin': {
+          100: '#F1E8D2',
+          300: '#D9C08A',
+          500: '#B08D3E',
+          700: '#7E6222',
+        },
+
+        // ——— Legacy neo-* palette (kept while inner pages migrate) ———
         'neo-teal': {
           50: '#f0f7f8',
           100: '#d9ebee',
           200: '#b3d6dc',
           300: '#7fb6c0',
           400: '#4d909d',
-          500: '#0B5563', // Primary
+          500: '#0B5563',
           600: '#0A4A55',
           700: '#083D47',
           800: '#062E36',
           900: '#042228',
         },
-        // Bright accent for "live"/highlight moments (was implicitly the old neo-teal-400).
         'neo-mint': {
           50: '#f0fdfa',
           100: '#ccfbf1',
@@ -37,7 +78,7 @@ export default {
           200: '#ffc9c9',
           300: '#ffa8a8',
           400: '#ff8787',
-          500: '#FF6B6B', // Accent
+          500: '#FF6B6B',
           600: '#fa5252',
           700: '#f03e3e',
           800: '#e03131',
@@ -48,7 +89,7 @@ export default {
           100: '#fef3c7',
           200: '#fde68a',
           300: '#fcd34d',
-          400: '#FBBF24', // Secondary
+          400: '#FBBF24',
           500: '#f59e0b',
           600: '#d97706',
           700: '#b45309',
@@ -57,7 +98,9 @@ export default {
         },
       },
       fontFamily: {
-        'display': ['Outfit', '"Outfit Fallback"', 'sans-serif'],
+        // Editorial serif display: Fraunces for Latin, Noto Serif JP for kanji/kana.
+        'display': ['Fraunces', '"Noto Serif JP"', '"Noto Serif JP Fallback"', 'serif'],
+        // Body stays sans for JP readability (elderly patient audience on linked sites).
         'body': ['"Noto Sans JP"', '"Noto Sans JP Fallback"', 'Manrope', '"Manrope Fallback"', 'sans-serif'],
       },
       fontSize: {
@@ -69,10 +112,12 @@ export default {
         '3xl': ['2rem', { lineHeight: '1.4' }],
         '4xl': ['2.5rem', { lineHeight: '1.3' }],
       },
+      letterSpacing: {
+        'label': '0.18em',
+      },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out',
         'slide-up': 'slideUp 0.6s ease-out',
-        'glow': 'glow 2s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -82,10 +127,6 @@ export default {
         slideUp: {
           '0%': { transform: 'translateY(20px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
-        glow: {
-          '0%, 100%': { boxShadow: '0 0 20px rgba(255, 107, 107, 0.3)' },
-          '50%': { boxShadow: '0 0 30px rgba(255, 107, 107, 0.6)' },
         },
       },
     },

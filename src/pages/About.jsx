@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import hiroPhoto from '../assets/Katoh2.jpeg';
 import SEO from '../components/SEO';
+import Monogram from '../components/Monogram';
 
 const About = ({ language }) => {
   const content = {
@@ -24,7 +25,7 @@ const About = ({ language }) => {
           {
             year: '2000年',
             title: '慶應義塾大学医学部 卒業',
-            desc: '医学博士課程修了',
+            desc: '整形外科学教室に入局',
           },
           {
             year: '2012年',
@@ -42,19 +43,9 @@ const About = ({ language }) => {
         title: '職歴',
         items: [
           {
-            period: '2026年4月-',
-            role: '東海大学医学部 基礎医学系',
-            title: '医学教育学 教授',
-          },
-          {
-            period: '2021-2026年',
-            role: '東海大学医学部整形外科学教室',
-            title: '整形外科学 准教授・国際関係担当',
-          },
-          {
-            period: '2013-2021年',
-            role: '東海大学医学部整形外科学教室',
-            title: '講師',
+            period: '2008-2011年',
+            role: '国立病院機構 村山医療センター',
+            title: '整形外科医',
           },
           {
             period: '2011-2013年',
@@ -62,9 +53,19 @@ const About = ({ language }) => {
             title: '整形外科医',
           },
           {
-            period: '2008-2011年',
-            role: '国立病院機構 村山医療センター',
-            title: '整形外科医',
+            period: '2013-2021年',
+            role: '東海大学医学部整形外科学教室',
+            title: '講師',
+          },
+          {
+            period: '2021-2026年',
+            role: '東海大学医学部整形外科学教室',
+            title: '整形外科学 准教授・国際関係担当',
+          },
+          {
+            period: '2026年4月-',
+            role: '東海大学医学部 基礎医学系',
+            title: '医学教育学 教授',
           },
         ],
       },
@@ -132,7 +133,7 @@ const About = ({ language }) => {
           {
             year: '2000',
             title: 'MD, Keio University School of Medicine',
-            desc: 'Doctor of Medicine',
+            desc: 'Joined the Department of Orthopaedic Surgery',
           },
           {
             year: '2012',
@@ -150,19 +151,9 @@ const About = ({ language }) => {
         title: 'Professional Experience',
         items: [
           {
-            period: '2026-',
-            role: 'Tokai University School of Medicine, Dept. of Basic Medical Sciences',
-            title: 'Professor of Medical Education',
-          },
-          {
-            period: '2021-2026',
-            role: 'Tokai University School of Medicine',
-            title: 'Associate Professor, Orthopedic Surgery & Chair of International Relations',
-          },
-          {
-            period: '2013-2021',
-            role: 'Tokai University School of Medicine',
-            title: 'Assistant Professor',
+            period: '2008-2011',
+            role: 'National Hospital Organization Murayama Medical Center',
+            title: 'Orthopedic Surgeon',
           },
           {
             period: '2011-2013',
@@ -170,9 +161,19 @@ const About = ({ language }) => {
             title: 'Orthopedic Surgeon',
           },
           {
-            period: '2008-2011',
-            role: 'National Hospital Organization Murayama Medical Center',
-            title: 'Orthopedic Surgeon',
+            period: '2013-2021',
+            role: 'Tokai University School of Medicine',
+            title: 'Assistant Professor',
+          },
+          {
+            period: '2021-2026',
+            role: 'Tokai University School of Medicine',
+            title: 'Associate Professor, Orthopedic Surgery & Chair of International Relations',
+          },
+          {
+            period: '2026-',
+            role: 'Tokai University School of Medicine, Dept. of Basic Medical Sciences',
+            title: 'Professor of Medical Education',
           },
         ],
       },
@@ -224,19 +225,13 @@ const About = ({ language }) => {
 
   const t = content[language];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
+  const rise = {
+    hidden: { opacity: 0, y: 24 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
   };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+  const stagger = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.12 } },
   };
 
   return (
@@ -248,258 +243,242 @@ const About = ({ language }) => {
         language={language}
       />
       <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative py-24 md:py-32 bg-gradient-to-br from-stone-50 via-cyan-50/20 to-stone-50 overflow-hidden">
-        <div className="absolute top-20 right-10 w-72 h-72 bg-neo-teal-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 left-10 w-96 h-96 bg-neo-coral-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <h1 className="text-5xl md:text-7xl font-display font-bold mb-6">
-              {t.hero.title}
-            </h1>
-            <p className="text-2xl md:text-3xl text-gray-600 font-body">
-              {t.hero.subtitle}
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Biography Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-12 items-start">
+        {/* ——— Masthead ——— */}
+        <section className="relative bg-washi-50 bg-ruled overflow-hidden">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-16">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="md:col-span-1"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
+              className="max-w-3xl"
             >
-              <div className="sticky top-24">
-                <div className="relative max-w-sm mx-auto">
-                  <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-neo-teal-500 to-cyan-500 rounded-3xl opacity-20 z-0"></div>
-                  <div className="relative z-10 bg-white rounded-3xl overflow-hidden shadow-xl border-t-4 border-neo-teal-500">
+              <p className="section-label mb-6">{t.hero.subtitle}</p>
+              <h1 className="text-4xl md:text-5xl font-display font-bold leading-[1.2]">
+                <span className="inline-block">{t.hero.title}</span>
+              </h1>
+            </motion.div>
+          </div>
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="rule-double"></div>
+          </div>
+        </section>
+
+        {/* ——— §1 Biography ——— */}
+        <section className="py-24 bg-washi-50">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-14 items-start">
+              <motion.div
+                variants={rise}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="md:col-span-4"
+              >
+                <div className="md:sticky md:top-24 max-w-sm mx-auto md:mx-0">
+                  <figure className="plate relative">
                     <img
                       src={hiroPhoto}
                       alt={language === 'ja' ? '加藤裕幸' : 'Hiroyuki Katoh'}
                       className="w-full h-auto"
                     />
+                    <figcaption className="fig-caption pt-3 px-1">
+                      {language === 'ja' ? '加藤裕幸 — MD, PhD' : 'Hiroyuki Katoh — MD, PhD'}
+                    </figcaption>
+                    <span className="absolute -top-4 -right-4 bg-washi-50 border border-ink-300 px-3 py-2" aria-hidden="true">
+                      <Monogram className="text-2xl" />
+                    </span>
+                  </figure>
+                </div>
+              </motion.div>
+
+              <motion.div
+                variants={rise}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="md:col-span-8"
+              >
+                <p className="section-label mb-4">§1</p>
+                <h2 className="text-3xl md:text-4xl font-display font-bold mb-8">{t.bio.title}</h2>
+                <div className="space-y-5 max-w-2xl">
+                  {t.bio.content.map((paragraph, index) => (
+                    <p key={index} className="text-ink-700 font-body text-lg leading-relaxed">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* ——— §2 Education & Training ——— */}
+        <section className="py-24 bg-white border-y border-washi-200">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              variants={rise}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="mb-12 max-w-3xl"
+            >
+              <p className="section-label mb-4">§2</p>
+              <h2 className="text-3xl md:text-4xl font-display font-bold">{t.education.title}</h2>
+            </motion.div>
+
+            <motion.div
+              variants={stagger}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="divide-y divide-washi-300 border-y border-washi-300"
+            >
+              {t.education.items.map((item) => (
+                <motion.div
+                  key={item.title}
+                  variants={rise}
+                  className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 py-6 md:items-baseline"
+                >
+                  <p className="md:col-span-3 font-display italic text-2xl text-shu-500">{item.year}</p>
+                  <h3 className="md:col-span-4 text-xl font-display font-bold text-ink-900">{item.title}</h3>
+                  <p className="md:col-span-5 text-ink-600 font-body text-base leading-relaxed">{item.desc}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ——— §3 Professional Experience ——— */}
+        <section className="py-24 bg-washi-50">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              variants={rise}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="mb-12 max-w-3xl"
+            >
+              <p className="section-label mb-4">§3</p>
+              <h2 className="text-3xl md:text-4xl font-display font-bold">{t.experience.title}</h2>
+            </motion.div>
+
+            <motion.div
+              variants={stagger}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="divide-y divide-washi-300 border-y border-washi-300"
+            >
+              {t.experience.items.map((item) => (
+                <motion.div
+                  key={`${item.period}-${item.title}`}
+                  variants={rise}
+                  className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 py-6 md:items-baseline"
+                >
+                  <p className="md:col-span-3 font-display italic text-2xl text-shu-500">{item.period}</p>
+                  <h3 className="md:col-span-4 text-xl font-display font-bold text-ink-900">{item.title}</h3>
+                  <p className="md:col-span-5 text-ink-600 font-body text-base leading-relaxed">{item.role}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ——— §4 Areas of Expertise ——— */}
+        <section className="py-24 bg-white border-y border-washi-200">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              variants={rise}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="mb-16 max-w-3xl"
+            >
+              <p className="section-label mb-4">§4</p>
+              <h2 className="text-3xl md:text-4xl font-display font-bold">{t.expertise.title}</h2>
+            </motion.div>
+
+            <motion.ol
+              variants={stagger}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 max-w-4xl"
+            >
+              {t.expertise.areas.map((area, index) => (
+                <motion.li key={area.name} variants={rise} className="flex gap-5 border-t-2 border-ink-900 pt-6">
+                  <span className="font-display italic text-2xl text-washi-400 leading-none select-none" aria-hidden="true">
+                    {['i', 'ii', 'iii', 'iv'][index]}.
+                  </span>
+                  <div>
+                    <h3 className="text-2xl font-display font-bold mb-2 text-ink-900">{area.name}</h3>
+                    <p className="text-ink-600 font-body leading-relaxed">{area.desc}</p>
                   </div>
-                </div>
-                <div className="mt-6 text-center">
-                  <h3 className="text-2xl font-display font-bold text-gray-900">
-                    {language === 'ja' ? '加藤裕幸' : 'Hiroyuki Katoh'}
-                  </h3>
-                  <p className="text-gray-600 font-body mt-1">MD, PhD</p>
-                </div>
-              </div>
+                </motion.li>
+              ))}
+            </motion.ol>
+          </div>
+        </section>
+
+        {/* ——— §5 Philosophy — dark band ——— */}
+        <section className="relative py-24 bg-ink-900 overflow-hidden">
+          <div className="absolute inset-0 bg-noise" aria-hidden="true"></div>
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div variants={rise} initial="hidden" whileInView="visible" viewport={{ once: true }} className="mb-12">
+              <p className="font-body text-sm font-bold tracking-label uppercase text-shu-300 mb-4">§5 {t.philosophy.subtitle}</p>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-washi-50">
+                <span className="inline-block">{t.philosophy.title}</span>
+              </h2>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              variants={stagger}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="md:col-span-2"
+              className="space-y-6"
             >
-              <h2 className="text-4xl md:text-5xl font-display font-bold mb-8 text-gray-900">
-                {t.bio.title}
-              </h2>
-              <div className="space-y-4">
-                {t.bio.content.map((paragraph, index) => (
-                  <p key={index} className="text-gray-700 font-body text-lg leading-relaxed">
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
+              {t.philosophy.content.map((paragraph, index) => (
+                <motion.p key={index} variants={rise} className="text-washi-100 font-body text-lg leading-relaxed">
+                  {paragraph}
+                </motion.p>
+              ))}
             </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Education & Experience Section */}
-      <section className="py-20 bg-gradient-to-br from-stone-50 to-cyan-50/20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Education */}
+        {/* ——— §6 Professional Memberships ——— */}
+        <section className="py-24 bg-washi-50">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              variants={rise}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              className="mb-12 max-w-3xl"
             >
-              <h2 className="text-3xl md:text-4xl font-display font-bold mb-8 text-gray-900">
-                {t.education.title}
-              </h2>
-              <div className="space-y-6">
-                {t.education.items.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    variants={itemVariants}
-                    className="relative pl-8 border-l-4 border-neo-teal-500 pb-6"
-                  >
-                    <div className="absolute -left-2 top-0 w-4 h-4 bg-neo-teal-500 rounded-full"></div>
-                    <div className="text-neo-teal-600 font-body font-bold text-sm mb-1">
-                      {item.year}
-                    </div>
-                    <h3 className="text-xl font-display font-bold text-gray-900 mb-2">
-                      {item.title}
-                    </h3>
-                    <p className="text-gray-600 font-body">{item.desc}</p>
-                  </motion.div>
-                ))}
-              </div>
+              <p className="section-label mb-4">§6</p>
+              <h2 className="text-3xl md:text-4xl font-display font-bold">{t.societies.title}</h2>
             </motion.div>
 
-            {/* Experience */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              variants={stagger}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              className="grid md:grid-cols-2 gap-x-12 gap-y-5 max-w-4xl"
             >
-              <h2 className="text-3xl md:text-4xl font-display font-bold mb-8 text-gray-900">
-                {t.experience.title}
-              </h2>
-              <div className="space-y-6">
-                {t.experience.items.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    variants={itemVariants}
-                    className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300"
-                  >
-                    <div className="text-neo-coral-500 font-body font-bold text-sm mb-2">
-                      {item.period}
-                    </div>
-                    <h3 className="text-lg font-display font-bold text-gray-900 mb-1">
-                      {item.title}
-                    </h3>
-                    <p className="text-gray-600 font-body text-sm">{item.role}</p>
-                  </motion.div>
-                ))}
-              </div>
+              {t.societies.list.map((society, index) => (
+                <motion.div key={index} variants={rise} className="flex items-baseline">
+                  <span className="shrink-0 text-shu-500 font-display mr-3 select-none" aria-hidden="true">¶</span>
+                  <p className="text-ink-700 font-body leading-relaxed">{society}</p>
+                </motion.div>
+              ))}
             </motion.div>
+            <div className="rule-double mt-16"></div>
           </div>
-        </div>
-      </section>
-
-      {/* Expertise Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
-              {t.expertise.title}
-            </h2>
-          </motion.div>
-
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 gap-8"
-          >
-            {t.expertise.areas.map((area, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="bg-gradient-to-br from-white to-stone-50 rounded-2xl p-8 border-l-4 border-neo-teal-500 shadow-lg hover:shadow-xl transition-shadow duration-300"
-              >
-                <h3 className="text-2xl font-display font-bold text-gray-900 mb-3">
-                  {area.name}
-                </h3>
-                <p className="text-gray-700 font-body leading-relaxed">{area.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Philosophy Section */}
-      <section className="py-20 bg-gradient-to-br from-neo-teal-500 to-cyan-600 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-neo-coral-500/20 rounded-full blur-3xl"></div>
-
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-4">
-              {t.philosophy.title}
-            </h2>
-            <p className="text-2xl text-cyan-100 font-body">
-              {t.philosophy.subtitle}
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="space-y-6"
-          >
-            {t.philosophy.content.map((paragraph, index) => (
-              <p key={index} className="text-white font-body text-lg leading-relaxed text-center md:text-left">
-                {paragraph}
-              </p>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Professional Memberships Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
-              {t.societies.title}
-            </h2>
-          </motion.div>
-
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 gap-4"
-          >
-            {t.societies.list.map((society, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="flex items-center bg-stone-50 rounded-xl p-4 hover:bg-stone-100 transition-colors duration-300"
-              >
-                <div className="w-2 h-2 bg-neo-teal-500 rounded-full mr-4 flex-shrink-0"></div>
-                <p className="text-gray-800 font-body">{society}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
     </>
   );
 };

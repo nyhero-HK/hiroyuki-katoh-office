@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import SEO from '../components/SEO';
 
 const PrivacyPolicy = ({ language }) => {
@@ -127,49 +126,38 @@ const PrivacyPolicy = ({ language }) => {
         path="/privacy-policy"
         language={language}
       />
-      <div className="min-h-screen pt-20 bg-stone-50">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-neo-teal-500 to-cyan-600 py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-4">
+      <div className="min-h-screen bg-washi-50">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-24">
+          {/* ——— Document header ——— */}
+          <header className="mb-12">
+            <p className="section-label mb-6">
+              {language === 'ja' ? '加藤事務所 — 公式文書' : 'Katoh Office — Official Document'}
+            </p>
+            <h1 className="text-3xl md:text-4xl font-display font-bold leading-snug mb-5">
               {t.title}
             </h1>
-            <p className="text-cyan-100 font-body">{t.lastUpdated}</p>
-          </motion.div>
-        </div>
-      </section>
+            <p className="text-sm text-ink-500 font-body">{t.lastUpdated}</p>
+            <div className="rule-double mt-8"></div>
+          </header>
 
-      {/* Content Section */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-white rounded-2xl p-8 md:p-12 card-glow"
-          >
-            <div className="prose prose-lg max-w-none">
-              {t.sections.map((section, index) => (
-                <div key={index} className="mb-8">
-                  <h2 className="text-2xl font-display font-bold text-gray-900 mb-4">
-                    {section.title}
-                  </h2>
-                  <div className="text-gray-600 font-body whitespace-pre-line leading-relaxed">
-                    {section.content}
-                  </div>
+          {/* ——— Articles ——— */}
+          <div className="divide-y divide-washi-300">
+            {t.sections.map((section, index) => (
+              <article key={index} className="py-10 first:pt-0 last:pb-0">
+                <h2 className="text-2xl font-display font-bold text-ink-900 mb-5">
+                  {section.title}
+                </h2>
+                <div className="text-ink-700 font-body text-base whitespace-pre-line leading-relaxed">
+                  {section.content}
                 </div>
-              ))}
-            </div>
-          </motion.div>
+              </article>
+            ))}
+          </div>
+
+          {/* ——— Document close ——— */}
+          <div className="rule-double mt-12"></div>
         </div>
-      </section>
-    </div>
+      </div>
     </>
   );
 };

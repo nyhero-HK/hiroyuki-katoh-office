@@ -1,18 +1,14 @@
-/* Self-hosted fonts — no external requests to Google */
+/* Self-hosted fonts — no external requests to Google.
+   (Fraunces / Noto Serif JP / Noto Sans JP arrive via @fontsource imports in main.jsx;
+    Manrope below remains as the Latin body companion.) */
 @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 300; font-display: swap; src: url('/fonts/manrope-300.ttf') format('truetype'); }
 @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/manrope-400.ttf') format('truetype'); }
 @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/manrope-500.ttf') format('truetype'); }
 @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/manrope-600.ttf') format('truetype'); }
 @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/manrope-700.ttf') format('truetype'); }
-@font-face { font-family: 'Outfit'; font-style: normal; font-weight: 300; font-display: swap; src: url('/fonts/outfit-300.ttf') format('truetype'); }
-@font-face { font-family: 'Outfit'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/outfit-400.ttf') format('truetype'); }
-@font-face { font-family: 'Outfit'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/outfit-500.ttf') format('truetype'); }
-@font-face { font-family: 'Outfit'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/outfit-600.ttf') format('truetype'); }
-@font-face { font-family: 'Outfit'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/outfit-700.ttf') format('truetype'); }
-@font-face { font-family: 'Outfit'; font-style: normal; font-weight: 800; font-display: swap; src: url('/fonts/outfit-800.ttf') format('truetype'); }
 
 /* Fallback font metrics — match local system fonts to the web fonts so text
-   doesn't reflow (CLS) while Noto Sans JP / Outfit / Manrope are loading. */
+   doesn't reflow (CLS) while the real faces are loading. */
 @font-face {
   font-family: 'Noto Sans JP Fallback';
   src: local('Hiragino Kaku Gothic ProN'), local('Hiragino Sans'), local('Yu Gothic'), local('Meiryo');
@@ -22,11 +18,11 @@
   line-gap-override: 0%;
 }
 @font-face {
-  font-family: 'Outfit Fallback';
-  src: local('Arial'), local('Helvetica Neue'), local('Helvetica');
+  font-family: 'Noto Serif JP Fallback';
+  src: local('Hiragino Mincho ProN'), local('Yu Mincho'), local('MS PMincho');
   size-adjust: 100%;
   ascent-override: 96%;
-  descent-override: 22%;
+  descent-override: 24%;
   line-gap-override: 0%;
 }
 @font-face {
@@ -49,29 +45,120 @@
   }
 
   body {
-    @apply font-body text-gray-900 bg-stone-50;
+    @apply font-body text-ink-800 bg-washi-50;
     margin: 0;
     min-height: 100vh;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display font-semibold;
+    @apply font-display font-semibold text-ink-900;
+  }
+
+  ::selection {
+    @apply bg-shu-100 text-shu-800;
+  }
+}
+
+@layer components {
+  /* Small-caps kicker above headings: 「§1 — 患者教育」 etc. */
+  .section-label {
+    @apply font-body text-sm font-bold tracking-label uppercase text-shu-500;
+  }
+
+  /* Journal masthead / section divider: thick-thin double rule. */
+  .rule-double {
+    border-top: 3px solid theme('colors.ink.900');
+    position: relative;
+  }
+  .rule-double::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 0;
+    right: 0;
+    border-top: 1px solid theme('colors.ink.900');
+  }
+
+  /* Hairline rule in ochre for quiet separations. */
+  .rule-fine {
+    border-top: 1px solid theme('colors.washi.300');
+  }
+
+  /* Editorial panel: flat paper card with an ink hairline. */
+  .panel {
+    @apply bg-white border border-ink-200;
+  }
+  .panel-hover {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .panel-hover:hover {
+    @apply border-ink-500;
+    box-shadow: 4px 4px 0 0 theme('colors.ink.100');
+    transform: translate(-2px, -2px);
+  }
+
+  /* Figure plate: photo mounted on a washi mat with ink frame. */
+  .plate {
+    @apply bg-white border border-ink-300 p-3;
+    box-shadow: 6px 6px 0 0 theme('colors.washi.200');
+  }
+  .fig-caption {
+    @apply font-body text-sm text-ink-500 leading-relaxed;
+  }
+  .fig-caption em, .fig-caption .fig-no {
+    @apply font-display italic text-ink-700 not-italic;
+  }
+
+  /* Editorial link: ink text, vermillion underline that thickens on hover. */
+  .link-editorial {
+    @apply text-ink-800 underline decoration-shu-400 decoration-1 underline-offset-4 transition-colors;
+  }
+  .link-editorial:hover {
+    @apply text-shu-600 decoration-shu-500 decoration-2;
+  }
+
+  /* Primary button: ink slab with vermillion press state. */
+  .btn-ink {
+    @apply inline-flex items-center justify-center gap-2 bg-ink-900 text-washi-50 font-body font-bold px-8 py-4 border border-ink-900 transition-all duration-200;
+  }
+  .btn-ink:hover {
+    @apply bg-shu-600 border-shu-600;
+    box-shadow: 4px 4px 0 0 theme('colors.washi.300');
+    transform: translate(-2px, -2px);
+  }
+  .btn-paper {
+    @apply inline-flex items-center justify-center gap-2 bg-transparent text-ink-900 font-body font-bold px-8 py-4 border border-ink-900 transition-all duration-200;
+  }
+  .btn-paper:hover {
+    @apply bg-ink-900 text-washi-50;
+    box-shadow: 4px 4px 0 0 theme('colors.washi.300');
+    transform: translate(-2px, -2px);
   }
 }
 
 @layer utilities {
-  .text-gradient {
-    @apply bg-gradient-to-r from-neo-teal-500 to-cyan-500 bg-clip-text text-transparent;
-  }
-
   .bg-noise {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+  }
+
+  /* Faint ruled-paper lines for hero backdrops. */
+  .bg-ruled {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 39px,
+      rgba(28, 50, 71, 0.06) 39px,
+      rgba(28, 50, 71, 0.06) 40px
+    );
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-neo-teal-500 to-cyan-500 bg-clip-text text-transparent;
   }
 
   .card-glow {
     box-shadow: 0 8px 32px rgba(11, 85, 99, 0.1);
   }
-
   .card-glow:hover {
     box-shadow: 0 12px 48px rgba(11, 85, 99, 0.15);
   }

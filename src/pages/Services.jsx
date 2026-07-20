@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import SEO from '../components/SEO';
+import Monogram from '../components/Monogram';
 
 const Services = ({ language }) => {
   const content = {
@@ -15,7 +16,7 @@ const Services = ({ language }) => {
       services: [
         {
           id: 'consulting',
-          icon: '💡',
+          numeral: 'I',
           title: 'コンサルティング',
           subtitle: '整形外科・慢性疼痛・医学教育の専門家として',
           description: '医療機関の業務最適化から手術チームのトレーニングまで、包括的なコンサルティングサービスを提供します。',
@@ -64,7 +65,7 @@ const Services = ({ language }) => {
         },
         {
           id: 'software',
-          icon: '💻',
+          numeral: 'II',
           title: '教育ソフトウェア',
           subtitle: 'AI技術を活用した次世代の医学教育',
           description: '医学生と医療従事者の学習効率を最大化する、AI技術を活用した教育アプリケーションを開発・提供します。',
@@ -104,7 +105,7 @@ const Services = ({ language }) => {
         },
         {
           id: 'support',
-          icon: '🤝',
+          numeral: 'III',
           title: '継続的サポート',
           subtitle: '長期的な成長をお手伝い',
           description: 'サブスクリプション型の継続サポートで、医療機関と医療従事者の持続的な成長を支援します。',
@@ -190,7 +191,7 @@ const Services = ({ language }) => {
         ],
       },
       cta: {
-        title: '無料相談のご予約',
+        titleLines: ['無料相談のご予約'],
         subtitle: 'まずはお気軽にご相談ください。お客様のニーズに最適なソリューションをご提案いたします。',
         button: 'お問い合わせ',
       },
@@ -206,7 +207,7 @@ const Services = ({ language }) => {
       services: [
         {
           id: 'consulting',
-          icon: '💡',
+          numeral: 'I',
           title: 'Consulting',
           subtitle: 'Expert in Orthopedic Surgery, Chronic Pain, and Medical Education',
           description: 'We provide comprehensive consulting services from healthcare workflow optimization to surgical team training.',
@@ -255,7 +256,7 @@ const Services = ({ language }) => {
         },
         {
           id: 'software',
-          icon: '💻',
+          numeral: 'II',
           title: 'Educational Software',
           subtitle: 'Next-Generation Medical Education Using AI Technology',
           description: 'We develop and provide AI-powered educational applications that maximize learning efficiency for medical students and healthcare professionals.',
@@ -295,7 +296,7 @@ const Services = ({ language }) => {
         },
         {
           id: 'support',
-          icon: '🤝',
+          numeral: 'III',
           title: 'Ongoing Support',
           subtitle: 'Supporting Long-Term Growth',
           description: 'Subscription-based continuous support to help healthcare institutions and professionals achieve sustainable growth.',
@@ -381,7 +382,7 @@ const Services = ({ language }) => {
         ],
       },
       cta: {
-        title: 'Book a Free Consultation',
+        titleLines: ['Book a Free', 'Consultation'],
         subtitle: 'Feel free to reach out. We will propose the optimal solution for your needs.',
         button: 'Contact Us',
       },
@@ -390,40 +391,13 @@ const Services = ({ language }) => {
 
   const t = content[language];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
+  const rise = {
+    hidden: { opacity: 0, y: 24 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
   };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
-
-  const colorMap = {
-    consulting: {
-      border: 'border-neo-teal-500',
-      bg: 'bg-neo-teal-500',
-      text: 'text-neo-teal-500',
-      gradient: 'from-neo-teal-500 to-cyan-500',
-    },
-    software: {
-      border: 'border-neo-coral-500',
-      bg: 'bg-neo-coral-500',
-      text: 'text-neo-coral-500',
-      gradient: 'from-neo-coral-500 to-neo-amber-400',
-    },
-    support: {
-      border: 'border-neo-amber-400',
-      bg: 'bg-neo-amber-400',
-      text: 'text-neo-amber-400',
-      gradient: 'from-cyan-500 to-neo-teal-500',
-    },
+  const stagger = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.12 } },
   };
 
   return (
@@ -435,82 +409,79 @@ const Services = ({ language }) => {
         language={language}
       />
       <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative py-24 md:py-32 bg-gradient-to-br from-stone-50 via-cyan-50/20 to-stone-50 overflow-hidden">
-        <div className="absolute top-20 right-10 w-72 h-72 bg-neo-teal-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 left-10 w-96 h-96 bg-neo-coral-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        {/* ——— Masthead ——— */}
+        <section className="relative bg-washi-50 bg-ruled overflow-hidden">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
+              className="max-w-3xl"
+            >
+              <p className="section-label mb-6">{t.hero.subtitle}</p>
+              <h1 className="text-4xl md:text-5xl font-display font-bold leading-[1.2] mb-8">
+                <span className="inline-block">{t.hero.title}</span>
+              </h1>
+              <p className="text-xl text-ink-600 font-body leading-relaxed">
+                {t.intro.text}
+              </p>
+            </motion.div>
+          </div>
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="rule-double"></div>
+          </div>
+        </section>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <h1 className="text-5xl md:text-7xl font-display font-bold mb-6">
-              {t.hero.title}
-            </h1>
-            <p className="text-2xl md:text-3xl text-gray-600 font-body mb-8">
-              {t.hero.subtitle}
-            </p>
-            <p className="text-lg md:text-xl text-gray-700 font-body max-w-4xl mx-auto leading-relaxed">
-              {t.intro.text}
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Services Detail Sections */}
-      {t.services.map((service, serviceIndex) => {
-        const colors = colorMap[service.id];
-        return (
+        {/* ——— §1–§3 The three services, set as numbered chapters ——— */}
+        {t.services.map((service, serviceIndex) => (
           <section
             key={service.id}
-            className={serviceIndex % 2 === 0 ? 'py-20 bg-white' : 'py-20 bg-gradient-to-br from-stone-50 to-cyan-50/20'}
+            className={serviceIndex % 2 === 0 ? 'py-24 bg-washi-50' : 'py-24 bg-white border-y border-washi-200'}
           >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              {/* Chapter header */}
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="text-center mb-16"
-              >
-                <div className="text-6xl mb-4">{service.icon}</div>
-                <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
-                  {service.title}
-                </h2>
-                <p className={`text-2xl ${colors.text} font-body mb-6`}>
-                  {service.subtitle}
-                </p>
-                <p className="text-lg text-gray-700 font-body max-w-3xl mx-auto leading-relaxed">
-                  {service.description}
-                </p>
-              </motion.div>
-
-              <motion.div
-                variants={containerVariants}
+                variants={rise}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="grid md:grid-cols-2 gap-8 mb-12"
+                className="mb-16 border-t-2 border-ink-900 pt-8"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+                  <div className="md:col-span-2">
+                    <span className="font-display italic text-5xl md:text-6xl text-shu-500 leading-none select-none" aria-hidden="true">
+                      {service.numeral}.
+                    </span>
+                  </div>
+                  <div className="md:col-span-10 max-w-3xl">
+                    <p className="section-label mb-4">§{serviceIndex + 1} {service.subtitle}</p>
+                    <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">{service.title}</h2>
+                    <p className="text-xl text-ink-600 font-body leading-relaxed">{service.description}</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Feature groups */}
+              <motion.div
+                variants={stagger}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12 mb-16"
               >
                 {service.features.map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    variants={itemVariants}
-                    className={`bg-white rounded-2xl p-8 border-t-4 ${colors.border} shadow-lg hover:shadow-xl transition-shadow duration-300`}
-                  >
-                    <h3 className="text-2xl font-display font-bold text-gray-900 mb-6">
+                  <motion.div key={feature.name} variants={rise} className="rule-fine pt-5">
+                    <h3 className="text-2xl font-display font-bold text-ink-900 mb-5">
+                      <span className="font-display italic text-washi-400 mr-3 select-none" aria-hidden="true">
+                        {['i', 'ii', 'iii', 'iv'][index]}.
+                      </span>
                       {feature.name}
                     </h3>
-                    <ul className="space-y-3">
+                    <ul className="space-y-2.5">
                       {feature.details.map((detail, detailIndex) => (
-                        <li key={detailIndex} className="flex items-start text-gray-700">
-                          <svg className={`w-5 h-5 ${colors.text} mr-3 mt-0.5 flex-shrink-0`} fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                          </svg>
-                          <span className="font-body">{detail}</span>
+                        <li key={detailIndex} className="flex items-start text-base text-ink-700 font-body leading-relaxed">
+                          <span className="text-shu-500 mr-2.5 select-none" aria-hidden="true">—</span>
+                          {detail}
                         </li>
                       ))}
                     </ul>
@@ -518,136 +489,121 @@ const Services = ({ language }) => {
                 ))}
               </motion.div>
 
+              {/* Engagement / pricing band */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                variants={rise}
+                initial="hidden"
+                whileInView="visible"
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className={`bg-gradient-to-r ${colors.gradient} rounded-2xl p-8 text-white text-center`}
+                className="grid grid-cols-1 md:grid-cols-12 border-y-2 border-ink-900 md:divide-x md:divide-washi-300"
               >
-                <h4 className="text-2xl font-display font-bold mb-2">
-                  {service.pricing.type}
-                </h4>
-                <p className="text-cyan-100 font-body">
-                  {service.pricing.note}
-                </p>
+                <div className="md:col-span-4 py-8 md:pr-8">
+                  <div className="text-2xl md:text-3xl font-display font-bold text-ink-900">{service.pricing.type}</div>
+                </div>
+                <div className="md:col-span-8 py-2 pb-8 md:py-8 md:pl-8">
+                  <p className="text-ink-600 font-body text-base leading-relaxed">{service.pricing.note}</p>
+                </div>
               </motion.div>
             </div>
           </section>
-        );
-      })}
+        ))}
 
-      {/* Process Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
-              {t.process.title}
-            </h2>
-          </motion.div>
-
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-4 gap-8"
-          >
-            {t.process.steps.map((step, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="text-center"
-              >
-                <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-neo-teal-500 to-cyan-500 text-white rounded-full font-display font-bold text-2xl mb-6">
-                  {step.number}
-                </div>
-                <h3 className="text-xl font-display font-bold text-gray-900 mb-3">
-                  {step.title}
-                </h3>
-                <p className="text-gray-600 font-body leading-relaxed">
-                  {step.desc}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Why Choose Us Section */}
-      <section className="py-20 bg-gradient-to-br from-stone-50 to-cyan-50/20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
-              {t.why.title}
-            </h2>
-          </motion.div>
-
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 gap-8"
-          >
-            {t.why.reasons.map((reason, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"
-              >
-                <h3 className="text-2xl font-display font-bold text-gray-900 mb-4">
-                  {reason.title}
-                </h3>
-                <p className="text-gray-700 font-body leading-relaxed">
-                  {reason.desc}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="relative py-24 bg-gradient-to-br from-neo-teal-500 via-cyan-600 to-neo-teal-600 overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-neo-coral-500/20 rounded-full blur-3xl"></div>
-
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-5xl md:text-6xl font-display font-bold text-white mb-8">
-              {t.cta.title}
-            </h2>
-            <p className="text-2xl text-cyan-100 font-body mb-12 max-w-2xl mx-auto leading-relaxed">
-              {t.cta.subtitle}
-            </p>
-            <Link
-              to="/support"
-              className="inline-block px-12 py-6 bg-white text-neo-teal-500 rounded-xl font-body font-bold text-xl hover:bg-stone-50 transition-all transform hover:scale-105 shadow-2xl hover:shadow-3xl"
+        {/* ——— §4 Process ——— */}
+        <section className="py-24 bg-washi-50">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              variants={rise}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="mb-16 max-w-3xl"
             >
-              {t.cta.button}
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-    </div>
+              <p className="section-label mb-4">§4</p>
+              <h2 className="text-3xl md:text-4xl font-display font-bold">{t.process.title}</h2>
+            </motion.div>
+
+            <motion.ol
+              variants={stagger}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 md:grid-cols-4 gap-10"
+            >
+              {t.process.steps.map((step) => (
+                <motion.li key={step.number} variants={rise} className="border-t-2 border-ink-900 pt-6">
+                  <div className="font-display italic text-3xl text-washi-400 mb-4 select-none" aria-hidden="true">
+                    {step.number}
+                  </div>
+                  <h3 className="text-xl font-display font-bold text-ink-900 mb-3">{step.title}</h3>
+                  <p className="text-ink-600 font-body text-base leading-relaxed">{step.desc}</p>
+                </motion.li>
+              ))}
+            </motion.ol>
+          </div>
+        </section>
+
+        {/* ——— §5 Why Choose Us ——— */}
+        <section className="py-24 bg-white border-t border-washi-200">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              variants={rise}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="mb-16 max-w-3xl"
+            >
+              <p className="section-label mb-4">§5</p>
+              <h2 className="text-3xl md:text-4xl font-display font-bold">{t.why.title}</h2>
+            </motion.div>
+
+            <motion.div
+              variants={stagger}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 max-w-4xl"
+            >
+              {t.why.reasons.map((reason) => (
+                <motion.div key={reason.title} variants={rise} className="flex items-baseline">
+                  <span className="shrink-0 text-shu-500 font-display mr-3 select-none" aria-hidden="true">¶</span>
+                  <div>
+                    <h3 className="text-xl font-display font-bold text-ink-900 mb-2">{reason.title}</h3>
+                    <p className="text-ink-600 font-body text-base leading-relaxed">{reason.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ——— CTA — dark band ——— */}
+        <section className="relative py-24 bg-ink-900 overflow-hidden">
+          <div className="absolute inset-0 bg-noise" aria-hidden="true"></div>
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <motion.div variants={rise} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+              <span className="block mb-8" aria-hidden="true">
+                <Monogram dark className="text-5xl" />
+              </span>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-washi-50 mb-6 leading-snug">
+                <span className="inline-block">{t.cta.titleLines[0]}</span>
+                {t.cta.titleLines[1] ? (
+                  <span className="inline-block">{'\u00A0'}{t.cta.titleLines[1]}</span>
+                ) : null}
+              </h2>
+              <p className="text-xl text-ink-200 font-body mb-12 max-w-2xl mx-auto leading-relaxed">
+                {t.cta.subtitle}
+              </p>
+              <Link
+                to="/support"
+                className="inline-flex items-center gap-2 bg-washi-50 text-ink-900 font-body font-bold text-lg px-10 py-5 border border-washi-50 hover:bg-shu-500 hover:border-shu-500 hover:text-washi-50 transition-all duration-200"
+              >
+                {t.cta.button}
+                <span aria-hidden="true">→</span>
+              </Link>
+            </motion.div>
+          </div>
+        </section>
+      </div>
     </>
   );
 };

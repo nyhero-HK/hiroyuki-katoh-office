@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useState } from 'react';
-import logo from '../assets/Logo small.png';
+import Monogram from './Monogram';
 
 const Navbar = ({ language, setLanguage }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,55 +24,67 @@ const Navbar = ({ language, setLanguage }) => {
 
   const t = navItems[language];
 
+  const links = [
+    { to: '/', label: t.home, end: true },
+    { to: '/about', label: t.about },
+    { to: '/services', label: t.services },
+    { to: '/patient-education', label: t.education },
+    { to: '/support', label: t.contact },
+  ];
+
+  const desktopLinkClass = ({ isActive }) =>
+    `relative font-body text-[15px] font-medium tracking-wide transition-colors pb-1 border-b-2 ${
+      isActive
+        ? 'text-shu-600 border-shu-500'
+        : 'text-ink-700 border-transparent hover:text-ink-900 hover:border-ink-300'
+    }`;
+
+  const mobileLinkClass = ({ isActive }) =>
+    `font-body font-medium py-2 border-l-2 pl-4 transition-colors ${
+      isActive ? 'text-shu-600 border-shu-500' : 'text-ink-700 border-transparent hover:text-ink-900'
+    }`;
+
   return (
-    <nav className="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="fixed w-full z-50 bg-washi-50/95 backdrop-blur-sm">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 group">
-            <img src={logo} alt="Katoh Office Logo" className="w-12 h-12 transform group-hover:scale-110 transition-transform duration-300" />
-            <div className="flex flex-col">
-              <span className="font-display font-bold text-xl text-gray-900">加藤事務所</span>
-              <span className="text-xs text-gray-600 font-body">Katoh Office</span>
-            </div>
+          {/* Wordmark — set like a journal masthead */}
+          <Link to="/" className="flex items-center gap-3.5 group" onClick={() => setIsOpen(false)}>
+            <Monogram className="text-[2rem] shrink-0 group-hover:opacity-80 transition-opacity" />
+            <span className="w-px h-10 bg-ink-200 shrink-0" aria-hidden="true"></span>
+            <span className="flex flex-col">
+              <span className="font-display font-bold text-2xl text-ink-900 leading-tight group-hover:text-shu-600 transition-colors">
+                加藤裕幸事務所
+              </span>
+              <span className="text-[11px] text-ink-500 font-body tracking-label uppercase">
+                Katoh Office · Medical Education
+              </span>
+            </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-gray-700 hover:text-neo-teal-500 font-body font-medium transition-colors">
-              {t.home}
-            </Link>
-            <Link to="/about" className="text-gray-700 hover:text-neo-teal-500 font-body font-medium transition-colors">
-              {t.about}
-            </Link>
-            <Link to="/services" className="text-gray-700 hover:text-neo-teal-500 font-body font-medium transition-colors">
-              {t.services}
-            </Link>
-            <Link to="/patient-education" className="text-gray-700 hover:text-neo-teal-500 font-body font-medium transition-colors">
-              {t.education}
-            </Link>
-            <Link to="/support" className="text-gray-700 hover:text-neo-teal-500 font-body font-medium transition-colors">
-              {t.contact}
-            </Link>
+          {/* Desktop navigation */}
+          <div className="hidden md:flex items-center gap-7">
+            {links.map((link) => (
+              <NavLink key={link.to} to={link.to} end={link.end} className={desktopLinkClass}>
+                {link.label}
+              </NavLink>
+            ))}
 
-            {/* Language Toggle */}
-            <div className="flex items-center bg-gray-100 rounded-full p-1">
+            {/* Language toggle — typographic, like a running head */}
+            <div className="flex items-center gap-2 font-body text-sm pl-4 border-l border-washi-300">
               <button
                 onClick={() => setLanguage('ja')}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                  language === 'ja'
-                    ? 'bg-neo-teal-500 text-white'
-                    : 'text-gray-600 hover:text-gray-900'
+                className={`transition-colors ${
+                  language === 'ja' ? 'text-shu-600 font-bold' : 'text-ink-400 hover:text-ink-700'
                 }`}
               >
                 日本語
               </button>
+              <span className="text-washi-400">/</span>
               <button
                 onClick={() => setLanguage('en')}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                  language === 'en'
-                    ? 'bg-neo-teal-500 text-white'
-                    : 'text-gray-600 hover:text-gray-900'
+                className={`transition-colors ${
+                  language === 'en' ? 'text-shu-600 font-bold' : 'text-ink-400 hover:text-ink-700'
                 }`}
               >
                 EN
@@ -80,10 +92,11 @@ const Navbar = ({ language, setLanguage }) => {
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="md:hidden p-2 text-ink-800 hover:text-shu-600 transition-colors"
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isOpen ? (
@@ -94,52 +107,44 @@ const Navbar = ({ language, setLanguage }) => {
             </svg>
           </button>
         </div>
+      </div>
 
-        {/* Mobile Menu */}
-        {isOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200">
-            <div className="flex flex-col space-y-3">
-              <Link to="/" className="text-gray-700 hover:text-neo-teal-500 font-body font-medium py-2">
-                {t.home}
-              </Link>
-              <Link to="/about" className="text-gray-700 hover:text-neo-teal-500 font-body font-medium py-2">
-                {t.about}
-              </Link>
-              <Link to="/services" className="text-gray-700 hover:text-neo-teal-500 font-body font-medium py-2">
-                {t.services}
-              </Link>
-              <Link to="/patient-education" className="text-gray-700 hover:text-neo-teal-500 font-body font-medium py-2">
-                {t.education}
-              </Link>
-              <Link to="/support" className="text-gray-700 hover:text-neo-teal-500 font-body font-medium py-2">
-                {t.contact}
-              </Link>
-              <div className="flex items-center bg-gray-100 rounded-full p-1 w-fit">
-                <button
-                  onClick={() => setLanguage('ja')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                    language === 'ja'
-                      ? 'bg-neo-teal-500 text-white'
-                      : 'text-gray-600'
-                  }`}
-                >
-                  日本語
-                </button>
-                <button
-                  onClick={() => setLanguage('en')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                    language === 'en'
-                      ? 'bg-neo-teal-500 text-white'
-                      : 'text-gray-600'
-                  }`}
-                >
-                  EN
-                </button>
-              </div>
+      {/* Masthead double rule */}
+      <div className="rule-double" aria-hidden="true"></div>
+
+      {/* Mobile menu */}
+      {isOpen && (
+        <div className="md:hidden bg-washi-50 border-b border-ink-200">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col space-y-1">
+            {links.map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                end={link.end}
+                className={mobileLinkClass}
+                onClick={() => setIsOpen(false)}
+              >
+                {link.label}
+              </NavLink>
+            ))}
+            <div className="flex items-center gap-2 font-body text-sm pt-3 pl-4">
+              <button
+                onClick={() => setLanguage('ja')}
+                className={language === 'ja' ? 'text-shu-600 font-bold' : 'text-ink-400'}
+              >
+                日本語
+              </button>
+              <span className="text-washi-400">/</span>
+              <button
+                onClick={() => setLanguage('en')}
+                className={language === 'en' ? 'text-shu-600 font-bold' : 'text-ink-400'}
+              >
+                EN
+              </button>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </nav>
   );
 };

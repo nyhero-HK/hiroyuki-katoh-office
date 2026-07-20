@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import logo from '../assets/Logo small.png';
 import SEO from '../components/SEO';
+import Monogram from '../components/Monogram';
 
 const Support = ({ language }) => {
   const content = {
@@ -46,6 +46,21 @@ const Support = ({ language }) => {
 
   const t = content[language];
 
+  const rise = {
+    hidden: { opacity: 0, y: 24 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  };
+  const stagger = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.12 } },
+  };
+
+  const faqs = [
+    { q: t.faq.q1, a: t.faq.a1 },
+    { q: t.faq.q2, a: t.faq.a2 },
+    { q: t.faq.q3, a: t.faq.a3 },
+  ];
+
   return (
     <>
       <SEO
@@ -54,119 +69,124 @@ const Support = ({ language }) => {
         path="/support"
         language={language}
       />
-      <div className="min-h-screen pt-20">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-stone-50 via-cyan-50/30 to-stone-50 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="text-5xl md:text-6xl font-display font-bold mb-6">
-              <span className="text-gradient">{t.title}</span>
-            </h1>
-            <p className="text-xl text-gray-600 font-body max-w-3xl mx-auto">
-              {t.subtitle}
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Contact Info Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-8">
-            {/* Email Card */}
+      <div className="min-h-screen">
+        {/* ——— Hero ——— */}
+        <section className="bg-washi-50 bg-ruled">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-16">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
+              className="max-w-3xl"
             >
-              <div className="bg-gradient-to-br from-neo-teal-500 to-cyan-500 rounded-2xl p-8 text-white">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="font-body font-semibold mb-1">{t.contact.email}</div>
-                    <a href="mailto:hiroyuki.katoh.office@gmail.com" className="text-lg font-body hover:underline">
-                      hiroyuki.katoh.office@gmail.com
-                    </a>
-                    <p className="text-sm text-cyan-100 mt-2">{t.contact.response}</p>
-                  </div>
-                </div>
-                <a
-                  href="mailto:hiroyuki.katoh.office@gmail.com"
-                  className="mt-6 block w-full px-8 py-4 bg-white text-neo-teal-600 rounded-xl font-body font-semibold text-center hover:bg-cyan-50 transition-all transform hover:scale-105 card-glow"
-                >
-                  {t.sendEmail}
-                </a>
-              </div>
-            </motion.div>
-
-            {/* Office Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              <div className="bg-stone-50 rounded-2xl p-6 card-glow">
-                <div className="flex items-center space-x-3 mb-4">
-                  <img src={logo} alt="Katoh Office Logo" className="w-12 h-12" />
-                  <div>
-                    <div className="font-display font-bold text-gray-900">加藤事務所</div>
-                    <div className="text-sm text-gray-600 font-body">Katoh Office</div>
-                  </div>
-                </div>
-                <p className="text-gray-600 font-body text-sm">
-                  {language === 'ja'
-                    ? '医療教育コンサルティングと教育ソフトウェアを提供しています。'
-                    : 'Providing medical education consulting and educational software.'}
-                </p>
-              </div>
+              <p className="section-label mb-6">{t.contact.title}</p>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold leading-snug mb-6">
+                {t.title}
+              </h1>
+              <p className="text-xl text-ink-600 font-body leading-relaxed">
+                {t.subtitle}
+              </p>
             </motion.div>
           </div>
-        </div>
-      </section>
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="rule-double"></div>
+          </div>
+        </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-stone-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-4xl font-display font-bold mb-12 text-center">
-              {t.faq.title}
-            </h2>
+        {/* ——— Contact ——— */}
+        <section className="py-20 bg-washi-50">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Email — the centerpiece */}
+            <motion.div
+              variants={rise}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="relative panel p-10 md:p-12 text-center mb-8"
+            >
+              <span
+                className="absolute -top-4 -right-4 bg-washi-50 border border-ink-300 px-3 py-2"
+                aria-hidden="true"
+              >
+                <Monogram className="text-2xl" />
+              </span>
+              <p className="section-label mb-6">{t.contact.email}</p>
+              <a
+                href="mailto:hiroyuki.katoh.office@gmail.com"
+                className="link-editorial inline-block font-display font-bold text-xl sm:text-2xl break-all mb-4"
+              >
+                hiroyuki.katoh.office@gmail.com
+              </a>
+              <p className="text-sm text-ink-500 font-body leading-relaxed mb-8">{t.contact.response}</p>
+              <a href="mailto:hiroyuki.katoh.office@gmail.com" className="btn-ink text-lg">
+                {t.sendEmail}
+                <span aria-hidden="true">→</span>
+              </a>
+            </motion.div>
 
-            <div className="space-y-6">
-              <div className="bg-white rounded-2xl p-8 card-glow">
-                <h3 className="text-xl font-display font-bold text-gray-900 mb-3">{t.faq.q1}</h3>
-                <p className="text-gray-600 font-body">{t.faq.a1}</p>
+            {/* Office */}
+            <motion.div
+              variants={rise}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="border-t border-washi-300 pt-8"
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <Monogram className="text-3xl" />
+                <div>
+                  <div className="font-display font-bold text-ink-900">加藤裕幸事務所</div>
+                  <div className="text-sm text-ink-500 font-body">Katoh Office</div>
+                </div>
               </div>
+              <p className="text-ink-600 font-body text-sm leading-relaxed">
+                {language === 'ja'
+                  ? '医療教育コンサルティングと教育ソフトウェアを提供しています。'
+                  : 'Providing medical education consulting and educational software.'}
+              </p>
+            </motion.div>
+          </div>
+        </section>
 
-              <div className="bg-white rounded-2xl p-8 card-glow">
-                <h3 className="text-xl font-display font-bold text-gray-900 mb-3">{t.faq.q2}</h3>
-                <p className="text-gray-600 font-body">{t.faq.a2}</p>
-              </div>
+        {/* ——— FAQ ——— */}
+        <section className="py-20 bg-white border-t border-washi-200">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              variants={rise}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="mb-12"
+            >
+              <p className="section-label mb-4">FAQ</p>
+              <h2 className="text-2xl md:text-3xl font-display font-bold">{t.faq.title}</h2>
+            </motion.div>
 
-              <div className="bg-white rounded-2xl p-8 card-glow">
-                <h3 className="text-xl font-display font-bold text-gray-900 mb-3">{t.faq.q3}</h3>
-                <p className="text-gray-600 font-body">{t.faq.a3}</p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-    </div>
+            <motion.div
+              variants={stagger}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="divide-y divide-washi-300 border-y border-washi-300"
+            >
+              {faqs.map((item, index) => (
+                <motion.div key={index} variants={rise} className="flex gap-6 py-8">
+                  <span
+                    className="shrink-0 font-display italic text-2xl text-washi-400 leading-none select-none"
+                    aria-hidden="true"
+                  >
+                    {['i', 'ii', 'iii'][index]}.
+                  </span>
+                  <div>
+                    <h3 className="text-xl font-display font-bold text-ink-900 mb-3">{item.q}</h3>
+                    <p className="text-ink-600 font-body leading-relaxed">{item.a}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      </div>
     </>
   );
 };
