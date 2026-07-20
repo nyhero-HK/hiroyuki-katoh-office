@@ -333,7 +333,7 @@ const Home = ({ language }) => {
                   <span className="inline-block">{t.hero.title}</span>
                   <span className="inline-block mt-2 text-shu-600">{t.hero.titleHighlight}</span>
                 </h1>
-                <p className="text-xl md:text-2xl text-ink-600 font-body mb-10 max-w-xl leading-relaxed">
+                <p className="text-lg md:text-lg text-ink-600 font-body mb-10 max-w-xl leading-relaxed">
                   {t.hero.subtitle}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -390,7 +390,7 @@ const Home = ({ language }) => {
             >
               <p className="section-label mb-4">{t.projects.label}</p>
               <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">{t.projects.title}</h2>
-              <p className="text-xl text-ink-600 font-body leading-relaxed">{t.projects.subtitle}</p>
+              <p className="text-lg text-ink-600 font-body leading-relaxed">{t.projects.subtitle}</p>
             </motion.div>
 
             {/* Three site cards */}
@@ -652,7 +652,7 @@ const Home = ({ language }) => {
                 <span className="inline-block">{t.cta.titleLines[0]}</span>{' '}
                 <span className="inline-block">{t.cta.titleLines[1]}</span>
               </h2>
-              <p className="text-xl text-ink-200 font-body mb-12 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg text-ink-200 font-body mb-12 max-w-2xl mx-auto leading-relaxed">
                 {t.cta.subtitle}
               </p>
               <Link

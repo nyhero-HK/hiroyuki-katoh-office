@@ -422,7 +422,7 @@ const Services = ({ language }) => {
               <h1 className="text-4xl md:text-5xl font-display font-bold leading-[1.2] mb-8">
                 <span className="inline-block">{t.hero.title}</span>
               </h1>
-              <p className="text-xl text-ink-600 font-body leading-relaxed">
+              <p className="text-lg text-ink-600 font-body leading-relaxed">
                 {t.intro.text}
               </p>
             </motion.div>
@@ -456,7 +456,7 @@ const Services = ({ language }) => {
                   <div className="md:col-span-10 max-w-3xl">
                     <p className="section-label mb-4">§{serviceIndex + 1} {service.subtitle}</p>
                     <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">{service.title}</h2>
-                    <p className="text-xl text-ink-600 font-body leading-relaxed">{service.description}</p>
+                    <p className="text-lg text-ink-600 font-body leading-relaxed">{service.description}</p>
                   </div>
                 </div>
               </motion.div>
@@ -590,7 +590,7 @@ const Services = ({ language }) => {
                   <span className="inline-block">{'\u00A0'}{t.cta.titleLines[1]}</span>
                 ) : null}
               </h2>
-              <p className="text-xl text-ink-200 font-body mb-12 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg text-ink-200 font-body mb-12 max-w-2xl mx-auto leading-relaxed">
                 {t.cta.subtitle}
               </p>
               <Link

@@ -83,7 +83,7 @@ const Support = ({ language }) => {
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold leading-snug mb-6">
                 {t.title}
               </h1>
-              <p className="text-xl text-ink-600 font-body leading-relaxed">
+              <p className="text-lg text-ink-600 font-body leading-relaxed">
                 {t.subtitle}
               </p>
             </motion.div>

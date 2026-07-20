@@ -386,7 +386,7 @@ const PatientEducation = ({ language }) => {
                   </>
                 )}
               </h1>
-              <p className="text-xl md:text-2xl text-ink-600 font-body leading-relaxed">
+              <p className="text-lg md:text-lg text-ink-600 font-body leading-relaxed">
                 {t.hero.subtitle}
               </p>
             </motion.div>
@@ -413,7 +413,7 @@ const PatientEducation = ({ language }) => {
                 </p>
                 <footer className="fig-caption mb-8">{t.mission.quoteAuthor}</footer>
               </blockquote>
-              <p className="text-xl text-ink-600 font-body leading-relaxed border-l-2 border-kin-300 pl-5">
+              <p className="text-lg text-ink-600 font-body leading-relaxed border-l-2 border-kin-300 pl-5">
                 {t.mission.content}
               </p>
             </motion.div>
@@ -549,7 +549,7 @@ const PatientEducation = ({ language }) => {
             >
               <p className="section-label mb-4">§4 {t.solution.title}</p>
               <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">{t.solution.subtitle}</h2>
-              <p className="text-xl text-ink-600 font-body leading-relaxed">{t.solution.description}</p>
+              <p className="text-lg text-ink-600 font-body leading-relaxed">{t.solution.description}</p>
               {t.solution.note && (
                 <p className="text-sm text-ink-500 font-body leading-relaxed mt-4 border-l-2 border-kin-300 pl-4">
                   {t.solution.note}
@@ -680,7 +680,7 @@ const PatientEducation = ({ language }) => {
             >
               <p className="section-label mb-4">§6 {t.forProfessionals.subtitle}</p>
               <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">{t.forProfessionals.title}</h2>
-              <p className="text-xl text-ink-600 font-body leading-relaxed">{t.forProfessionals.description}</p>
+              <p className="text-lg text-ink-600 font-body leading-relaxed">{t.forProfessionals.description}</p>
             </motion.div>
 
             <motion.div
@@ -721,7 +721,7 @@ const PatientEducation = ({ language }) => {
               <h2 className="text-3xl md:text-4xl font-display font-bold text-washi-50 mb-6 leading-snug">
                 <span className="inline-block">{t.cta.title}</span>
               </h2>
-              <p className="text-xl text-ink-200 font-body mb-12 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg text-ink-200 font-body mb-12 max-w-2xl mx-auto leading-relaxed">
                 {t.cta.subtitle}
               </p>
               <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">

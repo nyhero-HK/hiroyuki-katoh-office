@@ -104,10 +104,11 @@ export default {
         'body': ['"Noto Sans JP"', '"Noto Sans JP Fallback"', 'Manrope', '"Manrope Fallback"', 'sans-serif'],
       },
       fontSize: {
-        // Larger base + generous line-heights tuned for Japanese readability.
-        'base': ['1.125rem', { lineHeight: '1.8' }],
-        'lg': ['1.25rem', { lineHeight: '1.8' }],
-        'xl': ['1.375rem', { lineHeight: '1.7' }],
+        // Standard sizes with generous line-heights tuned for Japanese readability.
+        // (2026-07: stepped back down from the enlarged 18px base per Hiro's review.)
+        'base': ['1rem', { lineHeight: '1.8' }],
+        'lg': ['1.125rem', { lineHeight: '1.8' }],
+        'xl': ['1.25rem', { lineHeight: '1.7' }],
         '2xl': ['1.625rem', { lineHeight: '1.5' }],
         '3xl': ['2rem', { lineHeight: '1.4' }],
         '4xl': ['2.5rem', { lineHeight: '1.3' }],
