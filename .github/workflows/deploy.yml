@@ -23,6 +23,10 @@ jobs:
 
       - name: Create Pages project if needed
         uses: cloudflare/wrangler-action@v3
+        env:
+          # npm >= 11 (Node 24 runners) cancels non-interactive `npx wrangler`
+          # downloads without an explicit yes.
+          NPM_CONFIG_YES: "true"
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -31,6 +35,8 @@ jobs:
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
+        env:
+          NPM_CONFIG_YES: "true"
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
