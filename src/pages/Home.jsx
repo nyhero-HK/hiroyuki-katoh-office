@@ -414,7 +414,7 @@ const Home = ({ language }) => {
                     <h3 className="text-2xl font-display font-bold text-ink-900 group-hover:text-shu-600 transition-colors">
                       {site.name}
                     </h3>
-                    <span className="text-ink-300 group-hover:text-shu-500 group-hover:translate-x-1 transition-all font-display" aria-hidden="true">↗</span>
+                    <span className="text-ink-400 group-hover:text-shu-500 group-hover:translate-x-1 transition-all font-display" aria-hidden="true">↗</span>
                   </div>
                   <p className="text-sm font-body font-bold text-shu-500 tracking-wide mb-4">{site.tagline}</p>
                   <p className="text-ink-600 font-body text-base leading-relaxed mb-6 flex-grow">{site.desc}</p>
@@ -467,7 +467,7 @@ const Home = ({ language }) => {
             >
               {t.projects.features.map((feature, index) => (
                 <motion.li key={index} variants={rise} className="flex gap-5">
-                  <span className="font-display italic text-2xl text-washi-400 leading-none select-none" aria-hidden="true">
+                  <span className="font-display italic text-2xl text-ink-400 leading-none select-none" aria-hidden="true">
                     {['i', 'ii', 'iii', 'iv'][index]}.
                   </span>
                   <div>

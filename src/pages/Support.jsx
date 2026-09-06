@@ -172,7 +172,7 @@ const Support = ({ language }) => {
               {faqs.map((item, index) => (
                 <motion.div key={index} variants={rise} className="flex gap-6 py-8">
                   <span
-                    className="shrink-0 font-display italic text-2xl text-washi-400 leading-none select-none"
+                    className="shrink-0 font-display italic text-2xl text-ink-400 leading-none select-none"
                     aria-hidden="true"
                   >
                     {['i', 'ii', 'iii'][index]}.

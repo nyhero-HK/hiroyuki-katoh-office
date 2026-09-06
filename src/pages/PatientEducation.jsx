@@ -455,7 +455,7 @@ const PatientEducation = ({ language }) => {
                     <h3 className="text-2xl font-display font-bold text-ink-900 group-hover:text-shu-600 transition-colors">
                       {site.name}
                     </h3>
-                    <span className="text-ink-300 group-hover:text-shu-500 group-hover:translate-x-1 transition-all font-display" aria-hidden="true">↗</span>
+                    <span className="text-ink-400 group-hover:text-shu-500 group-hover:translate-x-1 transition-all font-display" aria-hidden="true">↗</span>
                   </div>
                   <p className="text-sm font-body font-bold text-shu-500 tracking-wide mb-4">{site.tagline}</p>
                   <p className="text-ink-600 font-body text-base leading-relaxed mb-6">{site.desc}</p>
@@ -589,7 +589,7 @@ const PatientEducation = ({ language }) => {
                         className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 py-5 md:items-baseline"
                       >
                         <div className="md:col-span-4 flex items-baseline gap-4">
-                          <span className="shrink-0 w-8 font-display italic text-xl text-washi-400 select-none" aria-hidden="true">
+                          <span className="shrink-0 w-8 font-display italic text-xl text-ink-400 select-none" aria-hidden="true">
                             {romans[index]}.
                           </span>
                           <h4 className="text-lg font-display font-bold text-ink-900">{category.title}</h4>
@@ -655,7 +655,7 @@ const PatientEducation = ({ language }) => {
             >
               {t.features.items.map((feature, index) => (
                 <motion.li key={feature.title} variants={rise} className="flex gap-5">
-                  <span className="font-display italic text-2xl text-washi-400 leading-none select-none" aria-hidden="true">
+                  <span className="font-display italic text-2xl text-ink-400 leading-none select-none" aria-hidden="true">
                     {romans[index]}.
                   </span>
                   <div>
