@@ -56,7 +56,7 @@ const Navbar = ({ language, setLanguage }) => {
               <span className="font-display font-bold text-2xl text-ink-900 leading-tight group-hover:text-shu-600 transition-colors">
                 加藤裕幸事務所
               </span>
-              <span className="text-[11px] text-ink-500 font-body tracking-label uppercase">
+              <span className="hidden sm:block text-[11px] text-ink-500 font-body tracking-label uppercase">
                 Katoh Office · Medical Education
               </span>
             </span>

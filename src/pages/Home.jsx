@@ -72,6 +72,7 @@ const Home = ({ language }) => {
       services: {
         label: '§2 サービス',
         title: '医療教育と臨床実践の架け橋として',
+        titleLines: ['医療教育と臨床実践の', '架け橋として'],
         items: [
           {
             numeral: 'I',
@@ -217,6 +218,7 @@ const Home = ({ language }) => {
       services: {
         label: '§2 Services',
         title: 'Bridging medical education and clinical practice',
+        titleLines: ['Bridging medical education', 'and clinical practice'],
         items: [
           {
             numeral: 'I',
@@ -486,18 +488,25 @@ const Home = ({ language }) => {
           </div>
         </section>
 
-        {/* ——— §2 Services ——— */}
-        <section className="py-24 bg-white border-y border-washi-200">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* ——— §2 Services — the peak: the one inverted field on the page ——— */}
+        <section className="relative py-28 md:py-40 bg-ink-900 overflow-hidden">
+          <div className="absolute inset-0 bg-noise" aria-hidden="true"></div>
+          <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               variants={rise}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="mb-16 max-w-3xl"
+              className="mb-20 max-w-3xl"
             >
-              <p className="section-label mb-4">{t.services.label}</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold">{t.services.title}</h2>
+              <p className="section-label mb-5 text-shu-300">{t.services.label}</p>
+              <h2 className="text-4xl md:text-5xl font-display font-bold text-washi-50 leading-[1.2]">
+                {t.services.titleLines.map((line, i) => (
+                  <span key={i} className="inline-block">
+                    {line}
+                  </span>
+                ))}
+              </h2>
             </motion.div>
 
             <motion.div
@@ -505,24 +514,43 @@ const Home = ({ language }) => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="grid grid-cols-1 md:grid-cols-3 gap-10"
+              className="space-y-16 md:space-y-24"
             >
               {t.services.items.map((service) => (
-                <motion.div key={service.numeral} variants={rise} className="border-t-2 border-ink-900 pt-6">
-                  <div className="font-display italic text-3xl text-shu-500 mb-4 select-none" aria-hidden="true">
-                    {service.numeral}.
+                <motion.article
+                  key={service.numeral}
+                  variants={rise}
+                  className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-10"
+                >
+                  <div className="md:col-span-2">
+                    <span
+                      className="font-display italic text-5xl md:text-6xl text-shu-300 leading-none select-none"
+                      aria-hidden="true"
+                    >
+                      {service.numeral}.
+                    </span>
                   </div>
-                  <h3 className="text-2xl font-display font-bold mb-4 text-ink-900">{service.title}</h3>
-                  <p className="text-ink-600 font-body mb-6 leading-relaxed">{service.desc}</p>
-                  <ul className="space-y-2.5">
-                    {service.details.map((detail, i) => (
-                      <li key={i} className="flex items-start text-sm text-ink-700 font-body">
-                        <span className="text-shu-500 mr-2.5 select-none" aria-hidden="true">—</span>
-                        {detail}
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
+                  <div className="md:col-span-10 max-w-3xl">
+                    <h3 className="text-2xl md:text-3xl font-display font-bold text-washi-50 mb-4">
+                      {service.title}
+                    </h3>
+                    <p className="text-ink-100 font-body leading-relaxed mb-5">{service.desc}</p>
+                    {/* run-on列挙(md+) / 箇条書き(mobile) — 区切りが行頭に落ちないよう項目と一体で折る */}
+                    <p className="font-body text-sm text-ink-200 leading-loose">
+                      {service.details.map((detail, i) => (
+                        <span key={i} className="block md:inline">
+                          <span
+                            className="text-shu-300 mr-2.5 md:mr-3 md:ml-3 select-none"
+                            aria-hidden="true"
+                          >
+                            —
+                          </span>
+                          {detail}
+                        </span>
+                      ))}
+                    </p>
+                  </div>
+                </motion.article>
               ))}
             </motion.div>
           </div>
@@ -641,27 +669,25 @@ const Home = ({ language }) => {
         </section>
 
         {/* ——— CTA ——— */}
-        <section className="relative py-24 bg-ink-900 overflow-hidden">
-          <div className="absolute inset-0 bg-noise" aria-hidden="true"></div>
+        {/* ——— Close — on paper, so the ink footer reads as a colophon, not a continuation ——— */}
+        <section className="relative py-28 bg-washi-100 bg-ruled overflow-hidden border-t border-washi-300">
           <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <motion.div variants={rise} initial="hidden" whileInView="visible" viewport={{ once: true }}>
               <span className="block mb-8" aria-hidden="true">
-                <Monogram dark className="text-5xl" />
+                <Monogram className="text-5xl" />
               </span>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-washi-50 mb-6 leading-snug">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-ink-900 mb-6 leading-snug">
                 <span className="inline-block">{t.cta.titleLines[0]}</span>{' '}
                 <span className="inline-block">{t.cta.titleLines[1]}</span>
               </h2>
-              <p className="text-lg text-ink-200 font-body mb-12 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg text-ink-600 font-body mb-12 max-w-2xl mx-auto leading-relaxed">
                 {t.cta.subtitle}
               </p>
-              <Link
-                to="/support"
-                className="inline-flex items-center gap-2 bg-washi-50 text-ink-900 font-body font-bold text-lg px-10 py-5 border border-washi-50 hover:bg-shu-500 hover:border-shu-500 hover:text-washi-50 transition-all duration-200"
-              >
+              <Link to="/support" className="btn-ink text-lg px-10 py-5">
                 {t.cta.button}
                 <span aria-hidden="true">→</span>
               </Link>
+              <div className="rule-double mt-20 max-w-xs mx-auto" aria-hidden="true"></div>
             </motion.div>
           </div>
         </section>
