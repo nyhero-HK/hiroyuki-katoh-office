@@ -472,7 +472,7 @@ const Services = ({ language }) => {
                 {service.features.map((feature, index) => (
                   <motion.div key={feature.name} variants={rise} className="rule-fine pt-5">
                     <h3 className="text-2xl font-display font-bold text-ink-900 mb-5">
-                      <span className="font-display italic text-washi-400 mr-3 select-none" aria-hidden="true">
+                      <span className="font-display italic text-ink-400 mr-3 select-none" aria-hidden="true">
                         {['i', 'ii', 'iii', 'iv'][index]}.
                       </span>
                       {feature.name}
@@ -531,7 +531,7 @@ const Services = ({ language }) => {
             >
               {t.process.steps.map((step) => (
                 <motion.li key={step.number} variants={rise} className="border-t-2 border-ink-900 pt-6">
-                  <div className="font-display italic text-3xl text-washi-400 mb-4 select-none" aria-hidden="true">
+                  <div className="font-display italic text-3xl text-ink-400 mb-4 select-none" aria-hidden="true">
                     {step.number}
                   </div>
                   <h3 className="text-xl font-display font-bold text-ink-900 mb-3">{step.title}</h3>

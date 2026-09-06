@@ -45,7 +45,7 @@ const Navbar = ({ language, setLanguage }) => {
     }`;
 
   return (
-    <nav className="fixed w-full z-50 bg-washi-50/95 backdrop-blur-sm">
+    <nav className="fixed w-full z-50 bg-washi-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Wordmark — set like a journal masthead */}
@@ -80,7 +80,7 @@ const Navbar = ({ language, setLanguage }) => {
               >
                 日本語
               </button>
-              <span className="text-washi-400">/</span>
+              <span className="text-ink-400">/</span>
               <button
                 onClick={() => setLanguage('en')}
                 className={`transition-colors ${
@@ -134,7 +134,7 @@ const Navbar = ({ language, setLanguage }) => {
               >
                 日本語
               </button>
-              <span className="text-washi-400">/</span>
+              <span className="text-ink-400">/</span>
               <button
                 onClick={() => setLanguage('en')}
                 className={language === 'en' ? 'text-shu-600 font-bold' : 'text-ink-400'}

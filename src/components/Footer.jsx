@@ -128,7 +128,7 @@ const Footer = ({ language }) => {
         {/* 奥付 bottom bar */}
         <div className="mt-12 pt-6 border-t border-ink-700 flex flex-col md:flex-row justify-between items-center gap-3">
           <p className="text-sm text-ink-300 font-body">{t.colophon}</p>
-          <p className="text-sm text-ink-400 font-body">{t.copyright}</p>
+          <p className="text-sm text-ink-300 font-body">{t.copyright}</p>
         </div>
       </div>
     </footer>

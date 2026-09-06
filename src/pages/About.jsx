@@ -407,7 +407,7 @@ const About = ({ language }) => {
             >
               {t.expertise.areas.map((area, index) => (
                 <motion.li key={area.name} variants={rise} className="flex gap-5 border-t-2 border-ink-900 pt-6">
-                  <span className="font-display italic text-2xl text-washi-400 leading-none select-none" aria-hidden="true">
+                  <span className="font-display italic text-2xl text-ink-400 leading-none select-none" aria-hidden="true">
                     {['i', 'ii', 'iii', 'iv'][index]}.
                   </span>
                   <div>
