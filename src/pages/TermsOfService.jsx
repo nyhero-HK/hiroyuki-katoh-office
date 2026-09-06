@@ -140,7 +140,7 @@ Service content may change without prior notice.`,
         path="/terms-of-service"
         language={language}
       />
-      <div className="min-h-screen bg-washi-50">
+      <div className="min-h-screen bg-ground">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-24">
           {/* ——— Document header ——— */}
           <header className="mb-12">
@@ -150,18 +150,18 @@ Service content may change without prior notice.`,
             <h1 className="text-3xl md:text-4xl font-display font-bold leading-snug mb-5">
               {t.title}
             </h1>
-            <p className="text-sm text-ink-500 font-body">{t.lastUpdated}</p>
+            <p className="text-sm text-content-4 font-body">{t.lastUpdated}</p>
             <div className="rule-double mt-8"></div>
           </header>
 
           {/* ——— Articles ——— */}
-          <div className="divide-y divide-washi-300">
+          <div className="divide-y divide-line">
             {t.sections.map((section, index) => (
               <article key={index} className="py-10 first:pt-0 last:pb-0">
-                <h2 className="text-2xl font-display font-bold text-ink-900 mb-5">
+                <h2 className="text-2xl font-display font-bold text-content mb-5">
                   {section.title}
                 </h2>
-                <div className="text-ink-700 font-body text-base whitespace-pre-line leading-relaxed">
+                <div className="text-content-2 font-body text-base whitespace-pre-line leading-relaxed">
                   {section.content}
                 </div>
               </article>

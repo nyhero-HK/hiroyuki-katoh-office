@@ -244,7 +244,7 @@ const About = ({ language }) => {
       />
       <div className="min-h-screen">
         {/* ——— Masthead ——— */}
-        <section className="relative bg-washi-50 bg-ruled overflow-hidden">
+        <section className="relative bg-ground bg-ruled overflow-hidden">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -264,7 +264,7 @@ const About = ({ language }) => {
         </section>
 
         {/* ——— §1 Biography ——— */}
-        <section className="py-24 bg-washi-50">
+        <section className="py-24 bg-ground">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-14 items-start">
               <motion.div
@@ -284,7 +284,7 @@ const About = ({ language }) => {
                     <figcaption className="fig-caption pt-3 px-1">
                       {language === 'ja' ? '加藤裕幸 — MD, PhD' : 'Hiroyuki Katoh — MD, PhD'}
                     </figcaption>
-                    <span className="absolute -top-4 -right-4 bg-washi-50 border border-ink-300 px-3 py-2" aria-hidden="true">
+                    <span className="absolute -top-4 -right-4 bg-ground border border-line px-3 py-2" aria-hidden="true">
                       <Monogram className="text-2xl" />
                     </span>
                   </figure>
@@ -302,7 +302,7 @@ const About = ({ language }) => {
                 <h2 className="text-3xl md:text-4xl font-display font-bold mb-8">{t.bio.title}</h2>
                 <div className="space-y-5 max-w-2xl">
                   {t.bio.content.map((paragraph, index) => (
-                    <p key={index} className="text-ink-700 font-body text-lg leading-relaxed">
+                    <p key={index} className="text-content-2 font-body text-lg leading-relaxed">
                       {paragraph}
                     </p>
                   ))}
@@ -313,7 +313,7 @@ const About = ({ language }) => {
         </section>
 
         {/* ——— §2 Education & Training ——— */}
-        <section className="py-24 bg-white border-y border-washi-200">
+        <section className="py-24 bg-surface border-y border-line">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               variants={rise}
@@ -331,7 +331,7 @@ const About = ({ language }) => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="divide-y divide-washi-300 border-y border-washi-300"
+              className="divide-y divide-line border-y border-line"
             >
               {t.education.items.map((item) => (
                 <motion.div
@@ -339,9 +339,9 @@ const About = ({ language }) => {
                   variants={rise}
                   className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 py-6 md:items-baseline"
                 >
-                  <p className="md:col-span-3 font-display italic text-2xl text-shu-500">{item.year}</p>
-                  <h3 className="md:col-span-4 text-xl font-display font-bold text-ink-900">{item.title}</h3>
-                  <p className="md:col-span-5 text-ink-600 font-body text-base leading-relaxed">{item.desc}</p>
+                  <p className="md:col-span-3 font-display italic text-2xl text-accent">{item.year}</p>
+                  <h3 className="md:col-span-4 text-xl font-display font-bold text-content">{item.title}</h3>
+                  <p className="md:col-span-5 text-content-3 font-body text-base leading-relaxed">{item.desc}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -349,7 +349,7 @@ const About = ({ language }) => {
         </section>
 
         {/* ——— §3 Professional Experience ——— */}
-        <section className="py-24 bg-washi-50">
+        <section className="py-24 bg-ground">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               variants={rise}
@@ -367,7 +367,7 @@ const About = ({ language }) => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="divide-y divide-washi-300 border-y border-washi-300"
+              className="divide-y divide-line border-y border-line"
             >
               {t.experience.items.map((item) => (
                 <motion.div
@@ -375,9 +375,9 @@ const About = ({ language }) => {
                   variants={rise}
                   className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 py-6 md:items-baseline"
                 >
-                  <p className="md:col-span-3 font-display italic text-2xl text-shu-500">{item.period}</p>
-                  <h3 className="md:col-span-4 text-xl font-display font-bold text-ink-900">{item.title}</h3>
-                  <p className="md:col-span-5 text-ink-600 font-body text-base leading-relaxed">{item.role}</p>
+                  <p className="md:col-span-3 font-display italic text-2xl text-accent">{item.period}</p>
+                  <h3 className="md:col-span-4 text-xl font-display font-bold text-content">{item.title}</h3>
+                  <p className="md:col-span-5 text-content-3 font-body text-base leading-relaxed">{item.role}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -385,7 +385,7 @@ const About = ({ language }) => {
         </section>
 
         {/* ——— §4 Areas of Expertise ——— */}
-        <section className="py-24 bg-white border-y border-washi-200">
+        <section className="py-24 bg-surface border-y border-line">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               variants={rise}
@@ -406,13 +406,13 @@ const About = ({ language }) => {
               className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 max-w-4xl"
             >
               {t.expertise.areas.map((area, index) => (
-                <motion.li key={area.name} variants={rise} className="flex gap-5 border-t-2 border-ink-900 pt-6">
-                  <span className="font-display italic text-2xl text-ink-400 leading-none select-none" aria-hidden="true">
+                <motion.li key={area.name} variants={rise} className="flex gap-5 border-t-2 border-line-strong pt-6">
+                  <span className="font-display italic text-2xl text-content-4 leading-none select-none" aria-hidden="true">
                     {['i', 'ii', 'iii', 'iv'][index]}.
                   </span>
                   <div>
-                    <h3 className="text-2xl font-display font-bold mb-2 text-ink-900">{area.name}</h3>
-                    <p className="text-ink-600 font-body leading-relaxed">{area.desc}</p>
+                    <h3 className="text-2xl font-display font-bold mb-2 text-content">{area.name}</h3>
+                    <p className="text-content-3 font-body leading-relaxed">{area.desc}</p>
                   </div>
                 </motion.li>
               ))}
@@ -421,12 +421,12 @@ const About = ({ language }) => {
         </section>
 
         {/* ——— §5 Philosophy — dark band ——— */}
-        <section className="relative py-24 bg-ink-900 overflow-hidden">
+        <section className="on-plate relative py-24 bg-ground overflow-hidden">
           <div className="absolute inset-0 bg-noise" aria-hidden="true"></div>
           <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div variants={rise} initial="hidden" whileInView="visible" viewport={{ once: true }} className="mb-12">
-              <p className="font-body text-sm font-bold tracking-label uppercase text-shu-300 mb-4">§5 {t.philosophy.subtitle}</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-washi-50">
+              <p className="font-body text-sm font-bold tracking-label uppercase text-accent mb-4">§5 {t.philosophy.subtitle}</p>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-content">
                 <span className="inline-block">{t.philosophy.title}</span>
               </h2>
             </motion.div>
@@ -439,7 +439,7 @@ const About = ({ language }) => {
               className="space-y-6"
             >
               {t.philosophy.content.map((paragraph, index) => (
-                <motion.p key={index} variants={rise} className="text-washi-100 font-body text-lg leading-relaxed">
+                <motion.p key={index} variants={rise} className="text-content-2 font-body text-lg leading-relaxed">
                   {paragraph}
                 </motion.p>
               ))}
@@ -448,7 +448,7 @@ const About = ({ language }) => {
         </section>
 
         {/* ——— §6 Professional Memberships ——— */}
-        <section className="py-24 bg-washi-50">
+        <section className="py-24 bg-ground">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               variants={rise}
@@ -470,8 +470,8 @@ const About = ({ language }) => {
             >
               {t.societies.list.map((society, index) => (
                 <motion.div key={index} variants={rise} className="flex items-baseline">
-                  <span className="shrink-0 text-shu-500 font-display mr-3 select-none" aria-hidden="true">¶</span>
-                  <p className="text-ink-700 font-body leading-relaxed">{society}</p>
+                  <span className="shrink-0 text-accent font-display mr-3 select-none" aria-hidden="true">¶</span>
+                  <p className="text-content-2 font-body leading-relaxed">{society}</p>
                 </motion.div>
               ))}
             </motion.div>

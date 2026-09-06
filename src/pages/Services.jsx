@@ -410,7 +410,7 @@ const Services = ({ language }) => {
       />
       <div className="min-h-screen">
         {/* ——— Masthead ——— */}
-        <section className="relative bg-washi-50 bg-ruled overflow-hidden">
+        <section className="relative bg-ground bg-ruled overflow-hidden">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -422,7 +422,7 @@ const Services = ({ language }) => {
               <h1 className="text-4xl md:text-5xl font-display font-bold leading-[1.2] mb-8">
                 <span className="inline-block">{t.hero.title}</span>
               </h1>
-              <p className="text-lg text-ink-600 font-body leading-relaxed">
+              <p className="text-lg text-content-3 font-body leading-relaxed">
                 {t.intro.text}
               </p>
             </motion.div>
@@ -436,7 +436,7 @@ const Services = ({ language }) => {
         {t.services.map((service, serviceIndex) => (
           <section
             key={service.id}
-            className={serviceIndex % 2 === 0 ? 'py-24 bg-washi-50' : 'py-24 bg-white border-y border-washi-200'}
+            className={serviceIndex % 2 === 0 ? 'py-24 bg-ground' : 'py-24 bg-surface border-y border-line'}
           >
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
               {/* Chapter header */}
@@ -445,18 +445,18 @@ const Services = ({ language }) => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="mb-16 border-t-2 border-ink-900 pt-8"
+                className="mb-16 border-t-2 border-line-strong pt-8"
               >
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
                   <div className="md:col-span-2">
-                    <span className="font-display italic text-5xl md:text-6xl text-shu-500 leading-none select-none" aria-hidden="true">
+                    <span className="font-display italic text-5xl md:text-6xl text-accent leading-none select-none" aria-hidden="true">
                       {service.numeral}.
                     </span>
                   </div>
                   <div className="md:col-span-10 max-w-3xl">
                     <p className="section-label mb-4">§{serviceIndex + 1} {service.subtitle}</p>
                     <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">{service.title}</h2>
-                    <p className="text-lg text-ink-600 font-body leading-relaxed">{service.description}</p>
+                    <p className="text-lg text-content-3 font-body leading-relaxed">{service.description}</p>
                   </div>
                 </div>
               </motion.div>
@@ -471,16 +471,16 @@ const Services = ({ language }) => {
               >
                 {service.features.map((feature, index) => (
                   <motion.div key={feature.name} variants={rise} className="rule-fine pt-5">
-                    <h3 className="text-2xl font-display font-bold text-ink-900 mb-5">
-                      <span className="font-display italic text-ink-400 mr-3 select-none" aria-hidden="true">
+                    <h3 className="text-2xl font-display font-bold text-content mb-5">
+                      <span className="font-display italic text-content-4 mr-3 select-none" aria-hidden="true">
                         {['i', 'ii', 'iii', 'iv'][index]}.
                       </span>
                       {feature.name}
                     </h3>
                     <ul className="space-y-2.5">
                       {feature.details.map((detail, detailIndex) => (
-                        <li key={detailIndex} className="flex items-start text-base text-ink-700 font-body leading-relaxed">
-                          <span className="text-shu-500 mr-2.5 select-none" aria-hidden="true">—</span>
+                        <li key={detailIndex} className="flex items-start text-base text-content-2 font-body leading-relaxed">
+                          <span className="text-accent mr-2.5 select-none" aria-hidden="true">—</span>
                           {detail}
                         </li>
                       ))}
@@ -495,13 +495,13 @@ const Services = ({ language }) => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="grid grid-cols-1 md:grid-cols-12 border-y-2 border-ink-900 md:divide-x md:divide-washi-300"
+                className="grid grid-cols-1 md:grid-cols-12 border-y-2 border-line-strong md:divide-x md:divide-line"
               >
                 <div className="md:col-span-4 py-8 md:pr-8">
-                  <div className="text-2xl md:text-3xl font-display font-bold text-ink-900">{service.pricing.type}</div>
+                  <div className="text-2xl md:text-3xl font-display font-bold text-content">{service.pricing.type}</div>
                 </div>
                 <div className="md:col-span-8 py-2 pb-8 md:py-8 md:pl-8">
-                  <p className="text-ink-600 font-body text-base leading-relaxed">{service.pricing.note}</p>
+                  <p className="text-content-3 font-body text-base leading-relaxed">{service.pricing.note}</p>
                 </div>
               </motion.div>
             </div>
@@ -509,7 +509,7 @@ const Services = ({ language }) => {
         ))}
 
         {/* ——— §4 Process ——— */}
-        <section className="py-24 bg-washi-50">
+        <section className="py-24 bg-ground">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               variants={rise}
@@ -530,12 +530,12 @@ const Services = ({ language }) => {
               className="grid grid-cols-1 md:grid-cols-4 gap-10"
             >
               {t.process.steps.map((step) => (
-                <motion.li key={step.number} variants={rise} className="border-t-2 border-ink-900 pt-6">
-                  <div className="font-display italic text-3xl text-ink-400 mb-4 select-none" aria-hidden="true">
+                <motion.li key={step.number} variants={rise} className="border-t-2 border-line-strong pt-6">
+                  <div className="font-display italic text-3xl text-content-4 mb-4 select-none" aria-hidden="true">
                     {step.number}
                   </div>
-                  <h3 className="text-xl font-display font-bold text-ink-900 mb-3">{step.title}</h3>
-                  <p className="text-ink-600 font-body text-base leading-relaxed">{step.desc}</p>
+                  <h3 className="text-xl font-display font-bold text-content mb-3">{step.title}</h3>
+                  <p className="text-content-3 font-body text-base leading-relaxed">{step.desc}</p>
                 </motion.li>
               ))}
             </motion.ol>
@@ -543,7 +543,7 @@ const Services = ({ language }) => {
         </section>
 
         {/* ——— §5 Why Choose Us ——— */}
-        <section className="py-24 bg-white border-t border-washi-200">
+        <section className="py-24 bg-surface border-t border-line">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               variants={rise}
@@ -565,10 +565,10 @@ const Services = ({ language }) => {
             >
               {t.why.reasons.map((reason) => (
                 <motion.div key={reason.title} variants={rise} className="flex items-baseline">
-                  <span className="shrink-0 text-shu-500 font-display mr-3 select-none" aria-hidden="true">¶</span>
+                  <span className="shrink-0 text-accent font-display mr-3 select-none" aria-hidden="true">¶</span>
                   <div>
-                    <h3 className="text-xl font-display font-bold text-ink-900 mb-2">{reason.title}</h3>
-                    <p className="text-ink-600 font-body text-base leading-relaxed">{reason.desc}</p>
+                    <h3 className="text-xl font-display font-bold text-content mb-2">{reason.title}</h3>
+                    <p className="text-content-3 font-body text-base leading-relaxed">{reason.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -577,25 +577,25 @@ const Services = ({ language }) => {
         </section>
 
         {/* ——— CTA — dark band ——— */}
-        <section className="relative py-24 bg-ink-900 overflow-hidden">
+        <section className="on-plate relative py-24 bg-ground overflow-hidden">
           <div className="absolute inset-0 bg-noise" aria-hidden="true"></div>
           <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <motion.div variants={rise} initial="hidden" whileInView="visible" viewport={{ once: true }}>
               <span className="block mb-8" aria-hidden="true">
                 <Monogram dark className="text-5xl" />
               </span>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-washi-50 mb-6 leading-snug">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-content mb-6 leading-snug">
                 <span className="inline-block">{t.cta.titleLines[0]}</span>
                 {t.cta.titleLines[1] ? (
                   <span className="inline-block">{'\u00A0'}{t.cta.titleLines[1]}</span>
                 ) : null}
               </h2>
-              <p className="text-lg text-ink-200 font-body mb-12 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg text-content-3 font-body mb-12 max-w-2xl mx-auto leading-relaxed">
                 {t.cta.subtitle}
               </p>
               <Link
                 to="/support"
-                className="inline-flex items-center gap-2 bg-washi-50 text-ink-900 font-body font-bold text-lg px-10 py-5 border border-washi-50 hover:bg-shu-500 hover:border-shu-500 hover:text-washi-50 transition-all duration-200"
+                className="inline-flex items-center gap-2 bg-ground text-content font-body font-bold text-lg px-10 py-5 border border-content hover:bg-accent hover:border-accent hover:text-content transition-all duration-200"
               >
                 {t.cta.button}
                 <span aria-hidden="true">→</span>

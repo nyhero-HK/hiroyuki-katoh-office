@@ -321,7 +321,7 @@ const Home = ({ language }) => {
       />
       <div className="min-h-screen">
         {/* ——— Hero ——— */}
-        <section className="relative bg-washi-50 bg-ruled overflow-hidden">
+        <section className="relative bg-ground bg-ruled overflow-hidden">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-24">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 items-center">
               <motion.div
@@ -333,9 +333,9 @@ const Home = ({ language }) => {
                 <p className="section-label mb-6">{t.hero.kicker}</p>
                 <h1 className="text-3xl sm:text-4xl lg:text-[2.9rem] xl:text-5xl font-display font-bold leading-[1.2] mb-8">
                   <span className="inline-block">{t.hero.title}</span>
-                  <span className="inline-block mt-2 text-shu-600">{t.hero.titleHighlight}</span>
+                  <span className="inline-block mt-2 text-accent">{t.hero.titleHighlight}</span>
                 </h1>
-                <p className="text-lg md:text-lg text-ink-600 font-body mb-10 max-w-xl leading-relaxed">
+                <p className="text-lg md:text-lg text-content-3 font-body mb-10 max-w-xl leading-relaxed">
                   {t.hero.subtitle}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -366,7 +366,7 @@ const Home = ({ language }) => {
                       {t.hero.figCaption}
                     </figcaption>
                     {/* Monogram chip overlapping the plate corner */}
-                    <span className="absolute -top-4 -right-4 bg-washi-50 border border-ink-300 px-3 py-2" aria-hidden="true">
+                    <span className="absolute -top-4 -right-4 bg-ground border border-line px-3 py-2" aria-hidden="true">
                       <Monogram className="text-2xl" />
                     </span>
                   </figure>
@@ -381,7 +381,7 @@ const Home = ({ language }) => {
         </section>
 
         {/* ——— §1 Patient Education Platforms ——— */}
-        <section className="py-24 bg-washi-50">
+        <section className="py-24 bg-ground">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               variants={rise}
@@ -392,7 +392,7 @@ const Home = ({ language }) => {
             >
               <p className="section-label mb-4">{t.projects.label}</p>
               <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">{t.projects.title}</h2>
-              <p className="text-lg text-ink-600 font-body leading-relaxed">{t.projects.subtitle}</p>
+              <p className="text-lg text-content-3 font-body leading-relaxed">{t.projects.subtitle}</p>
             </motion.div>
 
             {/* Three site cards */}
@@ -413,18 +413,18 @@ const Home = ({ language }) => {
                   className="group panel panel-hover flex flex-col p-8"
                 >
                   <div className="flex items-start justify-between mb-1">
-                    <h3 className="text-2xl font-display font-bold text-ink-900 group-hover:text-shu-600 transition-colors">
+                    <h3 className="text-2xl font-display font-bold text-content group-hover:text-accent transition-colors">
                       {site.name}
                     </h3>
-                    <span className="text-ink-400 group-hover:text-shu-500 group-hover:translate-x-1 transition-all font-display" aria-hidden="true">↗</span>
+                    <span className="text-content-4 group-hover:text-accent group-hover:translate-x-1 transition-all font-display" aria-hidden="true">↗</span>
                   </div>
-                  <p className="text-sm font-body font-bold text-shu-500 tracking-wide mb-4">{site.tagline}</p>
-                  <p className="text-ink-600 font-body text-base leading-relaxed mb-6 flex-grow">{site.desc}</p>
+                  <p className="text-sm font-body font-bold text-accent tracking-wide mb-4">{site.tagline}</p>
+                  <p className="text-content-3 font-body text-base leading-relaxed mb-6 flex-grow">{site.desc}</p>
                   <div className="rule-fine pt-4 flex gap-8">
                     {site.stats.map((s) => (
                       <div key={s.label}>
-                        <div className="text-xl font-display font-bold text-ink-900">{s.value}</div>
-                        <div className="text-xs text-ink-500 font-body tracking-wide">{s.label}</div>
+                        <div className="text-xl font-display font-bold text-content">{s.value}</div>
+                        <div className="text-xs text-content-4 font-body tracking-wide">{s.label}</div>
                       </div>
                     ))}
                   </div>
@@ -443,18 +443,18 @@ const Home = ({ language }) => {
               rel="noopener noreferrer"
               className="group panel panel-hover flex flex-col sm:flex-row sm:items-center gap-6 p-8 mb-16"
             >
-              <div className="shrink-0 w-14 h-14 bg-shu-500 flex items-center justify-center" aria-hidden="true">
-                <svg className="w-7 h-7 text-washi-50" fill="currentColor" viewBox="0 0 24 24">
+              <div className="shrink-0 w-14 h-14 bg-accent flex items-center justify-center" aria-hidden="true">
+                <svg className="w-7 h-7 text-content" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8 5.14v13.72L19 12 8 5.14z" />
                 </svg>
               </div>
               <div className="flex-grow">
-                <h3 className="text-xl font-display font-bold text-ink-900 group-hover:text-shu-600 transition-colors mb-1">
+                <h3 className="text-xl font-display font-bold text-content group-hover:text-accent transition-colors mb-1">
                   {t.projects.youtube.name}
                 </h3>
-                <p className="text-ink-600 font-body text-base leading-relaxed">{t.projects.youtube.desc}</p>
+                <p className="text-content-3 font-body text-base leading-relaxed">{t.projects.youtube.desc}</p>
               </div>
-              <span className="shrink-0 font-body font-bold text-sm text-shu-500 group-hover:text-shu-600 whitespace-nowrap">
+              <span className="shrink-0 font-body font-bold text-sm text-accent group-hover:text-accent whitespace-nowrap">
                 {t.projects.youtube.cta} ↗
               </span>
             </motion.a>
@@ -469,12 +469,12 @@ const Home = ({ language }) => {
             >
               {t.projects.features.map((feature, index) => (
                 <motion.li key={index} variants={rise} className="flex gap-5">
-                  <span className="font-display italic text-2xl text-ink-400 leading-none select-none" aria-hidden="true">
+                  <span className="font-display italic text-2xl text-content-4 leading-none select-none" aria-hidden="true">
                     {['i', 'ii', 'iii', 'iv'][index]}.
                   </span>
                   <div>
-                    <h3 className="text-lg font-display font-bold mb-1 text-ink-900">{feature.title}</h3>
-                    <p className="text-ink-600 font-body text-sm leading-relaxed">{feature.desc}</p>
+                    <h3 className="text-lg font-display font-bold mb-1 text-content">{feature.title}</h3>
+                    <p className="text-content-3 font-body text-sm leading-relaxed">{feature.desc}</p>
                   </div>
                 </motion.li>
               ))}
@@ -489,7 +489,7 @@ const Home = ({ language }) => {
         </section>
 
         {/* ——— §2 Services — the peak: the one inverted field on the page ——— */}
-        <section className="relative py-28 md:py-40 bg-ink-900 overflow-hidden">
+        <section className="on-plate relative py-28 md:py-40 bg-ground overflow-hidden">
           <div className="absolute inset-0 bg-noise" aria-hidden="true"></div>
           <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
@@ -499,8 +499,8 @@ const Home = ({ language }) => {
               viewport={{ once: true }}
               className="mb-20 max-w-3xl"
             >
-              <p className="section-label mb-5 text-shu-300">{t.services.label}</p>
-              <h2 className="text-4xl md:text-5xl font-display font-bold text-washi-50 leading-[1.2]">
+              <p className="section-label mb-5 text-accent">{t.services.label}</p>
+              <h2 className="text-4xl md:text-5xl font-display font-bold text-content leading-[1.2]">
                 {t.services.titleLines.map((line, i) => (
                   <span key={i} className="inline-block">
                     {line}
@@ -524,23 +524,23 @@ const Home = ({ language }) => {
                 >
                   <div className="md:col-span-2">
                     <span
-                      className="font-display italic text-5xl md:text-6xl text-shu-300 leading-none select-none"
+                      className="font-display italic text-5xl md:text-6xl text-accent leading-none select-none"
                       aria-hidden="true"
                     >
                       {service.numeral}.
                     </span>
                   </div>
                   <div className="md:col-span-10 max-w-3xl">
-                    <h3 className="text-2xl md:text-3xl font-display font-bold text-washi-50 mb-4">
+                    <h3 className="text-2xl md:text-3xl font-display font-bold text-content mb-4">
                       {service.title}
                     </h3>
-                    <p className="text-ink-100 font-body leading-relaxed mb-5">{service.desc}</p>
+                    <p className="text-content-2 font-body leading-relaxed mb-5">{service.desc}</p>
                     {/* run-on列挙(md+) / 箇条書き(mobile) — 区切りが行頭に落ちないよう項目と一体で折る */}
-                    <p className="font-body text-sm text-ink-200 leading-loose">
+                    <p className="font-body text-sm text-content-3 leading-loose">
                       {service.details.map((detail, i) => (
                         <span key={i} className="block md:inline">
                           <span
-                            className="text-shu-300 mr-2.5 md:mr-3 md:ml-3 select-none"
+                            className="text-accent mr-2.5 md:mr-3 md:ml-3 select-none"
                             aria-hidden="true"
                           >
                             —
@@ -557,7 +557,7 @@ const Home = ({ language }) => {
         </section>
 
         {/* ——— §3 Academic Activities ——— */}
-        <section className="py-24 bg-washi-50">
+        <section className="py-24 bg-ground">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               variants={rise}
@@ -568,7 +568,7 @@ const Home = ({ language }) => {
             >
               <p className="section-label mb-4">{t.academic.label}</p>
               <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">{t.academic.title}</h2>
-              <p className="text-sm text-ink-500 font-body leading-relaxed border-l-2 border-kin-300 pl-4">
+              <p className="text-sm text-content-4 font-body leading-relaxed border-l-2 border-accent pl-4">
                 {t.academic.note}
               </p>
             </motion.div>
@@ -578,20 +578,20 @@ const Home = ({ language }) => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="divide-y divide-washi-300 border-y border-washi-300"
+              className="divide-y divide-line border-y border-line"
             >
               {t.academic.items.map((item) => {
                 const inner = (
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 py-6 md:items-baseline">
-                    <h3 className={`md:col-span-4 text-xl font-display font-bold ${item.url ? 'group-hover:text-shu-600 transition-colors' : ''} text-ink-900`}>
+                    <h3 className={`md:col-span-4 text-xl font-display font-bold ${item.url ? 'group-hover:text-accent transition-colors' : ''} text-content`}>
                       {item.name}
                     </h3>
-                    <p className="md:col-span-6 text-ink-600 font-body text-base leading-relaxed">{item.desc}</p>
+                    <p className="md:col-span-6 text-content-3 font-body text-base leading-relaxed">{item.desc}</p>
                     <p className="md:col-span-2 md:text-right text-sm font-body">
                       {item.url ? (
-                        <span className="text-shu-500 font-bold group-hover:text-shu-600">{item.status} ↗</span>
+                        <span className="text-accent font-bold group-hover:text-accent">{item.status} ↗</span>
                       ) : (
-                        <span className="text-ink-400">{item.status}</span>
+                        <span className="text-content-4">{item.status}</span>
                       )}
                     </p>
                   </div>
@@ -603,7 +603,7 @@ const Home = ({ language }) => {
                     href={item.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group block hover:bg-white transition-colors -mx-4 px-4"
+                    className="group block hover:bg-surface transition-colors -mx-4 px-4"
                   >
                     {inner}
                   </motion.a>
@@ -618,7 +618,7 @@ const Home = ({ language }) => {
         </section>
 
         {/* ——— §4 Credentials ——— */}
-        <section className="py-24 bg-white border-t border-washi-200">
+        <section className="py-24 bg-surface border-t border-line">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               variants={rise}
@@ -637,12 +637,12 @@ const Home = ({ language }) => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-100px' }}
-              className="grid grid-cols-2 md:grid-cols-4 border-y-2 border-ink-900 divide-x divide-washi-300 mb-16"
+              className="grid grid-cols-2 md:grid-cols-4 border-y-2 border-line-strong divide-x divide-line mb-16"
             >
               {t.credentials.stats.map((s) => (
                 <motion.div key={s.label} variants={rise} className="py-10 px-6 text-center">
-                  <div className="text-4xl md:text-5xl font-display font-bold text-ink-900 mb-2">{s.number}</div>
-                  <div className="text-ink-500 font-body text-sm leading-snug">{s.label}</div>
+                  <div className="text-4xl md:text-5xl font-display font-bold text-content mb-2">{s.number}</div>
+                  <div className="text-content-4 font-body text-sm leading-snug">{s.label}</div>
                 </motion.div>
               ))}
             </motion.div>
@@ -659,8 +659,8 @@ const Home = ({ language }) => {
               <div className="grid md:grid-cols-2 gap-x-12 gap-y-5">
                 {t.credentials.highlights.items.map((item, index) => (
                   <div key={index} className="flex items-baseline">
-                    <span className="shrink-0 text-shu-500 font-display mr-3 select-none" aria-hidden="true">¶</span>
-                    <p className="text-ink-700 font-body leading-relaxed">{item}</p>
+                    <span className="shrink-0 text-accent font-display mr-3 select-none" aria-hidden="true">¶</span>
+                    <p className="text-content-2 font-body leading-relaxed">{item}</p>
                   </div>
                 ))}
               </div>
@@ -670,17 +670,17 @@ const Home = ({ language }) => {
 
         {/* ——— CTA ——— */}
         {/* ——— Close — on paper, so the ink footer reads as a colophon, not a continuation ——— */}
-        <section className="relative py-28 bg-washi-100 bg-ruled overflow-hidden border-t border-washi-300">
+        <section className="relative py-28 bg-surface-2 bg-ruled overflow-hidden border-t border-line">
           <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <motion.div variants={rise} initial="hidden" whileInView="visible" viewport={{ once: true }}>
               <span className="block mb-8" aria-hidden="true">
                 <Monogram className="text-5xl" />
               </span>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-ink-900 mb-6 leading-snug">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-content mb-6 leading-snug">
                 <span className="inline-block">{t.cta.titleLines[0]}</span>{' '}
                 <span className="inline-block">{t.cta.titleLines[1]}</span>
               </h2>
-              <p className="text-lg text-ink-600 font-body mb-12 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg text-content-3 font-body mb-12 max-w-2xl mx-auto leading-relaxed">
                 {t.cta.subtitle}
               </p>
               <Link to="/support" className="btn-ink text-lg px-10 py-5">

@@ -53,9 +53,9 @@ const Footer = ({ language }) => {
   ];
 
   return (
-    <footer className="bg-ink-900 text-washi-100">
+    <footer className="bg-surface-2 border-t border-line text-content-2">
       {/* Vermillion rule where paper meets ink */}
-      <div className="h-1 bg-shu-500" aria-hidden="true"></div>
+      <div className="h-1 bg-accent" aria-hidden="true"></div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
@@ -63,20 +63,20 @@ const Footer = ({ language }) => {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center gap-3.5 mb-5">
               <Monogram dark className="text-[2rem]" />
-              <span className="w-px h-10 bg-ink-600" aria-hidden="true"></span>
+              <span className="w-px h-10 bg-line" aria-hidden="true"></span>
               <div className="flex flex-col">
-                <span className="font-display font-bold text-2xl text-washi-50">加藤裕幸事務所</span>
-                <span className="text-[11px] text-ink-300 font-body tracking-label uppercase">Katoh Office</span>
+                <span className="font-display font-bold text-2xl text-content">加藤裕幸事務所</span>
+                <span className="text-[11px] text-content-4 font-body tracking-label uppercase">Katoh Office</span>
               </div>
             </div>
-            <p className="text-ink-200 font-body text-base max-w-md leading-relaxed">
+            <p className="text-content-3 font-body text-base max-w-md leading-relaxed">
               {t.officeDesc}
             </p>
-            <p className="mt-5 text-sm text-ink-300 font-body">
+            <p className="mt-5 text-sm text-content-4 font-body">
               {t.email}:{' '}
               <a
                 href="mailto:hiroyuki.katoh.office@gmail.com"
-                className="text-washi-100 underline decoration-shu-400 underline-offset-4 hover:text-shu-300 transition-colors"
+                className="text-content-2 underline decoration-accent underline-offset-4 hover:text-accent transition-colors"
               >
                 hiroyuki.katoh.office@gmail.com
               </a>
@@ -85,19 +85,19 @@ const Footer = ({ language }) => {
 
           {/* Contents */}
           <div>
-            <h3 className="font-body text-xs font-bold tracking-label uppercase text-kin-300 mb-4">{t.quickLinks}</h3>
+            <h3 className="font-body text-xs font-bold tracking-label uppercase text-accent-soft mb-4">{t.quickLinks}</h3>
             <ul className="space-y-2.5 font-body text-[15px]">
-              <li><Link to="/" className="text-ink-200 hover:text-washi-50 transition-colors">{t.nav.home}</Link></li>
-              <li><Link to="/about" className="text-ink-200 hover:text-washi-50 transition-colors">{t.nav.about}</Link></li>
-              <li><Link to="/services" className="text-ink-200 hover:text-washi-50 transition-colors">{t.nav.services}</Link></li>
-              <li><Link to="/patient-education" className="text-ink-200 hover:text-washi-50 transition-colors">{t.nav.education}</Link></li>
-              <li><Link to="/support" className="text-ink-200 hover:text-washi-50 transition-colors">{t.support}</Link></li>
+              <li><Link to="/" className="text-content-3 hover:text-content transition-colors">{t.nav.home}</Link></li>
+              <li><Link to="/about" className="text-content-3 hover:text-content transition-colors">{t.nav.about}</Link></li>
+              <li><Link to="/services" className="text-content-3 hover:text-content transition-colors">{t.nav.services}</Link></li>
+              <li><Link to="/patient-education" className="text-content-3 hover:text-content transition-colors">{t.nav.education}</Link></li>
+              <li><Link to="/support" className="text-content-3 hover:text-content transition-colors">{t.support}</Link></li>
             </ul>
           </div>
 
           {/* Education sites */}
           <div>
-            <h3 className="font-body text-xs font-bold tracking-label uppercase text-kin-300 mb-4">{t.projects}</h3>
+            <h3 className="font-body text-xs font-bold tracking-label uppercase text-accent-soft mb-4">{t.projects}</h3>
             <ul className="space-y-2.5 font-body text-[15px]">
               {projectLinks.map((p) => (
                 <li key={p.name}>
@@ -105,7 +105,7 @@ const Footer = ({ language }) => {
                     href={p.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-ink-200 hover:text-shu-300 transition-colors"
+                    className="text-content-3 hover:text-accent transition-colors"
                   >
                     {p.name}
                   </a>
@@ -116,19 +116,19 @@ const Footer = ({ language }) => {
 
           {/* Legal */}
           <div>
-            <h3 className="font-body text-xs font-bold tracking-label uppercase text-kin-300 mb-4">{t.legal}</h3>
+            <h3 className="font-body text-xs font-bold tracking-label uppercase text-accent-soft mb-4">{t.legal}</h3>
             <ul className="space-y-2.5 font-body text-[15px]">
-              <li><Link to="/privacy-policy" className="text-ink-200 hover:text-washi-50 transition-colors">{t.privacy}</Link></li>
-              <li><Link to="/terms-of-service" className="text-ink-200 hover:text-washi-50 transition-colors">{t.terms}</Link></li>
-              <li><Link to="/specified-commercial-transaction" className="text-ink-200 hover:text-washi-50 transition-colors">{t.commercial}</Link></li>
+              <li><Link to="/privacy-policy" className="text-content-3 hover:text-content transition-colors">{t.privacy}</Link></li>
+              <li><Link to="/terms-of-service" className="text-content-3 hover:text-content transition-colors">{t.terms}</Link></li>
+              <li><Link to="/specified-commercial-transaction" className="text-content-3 hover:text-content transition-colors">{t.commercial}</Link></li>
             </ul>
           </div>
         </div>
 
         {/* 奥付 bottom bar */}
-        <div className="mt-12 pt-6 border-t border-ink-700 flex flex-col md:flex-row justify-between items-center gap-3">
-          <p className="text-sm text-ink-300 font-body">{t.colophon}</p>
-          <p className="text-sm text-ink-300 font-body">{t.copyright}</p>
+        <div className="mt-12 pt-6 border-t border-line flex flex-col md:flex-row justify-between items-center gap-3">
+          <p className="text-sm text-content-4 font-body">{t.colophon}</p>
+          <p className="text-sm text-content-4 font-body">{t.copyright}</p>
         </div>
       </div>
     </footer>

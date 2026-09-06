@@ -71,7 +71,7 @@ const Support = ({ language }) => {
       />
       <div className="min-h-screen">
         {/* ——— Hero ——— */}
-        <section className="bg-washi-50 bg-ruled">
+        <section className="bg-ground bg-ruled">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -83,7 +83,7 @@ const Support = ({ language }) => {
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold leading-snug mb-6">
                 {t.title}
               </h1>
-              <p className="text-lg text-ink-600 font-body leading-relaxed">
+              <p className="text-lg text-content-3 font-body leading-relaxed">
                 {t.subtitle}
               </p>
             </motion.div>
@@ -94,7 +94,7 @@ const Support = ({ language }) => {
         </section>
 
         {/* ——— Contact ——— */}
-        <section className="py-20 bg-washi-50">
+        <section className="py-20 bg-ground">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Email — the centerpiece */}
             <motion.div
@@ -105,7 +105,7 @@ const Support = ({ language }) => {
               className="relative panel p-10 md:p-12 text-center mb-8"
             >
               <span
-                className="absolute -top-4 -right-4 bg-washi-50 border border-ink-300 px-3 py-2"
+                className="absolute -top-4 -right-4 bg-ground border border-line px-3 py-2"
                 aria-hidden="true"
               >
                 <Monogram className="text-2xl" />
@@ -117,7 +117,7 @@ const Support = ({ language }) => {
               >
                 hiroyuki.katoh.office@gmail.com
               </a>
-              <p className="text-sm text-ink-500 font-body leading-relaxed mb-8">{t.contact.response}</p>
+              <p className="text-sm text-content-4 font-body leading-relaxed mb-8">{t.contact.response}</p>
               <a href="mailto:hiroyuki.katoh.office@gmail.com" className="btn-ink text-lg">
                 {t.sendEmail}
                 <span aria-hidden="true">→</span>
@@ -130,16 +130,16 @@ const Support = ({ language }) => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="border-t border-washi-300 pt-8"
+              className="border-t border-line pt-8"
             >
               <div className="flex items-center gap-4 mb-4">
                 <Monogram className="text-3xl" />
                 <div>
-                  <div className="font-display font-bold text-ink-900">加藤裕幸事務所</div>
-                  <div className="text-sm text-ink-500 font-body">Katoh Office</div>
+                  <div className="font-display font-bold text-content">加藤裕幸事務所</div>
+                  <div className="text-sm text-content-4 font-body">Katoh Office</div>
                 </div>
               </div>
-              <p className="text-ink-600 font-body text-sm leading-relaxed">
+              <p className="text-content-3 font-body text-sm leading-relaxed">
                 {language === 'ja'
                   ? '医療教育コンサルティングと教育ソフトウェアを提供しています。'
                   : 'Providing medical education consulting and educational software.'}
@@ -149,7 +149,7 @@ const Support = ({ language }) => {
         </section>
 
         {/* ——— FAQ ——— */}
-        <section className="py-20 bg-white border-t border-washi-200">
+        <section className="py-20 bg-surface border-t border-line">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               variants={rise}
@@ -167,19 +167,19 @@ const Support = ({ language }) => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="divide-y divide-washi-300 border-y border-washi-300"
+              className="divide-y divide-line border-y border-line"
             >
               {faqs.map((item, index) => (
                 <motion.div key={index} variants={rise} className="flex gap-6 py-8">
                   <span
-                    className="shrink-0 font-display italic text-2xl text-ink-400 leading-none select-none"
+                    className="shrink-0 font-display italic text-2xl text-content-4 leading-none select-none"
                     aria-hidden="true"
                   >
                     {['i', 'ii', 'iii'][index]}.
                   </span>
                   <div>
-                    <h3 className="text-xl font-display font-bold text-ink-900 mb-3">{item.q}</h3>
-                    <p className="text-ink-600 font-body leading-relaxed">{item.a}</p>
+                    <h3 className="text-xl font-display font-bold text-content mb-3">{item.q}</h3>
+                    <p className="text-content-3 font-body leading-relaxed">{item.a}</p>
                   </div>
                 </motion.div>
               ))}
