@@ -18,7 +18,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-washi-50 bg-noise">
+      <div className="min-h-screen bg-ground bg-noise">
         <Navbar language={language} setLanguage={setLanguage} />
 
         <Routes>

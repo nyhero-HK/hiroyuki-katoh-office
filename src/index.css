@@ -34,6 +34,144 @@
   line-gap-override: 0%;
 }
 
+
+/* ——————————————————————————————————————————————————————————————
+   Nocturne (2026-09) — role tokens, not hue tokens.
+
+   The site sits on a dark ground. Exactly one band per page is a lit
+   PLATE, and that band carries `.on-plate`, which re-declares every role
+   below. Markup never names a colour, so the same component is correct on
+   both grounds and a future theme is a change to these two blocks alone.
+   Values are "R G B" triplets so Tailwind's /opacity modifiers still work.
+   —————————————————————————————————————————————————————————————— */
+:root {
+  --ground:       12  18  32;   /* page — deep navy */
+  --surface:      20  28  46;   /* lifted band, panels */
+  --surface-2:    16  23  38;   /* close, footer */
+  --line:         38  49  74;   /* hairlines, dividers */
+  --line-strong: 240 241 238;   /* structural rules, stat bands */
+  --content:     240 241 238;   /* headings */
+  --content-2:   205 210 220;   /* body */
+  --content-3:   160 168 184;   /* secondary */
+  --content-4:   131 140 158;   /* captions, muted */
+  --accent:      226 175 106;   /* 琥珀 */
+  --accent-soft: 240 205 158;
+  --accent-ink:   12  18  32;   /* text on an accent fill */
+}
+
+.on-plate {
+  --ground:      237 239 243;   /* the lit band — cool paper, not warm bone */
+  --surface:     255 255 255;
+  --surface-2:   226 230 237;
+  --line:        199 206 218;
+  --line-strong:  12  18  32;
+  --content:      12  18  32;
+  --content-2:    40  50  70;
+  --content-3:    78  90 112;
+  --content-4:    94 105 126;
+  --accent:      133  86  16;
+  --accent-soft: 102  66  12;
+  --accent-ink:  240 241 238;
+}
+
+
+/* ——————————————————————————————————————————————————————————————
+   Latin display weight, decoupled from Japanese.
+
+   Fraunces is a high-contrast display serif and reads considerably heavier
+   than Noto Serif JP at the same nominal weight, so headings that mix scripts
+   ("SCS for LCS", "NO-POROSIS", "Clinical English") came out bold-looking
+   while the kana beside them looked right. font-weight is a property of the
+   ELEMENT, not of a script, so it cannot fix one and leave the other.
+
+   This alias family carries a Latin-only unicode-range and maps every
+   requested weight down to Fraunces 300 (700 to 400, so the wordmark keeps
+   some spine). It sits FIRST in the display stack, so Latin glyphs resolve
+   here and Japanese falls through to Noto Serif JP at its real weight.
+   Changing how heavy English looks is now one line: the file each weight
+   points at.
+   —————————————————————————————————————————————————————————————— */
+@font-face {
+  font-family: 'Fraunces Text';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/fraunces-latin-300-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Fraunces Text';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/fraunces-latin-300-normal.woff2') format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Fraunces Text';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/fraunces-latin-300-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Fraunces Text';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/fraunces-latin-300-normal.woff2') format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Fraunces Text';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/fraunces-latin-300-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Fraunces Text';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/fraunces-latin-300-normal.woff2') format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Fraunces Text';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/fraunces-latin-300-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Fraunces Text';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/fraunces-latin-300-normal.woff2') format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Fraunces Text';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/fraunces-latin-400-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Fraunces Text';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/fraunces-latin-400-normal.woff2') format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -45,29 +183,29 @@
   }
 
   body {
-    @apply font-body text-ink-800 bg-washi-50;
+    @apply font-body text-content-2 bg-ground;
     margin: 0;
     min-height: 100vh;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display font-semibold text-ink-900;
+    @apply font-display font-semibold text-content;
   }
 
   ::selection {
-    @apply bg-shu-100 text-shu-800;
+    @apply bg-accent text-accent-ink;
   }
 }
 
 @layer components {
   /* Small-caps kicker above headings: 「§1 — 患者教育」 etc. */
   .section-label {
-    @apply font-body text-sm font-bold tracking-label uppercase text-shu-500;
+    @apply font-body text-sm font-bold tracking-label uppercase text-accent;
   }
 
   /* Journal masthead / section divider: thick-thin double rule. */
   .rule-double {
-    border-top: 3px solid theme('colors.ink.900');
+    border-top: 3px solid rgb(var(--line-strong));
     position: relative;
   }
   .rule-double::after {
@@ -76,62 +214,62 @@
     top: 5px;
     left: 0;
     right: 0;
-    border-top: 1px solid theme('colors.ink.900');
+    border-top: 1px solid rgb(var(--line-strong));
   }
 
   /* Hairline rule in ochre for quiet separations. */
   .rule-fine {
-    border-top: 1px solid theme('colors.washi.300');
+    border-top: 1px solid rgb(var(--line));
   }
 
   /* Editorial panel: flat paper card with an ink hairline. */
   .panel {
-    @apply bg-white border border-ink-200;
+    @apply bg-surface border border-line;
   }
   .panel-hover {
     transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
   }
   .panel-hover:hover {
-    @apply border-ink-500;
-    box-shadow: 4px 4px 0 0 theme('colors.ink.100');
+    @apply border-content-4;
+    box-shadow: 4px 4px 0 0 rgb(var(--line));
     transform: translate(-2px, -2px);
   }
 
-  /* Figure plate: photo mounted on a washi mat with ink frame. */
+  /* Figure plate: photo mounted on a surface panel with a hairline frame. */
   .plate {
-    @apply bg-white border border-ink-300 p-3;
-    box-shadow: 6px 6px 0 0 theme('colors.washi.200');
+    @apply bg-surface border border-line p-3;
+    box-shadow: 6px 6px 0 0 rgb(var(--line));
   }
   .fig-caption {
-    @apply font-body text-sm text-ink-500 leading-relaxed;
+    @apply font-body text-sm text-content-4 leading-relaxed;
   }
   .fig-caption em, .fig-caption .fig-no {
-    @apply font-display italic text-ink-700 not-italic;
+    @apply font-display italic text-content-3 not-italic;
   }
 
   /* Editorial link: ink text, vermillion underline that thickens on hover. */
   .link-editorial {
-    @apply text-ink-800 underline decoration-shu-400 decoration-1 underline-offset-4 transition-colors;
+    @apply text-content-2 underline decoration-accent decoration-1 underline-offset-4 transition-colors;
   }
   .link-editorial:hover {
-    @apply text-shu-600 decoration-shu-500 decoration-2;
+    @apply text-accent decoration-accent decoration-2;
   }
 
   /* Primary button: ink slab with vermillion press state. */
   .btn-ink {
-    @apply inline-flex items-center justify-center gap-2 bg-ink-900 text-washi-50 font-body font-bold px-8 py-4 border border-ink-900 transition-all duration-200;
+    @apply inline-flex items-center justify-center gap-2 bg-content text-ground font-body font-bold px-8 py-4 border border-content transition-all duration-200;
   }
   .btn-ink:hover {
-    @apply bg-shu-600 border-shu-600;
-    box-shadow: 4px 4px 0 0 theme('colors.washi.300');
+    @apply bg-accent border-accent text-accent-ink;
+    box-shadow: 4px 4px 0 0 rgb(var(--line));
     transform: translate(-2px, -2px);
   }
   .btn-paper {
-    @apply inline-flex items-center justify-center gap-2 bg-transparent text-ink-900 font-body font-bold px-8 py-4 border border-ink-900 transition-all duration-200;
+    @apply inline-flex items-center justify-center gap-2 bg-transparent text-content font-body font-bold px-8 py-4 border border-content transition-all duration-200;
   }
   .btn-paper:hover {
-    @apply bg-ink-900 text-washi-50;
-    box-shadow: 4px 4px 0 0 theme('colors.washi.300');
+    @apply bg-content text-ground;
+    box-shadow: 4px 4px 0 0 rgb(var(--line));
     transform: translate(-2px, -2px);
   }
 }
@@ -147,19 +285,9 @@
       to bottom,
       transparent 0,
       transparent 39px,
-      rgba(28, 50, 71, 0.06) 39px,
-      rgba(28, 50, 71, 0.06) 40px
+      rgb(var(--content) / 0.055) 39px,
+      rgb(var(--content) / 0.055) 40px
     );
   }
 
-  .text-gradient {
-    @apply bg-gradient-to-r from-neo-teal-500 to-cyan-500 bg-clip-text text-transparent;
-  }
-
-  .card-glow {
-    box-shadow: 0 8px 32px rgba(11, 85, 99, 0.1);
-  }
-  .card-glow:hover {
-    box-shadow: 0 12px 48px rgba(11, 85, 99, 0.15);
-  }
 }

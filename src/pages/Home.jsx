@@ -1,8 +1,11 @@
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import hiroPhoto from '../assets/Katoh2.jpeg';
 import SEO from '../components/SEO';
 import Monogram from '../components/Monogram';
+import { Assemble, Count, Cue, Kinetic, Plane } from '../scroll/devices';
+import { useLerped } from '../scroll/useLerped';
 
 const Home = ({ language }) => {
   const content = {
@@ -72,6 +75,7 @@ const Home = ({ language }) => {
       services: {
         label: '§2 サービス',
         title: '医療教育と臨床実践の架け橋として',
+        titleLines: ['医療教育と臨床実践の', '架け橋として'],
         items: [
           {
             numeral: 'I',
@@ -101,8 +105,8 @@ const Home = ({ language }) => {
           {
             name: '医学教育FD基礎講座（オンライン）',
             desc: '医学部教員向けファカルティ・ディベロップメントのオンライン講座。動画教材と体系的カリキュラムで構成。',
-            status: '公開準備中',
-            url: null,
+            status: 'fd.tokai-meded.jp',
+            url: 'https://fd.tokai-meded.jp',
           },
           {
             name: 'Clinical English',
@@ -217,6 +221,7 @@ const Home = ({ language }) => {
       services: {
         label: '§2 Services',
         title: 'Bridging medical education and clinical practice',
+        titleLines: ['Bridging medical education', 'and clinical practice'],
         items: [
           {
             numeral: 'I',
@@ -246,8 +251,8 @@ const Home = ({ language }) => {
           {
             name: 'Faculty Development Online Course',
             desc: 'An online FD core course for medical school faculty, built on video lectures and a structured curriculum.',
-            status: 'In preparation',
-            url: null,
+            status: 'fd.tokai-meded.jp',
+            url: 'https://fd.tokai-meded.jp',
           },
           {
             name: 'Clinical English',
@@ -309,6 +314,99 @@ const Home = ({ language }) => {
     visible: { transition: { staggerChildren: 0.12 } },
   };
 
+  // ——— Scroll as the timeline ———————————————————————————————————
+  // Every value below is driven by scroll POSITION, not by a timer, so the
+  // page responds to the reader's own hand and reverses when they scroll back.
+  // prefers-reduced-motion collapses all of it to the static composition.
+  const reduce = useReducedMotion();
+  const heroRef = useRef(null);
+  const plateRef = useRef(null);
+
+  const { scrollYProgress: heroRaw } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  // Every scroll-driven value on this page goes through the lerp. Writing raw
+  // scroll progress reproduces the gaps between wheel events.
+  const heroP = useLerped(heroRaw, { off: reduce });
+  // Planes travel `rate * (p - 0.5) * 100` PIXELS, not viewport fractions.
+  // Adjacent planes differ by 10-30%; beyond that it reads as things sliding
+  // around rather than as distance. The copy is NOT a plane: it rides at 1x,
+  // because text the reader is trying to read must not move against the thing
+  // they are reading it on.
+  const GROUND_RATE = reduce ? 0 : -1.4;   // 140px, the full-bleed bed
+  const PLATE_RATE  = reduce ? 0 : -1.05;  // 105px, 25% ahead of the bed
+
+  // §1's four claims are an argument, so they get the `pin`: the frame holds
+  // and the states cross over inside it. The three sites are a comparison and
+  // stay a grid.
+  const pinRef = useRef(null);
+  // Resolved on the FIRST render, not in an effect. With a false initial value
+  // the pinned branch does not exist during the first paint, so `pinRef` is
+  // null when useScroll measures, framer silently falls back to tracking the
+  // whole document, and the act's progress is compressed to the fraction of the
+  // page the act occupies — measured at 4x here, which left cues iii and iv
+  // permanently unreachable. Nothing about that is visible in a screenshot.
+  const [wide, setWide] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(min-width: 768px)').matches,
+  );
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    const on = () => setWide(mq.matches);
+    on();
+    mq.addEventListener('change', on);
+    return () => mq.removeEventListener('change', on);
+  }, []);
+  const pinned = wide && !reduce;
+  // Progress starts as the act ENTERS, not when it pins. devices.md's "ground
+  // or greet": a pinned stage is fully on screen roughly a viewport before its
+  // own progress leaves 0, so measuring from 'start start' leaves the stage
+  // sitting empty for that entire approach — which is exactly what reads as a
+  // rendering fault. The first cards are already arriving by the time it pins.
+  const { scrollYProgress: pinRaw } = useScroll({
+    target: pinRef,
+    offset: ['start end', 'end end'],
+  });
+  const pinP = useLerped(pinRaw, { off: reduce });
+  // The four claims are cards that fly in from beyond their own corner and lock
+  // into a 2x2. Windows overlap so the arrivals read as one continuous
+  // assembly rather than four separate events, and the composition holds for
+  // the last third of the act — the landing IS the payoff, so the stage must
+  // not empty out the way a text cue does.
+  // Longer windows over shorter travel. The first pass flew each card ~500px
+  // inside 30% of the act, which is a high enough velocity that the gaps
+  // between wheel notches are visible as steps however well it is smoothed.
+  // Halving the distance and widening each window to 45% lowers the px-per-
+  // notch without slowing the assembly down, and the heavier overlap keeps
+  // something in motion at every point instead of four separate arrivals.
+  const CARDS = [
+    { from: 0.06, to: 0.56, dx: -300, dy: -120, rotate: -5 },
+    { from: 0.18, to: 0.68, dx: 300, dy: -96, rotate: 4.5 },
+    { from: 0.30, to: 0.80, dx: -270, dy: 145, rotate: 4 },
+    { from: 0.42, to: 0.92, dx: 290, dy: 160, rotate: -4.5 },
+  ];
+  // The link belongs WITH the cards. Left in flow it sat 1.71 viewports below
+  // the landing, because the assembled grid is centred in a full-height sticky
+  // stage that must then scroll past before anything else appears. Cueing it
+  // inside the stage puts it under the grid where it is expected, and spends
+  // the tail of the act on something instead of leaving dead scroll.
+  const LINK_CUE = '0.84 1 0.10 0';
+
+  const statsRef = useRef(null);
+  const { scrollYProgress: statsP } = useScroll({
+    target: statsRef,
+    offset: ['start 90%', 'start 45%'],
+  });
+
+  const { scrollYProgress: plateRaw } = useScroll({
+    target: plateRef,
+    offset: ['start end', 'start 86%'],
+  });
+  const plateP = useLerped(plateRaw, { off: reduce });
+  // the plate does not fade in; it is uncovered, which is a change of state
+  const plateClip = useTransform(plateP, [0, 1],
+    reduce ? ['inset(0% 0 0 0)', 'inset(0% 0 0 0)'] : ['inset(100% 0 0 0)', 'inset(0% 0 0 0)']);
+
   return (
     <>
       <SEO
@@ -319,8 +417,9 @@ const Home = ({ language }) => {
       />
       <div className="min-h-screen">
         {/* ——— Hero ——— */}
-        <section className="relative bg-washi-50 bg-ruled overflow-hidden">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-24">
+        <section ref={heroRef} className="relative bg-ground overflow-hidden">
+          <Plane progress={heroP} rate={GROUND_RATE} className="absolute inset-0 -top-32 -bottom-32 bg-ruled" aria-hidden="true" />
+          <Cue progress={heroP} spec="0 0.92 0" className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-24">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 items-center">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -329,11 +428,11 @@ const Home = ({ language }) => {
                 className="lg:col-span-7"
               >
                 <p className="section-label mb-6">{t.hero.kicker}</p>
-                <h1 className="text-3xl sm:text-4xl lg:text-[2.9rem] xl:text-5xl font-display font-bold leading-[1.2] mb-8">
-                  <span className="inline-block">{t.hero.title}</span>
-                  <span className="inline-block mt-2 text-shu-600">{t.hero.titleHighlight}</span>
+                <h1 className="text-3xl sm:text-4xl lg:text-[2.9rem] xl:text-5xl font-display font-semibold leading-[1.2] mb-8">
+                  <Kinetic still={reduce} lines={[t.hero.title]} delay={0.1} />
+                  <Kinetic still={reduce} lines={[t.hero.titleHighlight]} delay={0.22} className="block mt-2 text-accent" />
                 </h1>
-                <p className="text-lg md:text-lg text-ink-600 font-body mb-10 max-w-xl leading-relaxed">
+                <p className="text-lg md:text-lg text-content-3 font-body mb-10 max-w-xl leading-relaxed">
                   {t.hero.subtitle}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -353,7 +452,7 @@ const Home = ({ language }) => {
                 transition={{ duration: 0.7, delay: 0.15, ease: 'easeOut' }}
                 className="lg:col-span-5"
               >
-                <div className="relative max-w-sm mx-auto lg:ml-auto">
+                <Plane progress={heroP} rate={PLATE_RATE} className="relative max-w-sm mx-auto lg:ml-auto">
                   <figure className="plate relative">
                     <img
                       src={hiroPhoto}
@@ -364,14 +463,14 @@ const Home = ({ language }) => {
                       {t.hero.figCaption}
                     </figcaption>
                     {/* Monogram chip overlapping the plate corner */}
-                    <span className="absolute -top-4 -right-4 bg-washi-50 border border-ink-300 px-3 py-2" aria-hidden="true">
+                    <span className="absolute -top-4 -right-4 bg-ground border border-line px-3 py-2" aria-hidden="true">
                       <Monogram className="text-2xl" />
                     </span>
                   </figure>
-                </div>
+                </Plane>
               </motion.div>
             </div>
-          </div>
+          </Cue>
           {/* Section close rule */}
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="rule-double"></div>
@@ -379,7 +478,7 @@ const Home = ({ language }) => {
         </section>
 
         {/* ——— §1 Patient Education Platforms ——— */}
-        <section className="py-24 bg-washi-50">
+        <section className={pinned ? 'pt-24 pb-0 bg-ground' : 'py-24 bg-ground'}>
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               variants={rise}
@@ -389,8 +488,8 @@ const Home = ({ language }) => {
               className="mb-16 max-w-3xl"
             >
               <p className="section-label mb-4">{t.projects.label}</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">{t.projects.title}</h2>
-              <p className="text-lg text-ink-600 font-body leading-relaxed">{t.projects.subtitle}</p>
+              <h2 className="text-3xl md:text-4xl font-display font-semibold mb-6">{t.projects.title}</h2>
+              <p className="text-lg text-content-3 font-body leading-relaxed">{t.projects.subtitle}</p>
             </motion.div>
 
             {/* Three site cards */}
@@ -411,18 +510,18 @@ const Home = ({ language }) => {
                   className="group panel panel-hover flex flex-col p-8"
                 >
                   <div className="flex items-start justify-between mb-1">
-                    <h3 className="text-2xl font-display font-bold text-ink-900 group-hover:text-shu-600 transition-colors">
+                    <h3 className="text-2xl font-display font-semibold text-content group-hover:text-accent transition-colors">
                       {site.name}
                     </h3>
-                    <span className="text-ink-400 group-hover:text-shu-500 group-hover:translate-x-1 transition-all font-display" aria-hidden="true">↗</span>
+                    <span className="text-content-4 group-hover:text-accent group-hover:translate-x-1 transition-all font-display" aria-hidden="true">↗</span>
                   </div>
-                  <p className="text-sm font-body font-bold text-shu-500 tracking-wide mb-4">{site.tagline}</p>
-                  <p className="text-ink-600 font-body text-base leading-relaxed mb-6 flex-grow">{site.desc}</p>
+                  <p className="text-sm font-body font-bold text-accent tracking-wide mb-4">{site.tagline}</p>
+                  <p className="text-content-3 font-body text-base leading-relaxed mb-6 flex-grow">{site.desc}</p>
                   <div className="rule-fine pt-4 flex gap-8">
                     {site.stats.map((s) => (
                       <div key={s.label}>
-                        <div className="text-xl font-display font-bold text-ink-900">{s.value}</div>
-                        <div className="text-xs text-ink-500 font-body tracking-wide">{s.label}</div>
+                        <div className="text-xl font-display font-semibold text-content">{s.value}</div>
+                        <div className="text-xs text-content-4 font-body tracking-wide">{s.label}</div>
                       </div>
                     ))}
                   </div>
@@ -441,63 +540,113 @@ const Home = ({ language }) => {
               rel="noopener noreferrer"
               className="group panel panel-hover flex flex-col sm:flex-row sm:items-center gap-6 p-8 mb-16"
             >
-              <div className="shrink-0 w-14 h-14 bg-shu-500 flex items-center justify-center" aria-hidden="true">
-                <svg className="w-7 h-7 text-washi-50" fill="currentColor" viewBox="0 0 24 24">
+              <div className="shrink-0 w-14 h-14 bg-accent flex items-center justify-center" aria-hidden="true">
+                <svg className="w-7 h-7 text-content" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8 5.14v13.72L19 12 8 5.14z" />
                 </svg>
               </div>
               <div className="flex-grow">
-                <h3 className="text-xl font-display font-bold text-ink-900 group-hover:text-shu-600 transition-colors mb-1">
+                <h3 className="text-xl font-display font-semibold text-content group-hover:text-accent transition-colors mb-1">
                   {t.projects.youtube.name}
                 </h3>
-                <p className="text-ink-600 font-body text-base leading-relaxed">{t.projects.youtube.desc}</p>
+                <p className="text-content-3 font-body text-base leading-relaxed">{t.projects.youtube.desc}</p>
               </div>
-              <span className="shrink-0 font-body font-bold text-sm text-shu-500 group-hover:text-shu-600 whitespace-nowrap">
+              <span className="shrink-0 font-body font-bold text-sm text-accent group-hover:text-accent whitespace-nowrap">
                 {t.projects.youtube.cta} ↗
               </span>
             </motion.a>
 
-            {/* Editorial numbered features */}
-            <motion.ol
-              variants={stagger}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 mb-14 max-w-4xl"
-            >
-              {t.projects.features.map((feature, index) => (
-                <motion.li key={index} variants={rise} className="flex gap-5">
-                  <span className="font-display italic text-2xl text-ink-400 leading-none select-none" aria-hidden="true">
-                    {['i', 'ii', 'iii', 'iv'][index]}.
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-display font-bold mb-1 text-ink-900">{feature.title}</h3>
-                    <p className="text-ink-600 font-body text-sm leading-relaxed">{feature.desc}</p>
-                  </div>
-                </motion.li>
-              ))}
-            </motion.ol>
+            {/* Editorial numbered features — `pin`: the frame holds, the four
+                claims cross over inside it. Below md, and under reduced motion,
+                this is an ordinary list; a pinned act on a phone fights the
+                thumb. Everything is in the DOM either way, so the reading order
+                and the accessibility tree do not change. */}
+            {pinned ? (
+              <div ref={pinRef} className="relative h-[240vh]">
+                <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+                  <ol className="grid grid-cols-2 gap-7 w-full max-w-5xl mx-auto list-none">
+                    {t.projects.features.map((feature, index) => (
+                      <Assemble
+                        key={index}
+                        progress={pinP}
+                        {...CARDS[index]}
+                        className="bg-surface border border-line p-9 min-h-[18.5rem] flex flex-col"
+                      >
+                        <li className="list-none flex flex-col h-full justify-between">
+                          <span
+                            className="font-display italic text-4xl text-accent leading-none select-none mb-5"
+                            aria-hidden="true"
+                          >
+                            {['i', 'ii', 'iii', 'iv'][index]}.
+                          </span>
+                          <h3 className="text-xl md:text-2xl font-display font-semibold mb-3 text-content">
+                            {feature.title}
+                          </h3>
+                          <p className="text-content-3 font-body text-base leading-relaxed">
+                            {feature.desc}
+                          </p>
+                        </li>
+                      </Assemble>
+                    ))}
+                  </ol>
+                  <Cue progress={pinP} spec={LINK_CUE} className="mt-8 text-center">
+                    <Link to="/patient-education" className="link-editorial font-body font-bold text-lg">
+                      {t.projects.cta} →
+                    </Link>
+                  </Cue>
+                </div>
+              </div>
+            ) : (
+              <motion.ol
+                variants={stagger}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 mb-14 max-w-4xl"
+              >
+                {t.projects.features.map((feature, index) => (
+                  <motion.li key={index} variants={rise} className="flex gap-5">
+                    <span className="font-display italic text-2xl text-content-4 leading-none select-none" aria-hidden="true">
+                      {['i', 'ii', 'iii', 'iv'][index]}.
+                    </span>
+                    <div>
+                      <h3 className="text-lg font-display font-semibold mb-1 text-content">{feature.title}</h3>
+                      <p className="text-content-3 font-body text-sm leading-relaxed">{feature.desc}</p>
+                    </div>
+                  </motion.li>
+                ))}
+              </motion.ol>
+            )}
 
-            <motion.div variants={rise} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-              <Link to="/patient-education" className="link-editorial font-body font-bold text-lg">
-                {t.projects.cta} →
-              </Link>
-            </motion.div>
+            {!pinned && (
+              <motion.div variants={rise} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+                <Link to="/patient-education" className="link-editorial font-body font-bold text-lg">
+                  {t.projects.cta} →
+                </Link>
+              </motion.div>
+            )}
           </div>
         </section>
 
-        {/* ——— §2 Services ——— */}
-        <section className="py-24 bg-white border-y border-washi-200">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* ——— §2 Services — the peak: the one inverted field on the page ——— */}
+        <motion.section ref={plateRef} style={{ clipPath: plateClip }} className="on-plate relative py-28 md:py-40 bg-ground overflow-hidden">
+          <div className="absolute inset-0 bg-noise" aria-hidden="true"></div>
+          <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               variants={rise}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="mb-16 max-w-3xl"
+              className="mb-20 max-w-3xl"
             >
-              <p className="section-label mb-4">{t.services.label}</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold">{t.services.title}</h2>
+              <p className="section-label mb-5 text-accent">{t.services.label}</p>
+              <h2 className="text-4xl md:text-5xl font-display font-semibold text-content leading-[1.2]">
+                {t.services.titleLines.map((line, i) => (
+                  <span key={i} className="inline-block">
+                    {line}
+                  </span>
+                ))}
+              </h2>
             </motion.div>
 
             <motion.div
@@ -505,31 +654,53 @@ const Home = ({ language }) => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="grid grid-cols-1 md:grid-cols-3 gap-10"
+              className="space-y-16 md:space-y-24"
             >
               {t.services.items.map((service) => (
-                <motion.div key={service.numeral} variants={rise} className="border-t-2 border-ink-900 pt-6">
-                  <div className="font-display italic text-3xl text-shu-500 mb-4 select-none" aria-hidden="true">
-                    {service.numeral}.
+                <motion.article
+                  key={service.numeral}
+                  initial={reduce ? false : { opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-15% 0px -25% 0px' }}
+                  transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                  className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-10"
+                >
+                  <div className="md:col-span-2">
+                    <span
+                      className="font-display italic font-normal text-5xl md:text-6xl text-accent leading-none select-none"
+                      aria-hidden="true"
+                    >
+                      {service.numeral}.
+                    </span>
                   </div>
-                  <h3 className="text-2xl font-display font-bold mb-4 text-ink-900">{service.title}</h3>
-                  <p className="text-ink-600 font-body mb-6 leading-relaxed">{service.desc}</p>
-                  <ul className="space-y-2.5">
-                    {service.details.map((detail, i) => (
-                      <li key={i} className="flex items-start text-sm text-ink-700 font-body">
-                        <span className="text-shu-500 mr-2.5 select-none" aria-hidden="true">—</span>
-                        {detail}
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
+                  <div className="md:col-span-10 max-w-3xl">
+                    <h3 className="text-2xl md:text-3xl font-display font-semibold text-content mb-4">
+                      {service.title}
+                    </h3>
+                    <p className="text-content-2 font-body leading-relaxed mb-5">{service.desc}</p>
+                    {/* run-on列挙(md+) / 箇条書き(mobile) — 区切りが行頭に落ちないよう項目と一体で折る */}
+                    <p className="font-body text-sm text-content-3 leading-loose">
+                      {service.details.map((detail, i) => (
+                        <span key={i} className="block md:inline">
+                          <span
+                            className="text-accent mr-2.5 md:mr-3 md:ml-3 select-none"
+                            aria-hidden="true"
+                          >
+                            —
+                          </span>
+                          {detail}
+                        </span>
+                      ))}
+                    </p>
+                  </div>
+                </motion.article>
               ))}
             </motion.div>
           </div>
-        </section>
+        </motion.section>
 
         {/* ——— §3 Academic Activities ——— */}
-        <section className="py-24 bg-washi-50">
+        <section className="py-24 bg-ground">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               variants={rise}
@@ -539,8 +710,8 @@ const Home = ({ language }) => {
               className="mb-12 max-w-3xl"
             >
               <p className="section-label mb-4">{t.academic.label}</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">{t.academic.title}</h2>
-              <p className="text-sm text-ink-500 font-body leading-relaxed border-l-2 border-kin-300 pl-4">
+              <h2 className="text-3xl md:text-4xl font-display font-semibold mb-6">{t.academic.title}</h2>
+              <p className="text-sm text-content-4 font-body leading-relaxed border-l-2 border-accent pl-4">
                 {t.academic.note}
               </p>
             </motion.div>
@@ -550,20 +721,20 @@ const Home = ({ language }) => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="divide-y divide-washi-300 border-y border-washi-300"
+              className="divide-y divide-line border-y border-line"
             >
               {t.academic.items.map((item) => {
                 const inner = (
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 py-6 md:items-baseline">
-                    <h3 className={`md:col-span-4 text-xl font-display font-bold ${item.url ? 'group-hover:text-shu-600 transition-colors' : ''} text-ink-900`}>
+                    <h3 className={`md:col-span-4 text-xl font-display font-semibold ${item.url ? 'group-hover:text-accent transition-colors' : ''} text-content`}>
                       {item.name}
                     </h3>
-                    <p className="md:col-span-6 text-ink-600 font-body text-base leading-relaxed">{item.desc}</p>
+                    <p className="md:col-span-6 text-content-3 font-body text-base leading-relaxed">{item.desc}</p>
                     <p className="md:col-span-2 md:text-right text-sm font-body">
                       {item.url ? (
-                        <span className="text-shu-500 font-bold group-hover:text-shu-600">{item.status} ↗</span>
+                        <span className="text-accent font-bold group-hover:text-accent">{item.status} ↗</span>
                       ) : (
-                        <span className="text-ink-400">{item.status}</span>
+                        <span className="text-content-4">{item.status}</span>
                       )}
                     </p>
                   </div>
@@ -575,7 +746,7 @@ const Home = ({ language }) => {
                     href={item.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group block hover:bg-white transition-colors -mx-4 px-4"
+                    className="group block hover:bg-surface transition-colors -mx-4 px-4"
                   >
                     {inner}
                   </motion.a>
@@ -590,7 +761,7 @@ const Home = ({ language }) => {
         </section>
 
         {/* ——— §4 Credentials ——— */}
-        <section className="py-24 bg-white border-t border-washi-200">
+        <section className="py-24 bg-surface border-t border-line">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               variants={rise}
@@ -600,7 +771,7 @@ const Home = ({ language }) => {
               className="mb-16 max-w-3xl"
             >
               <p className="section-label mb-4">{t.credentials.label}</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold">{t.credentials.title}</h2>
+              <h2 className="text-3xl md:text-4xl font-display font-semibold">{t.credentials.title}</h2>
             </motion.div>
 
             {/* Stats — set like a data table in a paper */}
@@ -609,12 +780,15 @@ const Home = ({ language }) => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-100px' }}
-              className="grid grid-cols-2 md:grid-cols-4 border-y-2 border-ink-900 divide-x divide-washi-300 mb-16"
+              ref={statsRef}
+              className="grid grid-cols-2 md:grid-cols-4 border-y-2 border-line-strong divide-x divide-line mb-16"
             >
               {t.credentials.stats.map((s) => (
                 <motion.div key={s.label} variants={rise} className="py-10 px-6 text-center">
-                  <div className="text-4xl md:text-5xl font-display font-bold text-ink-900 mb-2">{s.number}</div>
-                  <div className="text-ink-500 font-body text-sm leading-snug">{s.label}</div>
+                  <div className="text-4xl md:text-5xl font-display font-semibold text-content mb-2">
+                    <Count progress={statsP} spec="0.05 1 0.45 0" target={s.number} still={reduce} />
+                  </div>
+                  <div className="text-content-4 font-body text-sm leading-snug">{s.label}</div>
                 </motion.div>
               ))}
             </motion.div>
@@ -627,12 +801,12 @@ const Home = ({ language }) => {
               viewport={{ once: true }}
               className="max-w-4xl"
             >
-              <h3 className="text-2xl font-display font-bold mb-8">{t.credentials.highlights.title}</h3>
+              <h3 className="text-2xl font-display font-semibold mb-8">{t.credentials.highlights.title}</h3>
               <div className="grid md:grid-cols-2 gap-x-12 gap-y-5">
                 {t.credentials.highlights.items.map((item, index) => (
                   <div key={index} className="flex items-baseline">
-                    <span className="shrink-0 text-shu-500 font-display mr-3 select-none" aria-hidden="true">¶</span>
-                    <p className="text-ink-700 font-body leading-relaxed">{item}</p>
+                    <span className="shrink-0 text-accent font-display mr-3 select-none" aria-hidden="true">¶</span>
+                    <p className="text-content-2 font-body leading-relaxed">{item}</p>
                   </div>
                 ))}
               </div>
@@ -641,27 +815,25 @@ const Home = ({ language }) => {
         </section>
 
         {/* ——— CTA ——— */}
-        <section className="relative py-24 bg-ink-900 overflow-hidden">
-          <div className="absolute inset-0 bg-noise" aria-hidden="true"></div>
+        {/* ——— Close — on paper, so the ink footer reads as a colophon, not a continuation ——— */}
+        <section className="relative py-28 bg-surface-2 bg-ruled overflow-hidden border-t border-line">
           <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <motion.div variants={rise} initial="hidden" whileInView="visible" viewport={{ once: true }}>
               <span className="block mb-8" aria-hidden="true">
-                <Monogram dark className="text-5xl" />
+                <Monogram className="text-5xl" />
               </span>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-washi-50 mb-6 leading-snug">
+              <h2 className="text-3xl md:text-4xl font-display font-semibold text-content mb-6 leading-snug">
                 <span className="inline-block">{t.cta.titleLines[0]}</span>{' '}
                 <span className="inline-block">{t.cta.titleLines[1]}</span>
               </h2>
-              <p className="text-lg text-ink-200 font-body mb-12 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg text-content-3 font-body mb-12 max-w-2xl mx-auto leading-relaxed">
                 {t.cta.subtitle}
               </p>
-              <Link
-                to="/support"
-                className="inline-flex items-center gap-2 bg-washi-50 text-ink-900 font-body font-bold text-lg px-10 py-5 border border-washi-50 hover:bg-shu-500 hover:border-shu-500 hover:text-washi-50 transition-all duration-200"
-              >
+              <Link to="/support" className="btn-ink text-lg px-10 py-5">
                 {t.cta.button}
                 <span aria-hidden="true">→</span>
               </Link>
+              <div className="rule-double mt-20 max-w-xs mx-auto" aria-hidden="true"></div>
             </motion.div>
           </div>
         </section>

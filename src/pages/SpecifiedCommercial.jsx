@@ -142,33 +142,33 @@ const SpecifiedCommercial = ({ language }) => {
         path="/specified-commercial-transaction"
         language={language}
       />
-      <div className="min-h-screen bg-washi-50">
+      <div className="min-h-screen bg-ground">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-24">
           {/* ——— Document header ——— */}
           <header className="mb-12">
             <p className="section-label mb-6">
               {language === 'ja' ? '加藤事務所 — 公式文書' : 'Katoh Office — Official Document'}
             </p>
-            <h1 className="text-3xl md:text-4xl font-display font-bold leading-snug mb-5">
+            <h1 className="text-3xl md:text-4xl font-display font-semibold leading-snug mb-5">
               {t.title}
             </h1>
-            <p className="text-sm text-ink-500 font-body">{t.lastUpdated}</p>
+            <p className="text-sm text-content-4 font-body">{t.lastUpdated}</p>
             <div className="rule-double mt-8"></div>
           </header>
 
           {/* ——— Disclosure table ——— */}
-          <dl className="divide-y divide-washi-300 border-y border-washi-300">
+          <dl className="divide-y divide-line border-y border-line">
             {t.sections.map((section, index) => (
               <div key={index} className="grid grid-cols-1 sm:grid-cols-12 gap-1 sm:gap-6 py-6">
-                <dt className="sm:col-span-4 font-body font-bold text-ink-500 text-sm leading-relaxed pt-0.5">
+                <dt className="sm:col-span-4 font-body font-bold text-content-4 text-sm leading-relaxed pt-0.5">
                   {section.label}
                 </dt>
                 <dd className="sm:col-span-8">
-                  <p className="text-ink-800 font-body text-base whitespace-pre-line leading-relaxed">
+                  <p className="text-content-2 font-body text-base whitespace-pre-line leading-relaxed">
                     {section.value}
                   </p>
                   {section.subtext && (
-                    <p className="text-sm text-ink-500 font-body mt-2 leading-relaxed">
+                    <p className="text-sm text-content-4 font-body mt-2 leading-relaxed">
                       {section.subtext}
                     </p>
                   )}
@@ -178,11 +178,11 @@ const SpecifiedCommercial = ({ language }) => {
           </dl>
 
           {/* ——— Additional notes ——— */}
-          <div className="mt-12 border-l-2 border-kin-300 pl-6">
-            <h2 className="text-lg font-display font-bold text-ink-900 mb-3">
+          <div className="mt-12 border-l-2 border-accent pl-6">
+            <h2 className="text-lg font-display font-semibold text-content mb-3">
               {language === 'ja' ? 'お問い合わせ' : 'Contact'}
             </h2>
-            <p className="text-ink-600 font-body text-base leading-relaxed">
+            <p className="text-content-3 font-body text-base leading-relaxed">
               {language === 'ja'
                 ? '本表記に関するご質問や詳細情報のご要望は、hiroyuki.katoh.office@gmail.comまでお問い合わせください。'
                 : 'For questions about this disclosure or to request detailed information, please contact us at hiroyuki.katoh.office@gmail.com'}

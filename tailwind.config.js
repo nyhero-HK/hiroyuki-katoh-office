@@ -7,99 +7,27 @@ export default {
   theme: {
     extend: {
       colors: {
-        // ——— Academic Press palette (2026-07 redesign) ———
-        // Warm paper ground. 50 is the page background; deeper steps for panels/rules.
-        'washi': {
-          50: '#FBF8F1',
-          100: '#F6F0E3',
-          200: '#EDE3CE',
-          300: '#E0D2B4',
-          400: '#CBB88F',
-        },
-        // Ink navy — primary text and structural rules.
-        'ink': {
-          50: '#F0F3F6',
-          100: '#DCE3EA',
-          200: '#B4C2D1',
-          300: '#8299B0',
-          400: '#54718E',
-          500: '#35516C',
-          600: '#264059',
-          700: '#1C3247',
-          800: '#142536',
-          900: '#0E1B28',
-        },
-        // 朱 vermillion — the single loud accent: seal, links, active states.
-        'shu': {
-          50: '#FCF1EF',
-          100: '#F8DCD8',
-          200: '#EFB4AD',
-          300: '#E3867C',
-          400: '#D45C50',
-          500: '#C73E3A', // 真朱
-          600: '#A93331',
-          700: '#872826',
-          800: '#651E1D',
-          900: '#471514',
-        },
-        // Muted gold ochre — fine rules, small ornaments only.
-        'kin': {
-          100: '#F1E8D2',
-          300: '#D9C08A',
-          500: '#B08D3E',
-          700: '#7E6222',
-        },
-
-        // ——— Legacy neo-* palette (kept while inner pages migrate) ———
-        'neo-teal': {
-          50: '#f0f7f8',
-          100: '#d9ebee',
-          200: '#b3d6dc',
-          300: '#7fb6c0',
-          400: '#4d909d',
-          500: '#0B5563',
-          600: '#0A4A55',
-          700: '#083D47',
-          800: '#062E36',
-          900: '#042228',
-        },
-        'neo-mint': {
-          50: '#f0fdfa',
-          100: '#ccfbf1',
-          200: '#99f6e4',
-          300: '#5eead4',
-          400: '#2dd4bf',
-          500: '#14b8a6',
-          600: '#0d9488',
-        },
-        'neo-coral': {
-          50: '#fff5f5',
-          100: '#ffe3e3',
-          200: '#ffc9c9',
-          300: '#ffa8a8',
-          400: '#ff8787',
-          500: '#FF6B6B',
-          600: '#fa5252',
-          700: '#f03e3e',
-          800: '#e03131',
-          900: '#c92a2a',
-        },
-        'neo-amber': {
-          50: '#fffbeb',
-          100: '#fef3c7',
-          200: '#fde68a',
-          300: '#fcd34d',
-          400: '#FBBF24',
-          500: '#f59e0b',
-          600: '#d97706',
-          700: '#b45309',
-          800: '#92400e',
-          900: '#78350f',
-        },
+        // ——— Semantic surface tokens (2026-09 Nocturne) ———
+        // Colours are named by ROLE, not by hue, and resolve through CSS custom
+        // properties. A section marked `.on-plate` re-declares every role, so the
+        // same markup reads correctly on the dark ground and on a lit plate.
+        // Palette values live in src/index.css.
+        ground:        'rgb(var(--ground) / <alpha-value>)',
+        surface:       'rgb(var(--surface) / <alpha-value>)',
+        'surface-2':   'rgb(var(--surface-2) / <alpha-value>)',
+        line:          'rgb(var(--line) / <alpha-value>)',
+        'line-strong': 'rgb(var(--line-strong) / <alpha-value>)',
+        content:       'rgb(var(--content) / <alpha-value>)',
+        'content-2':   'rgb(var(--content-2) / <alpha-value>)',
+        'content-3':   'rgb(var(--content-3) / <alpha-value>)',
+        'content-4':   'rgb(var(--content-4) / <alpha-value>)',
+        accent:        'rgb(var(--accent) / <alpha-value>)',
+        'accent-soft': 'rgb(var(--accent-soft) / <alpha-value>)',
+        'accent-ink':  'rgb(var(--accent-ink) / <alpha-value>)',
       },
       fontFamily: {
         // Editorial serif display: Fraunces for Latin, Noto Serif JP for kanji/kana.
-        'display': ['Fraunces', '"Noto Serif JP"', '"Noto Serif JP Fallback"', 'serif'],
+        'display': ['"Fraunces Text"', 'Fraunces', '"Noto Serif JP"', '"Noto Serif JP Fallback"', 'serif'],
         // Body stays sans for JP readability (elderly patient audience on linked sites).
         'body': ['"Noto Sans JP"', '"Noto Sans JP Fallback"', 'Manrope', '"Manrope Fallback"', 'sans-serif'],
       },
