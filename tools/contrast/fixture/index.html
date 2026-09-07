@@ -1,0 +1,19 @@
+<!doctype html><meta charset="utf-8"><title>contrast fixture</title>
+<style>
+  body{margin:0;font-family:system-ui;font-size:16px;font-weight:400}
+  .row{padding:24px;font-size:16px}
+  #a{background:#000;color:#fff}
+  #b{background:#fff;color:lab(35.6337 -1.58697 -10.8425)}
+  #c{background:#fff;color:#999999}
+  #d{background-image:url(grey.png);background-size:cover;color:#ffffff}
+  #e{background:#fff;color:#000;opacity:.30}
+  #f{background:#ffffff;color:oklch(0.7 0.15 250)}
+  #g{background:linear-gradient(90deg,#ffffff 0%,#ffffff 50%,#111111 50%,#111111 100%);color:#ffffff}
+</style>
+<div class="row" id="a"><span>A white on black</span></div>
+<div class="row" id="b"><span>B lab() on white</span></div>
+<div class="row" id="c"><span>C 999999 on white</span></div>
+<div class="row" id="d"><span>D white on a background IMAGE</span></div>
+<div class="row" id="e"><span>E black at 30 percent on white</span></div>
+<div class="row" id="f"><span>F oklch on white</span></div>
+<div class="row" id="g"><span>G white on a half white half black gradient</span></div>
