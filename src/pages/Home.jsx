@@ -564,15 +564,15 @@ const Home = ({ language }) => {
             {pinned ? (
               <div ref={pinRef} className="relative h-[240vh]">
                 <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
-                  <ol className="grid grid-cols-2 gap-6 w-full max-w-5xl mx-auto list-none">
+                  <ol className="grid grid-cols-2 gap-7 w-full max-w-5xl mx-auto list-none">
                     {t.projects.features.map((feature, index) => (
                       <Assemble
                         key={index}
                         progress={pinP}
                         {...CARDS[index]}
-                        className="bg-surface border border-line p-8 min-h-[15rem] flex flex-col"
+                        className="bg-surface border border-line p-9 min-h-[18.5rem] flex flex-col"
                       >
-                        <li className="list-none flex flex-col h-full">
+                        <li className="list-none flex flex-col h-full justify-between">
                           <span
                             className="font-display italic text-4xl text-accent leading-none select-none mb-5"
                             aria-hidden="true"
@@ -589,7 +589,7 @@ const Home = ({ language }) => {
                       </Assemble>
                     ))}
                   </ol>
-                  <Cue progress={pinP} spec={LINK_CUE} className="mt-10 text-center">
+                  <Cue progress={pinP} spec={LINK_CUE} className="mt-8 text-center">
                     <Link to="/patient-education" className="link-editorial font-body font-bold text-lg">
                       {t.projects.cta} →
                     </Link>
