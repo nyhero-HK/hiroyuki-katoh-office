@@ -27,7 +27,7 @@ export default {
       },
       fontFamily: {
         // Editorial serif display: Fraunces for Latin, Noto Serif JP for kanji/kana.
-        'display': ['Fraunces', '"Noto Serif JP"', '"Noto Serif JP Fallback"', 'serif'],
+        'display': ['"Fraunces Text"', 'Fraunces', '"Noto Serif JP"', '"Noto Serif JP Fallback"', 'serif'],
         // Body stays sans for JP readability (elderly patient audience on linked sites).
         'body': ['"Noto Sans JP"', '"Noto Sans JP Fallback"', 'Manrope', '"Manrope Fallback"', 'sans-serif'],
       },

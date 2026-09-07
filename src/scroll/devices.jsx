@@ -1,4 +1,4 @@
-import { motion, useTransform } from 'framer-motion';
+import { cubicBezier, motion, useTransform } from 'framer-motion';
 import { cue } from './cue';
 
 /**
@@ -86,4 +86,56 @@ export const Count = ({ progress, spec, target, className = '', still = false })
   });
   if (still) return <span className={`tabular-nums ${className}`}>{target}</span>;
   return <motion.span className={`tabular-nums ${className}`}>{text}</motion.span>;
+};
+
+/**
+ * `assemble`: blocks fly in from beyond their own corner and lock into a grid.
+ *
+ * This is `kinetic` applied to blocks instead of type — units entering from a
+ * clean edge and coming to rest as a composition. It exists because a pinned
+ * stage holding one small element reads as a rendering fault: devices.md's
+ * "a wipe on a small element is a fidget, use it big" is about wipes, but the
+ * same thing is true of a pinned frame. Fill the stage or do not pin.
+ *
+ * Light is directional, not a halo: the leading edge carries a thin accent rim
+ * while the card travels and loses it on landing, and the elevation shadow has
+ * real offset and blur. scroll-craft bans gradient text, neon glow and
+ * zero-offset coloured halo shadows; none of those are used here.
+ */
+const settle = cubicBezier(0.16, 1, 0.3, 1);
+
+export const Assemble = ({
+  progress, from, to, dx = 0, dy = 0, rotate = 0,
+  className = '', children,
+}) => {
+  const e = useTransform(progress, [from, to], [0, 1], { clamp: true, ease: settle });
+  const x = useTransform(e, [0, 1], [dx, 0]);
+  const y = useTransform(e, [0, 1], [dy, 0]);
+  const rot = useTransform(e, [0, 1], [rotate, 0]);
+  const scale = useTransform(e, [0, 1], [0.82, 1]);
+  const opacity = useTransform(e, [0, 0.3, 1], [0, 1, 1]);
+  // motion blur while travelling, sharp on landing — the thing that reads as fluid
+  const filter = useTransform(e, (v) => `blur(${((1 - v) * 9).toFixed(2)}px)`);
+  // elevation: high and soft in flight, low and tight at rest
+  const boxShadow = useTransform(e, (v) => {
+    const t = 1 - v;
+    return `0 ${(10 + t * 46).toFixed(0)}px ${(24 + t * 56).toFixed(0)}px ` +
+           `-${(12 + t * 8).toFixed(0)}px rgb(0 0 0 / ${(0.45 + t * 0.3).toFixed(2)})`;
+  });
+  // directional rim on the leading edge, fading out as the card comes to rest
+  const rim = useTransform(e, [0, 1], [0.5, 0]);
+
+  return (
+    <motion.div
+      style={{ x, y, rotate: rot, scale, opacity, filter, boxShadow, willChange: 'transform' }}
+      className={`relative ${className}`}
+    >
+      {children}
+      <motion.span
+        aria-hidden="true"
+        style={{ opacity: rim }}
+        className="pointer-events-none absolute inset-0 border-t border-l border-accent"
+      />
+    </motion.div>
+  );
 };

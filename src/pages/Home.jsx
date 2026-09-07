@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion
 import hiroPhoto from '../assets/Katoh2.jpeg';
 import SEO from '../components/SEO';
 import Monogram from '../components/Monogram';
-import { Count, Cue, Kinetic, Plane } from '../scroll/devices';
+import { Assemble, Count, Cue, Kinetic, Plane } from '../scroll/devices';
 
 const Home = ({ language }) => {
   const content = {
@@ -104,8 +104,8 @@ const Home = ({ language }) => {
           {
             name: '医学教育FD基礎講座（オンライン）',
             desc: '医学部教員向けファカルティ・ディベロップメントのオンライン講座。動画教材と体系的カリキュラムで構成。',
-            status: '公開準備中',
-            url: null,
+            status: 'fd.tokai-meded.jp',
+            url: 'https://fd.tokai-meded.jp',
           },
           {
             name: 'Clinical English',
@@ -250,8 +250,8 @@ const Home = ({ language }) => {
           {
             name: 'Faculty Development Online Course',
             desc: 'An online FD core course for medical school faculty, built on video lectures and a structured curriculum.',
-            status: 'In preparation',
-            url: null,
+            status: 'fd.tokai-meded.jp',
+            url: 'https://fd.tokai-meded.jp',
           },
           {
             name: 'Clinical English',
@@ -354,20 +354,26 @@ const Home = ({ language }) => {
     return () => mq.removeEventListener('change', on);
   }, []);
   const pinned = wide && !reduce;
+  // Progress starts as the act ENTERS, not when it pins. devices.md's "ground
+  // or greet": a pinned stage is fully on screen roughly a viewport before its
+  // own progress leaves 0, so measuring from 'start start' leaves the stage
+  // sitting empty for that entire approach — which is exactly what reads as a
+  // rendering fault. The first cards are already arriving by the time it pins.
   const { scrollYProgress: pinP } = useScroll({
     target: pinRef,
-    offset: ['start start', 'end end'],
+    offset: ['start end', 'end end'],
   });
-  // Cue windows. devices.md's prose says "overlap by roughly 15%", but its own
-  // worked example overlaps by 4% ("0.02 0.34" / "0.30 0.66" / "0.62") and the
-  // example is the one that renders: at 15% two states sit superimposed at half
-  // opacity each and neither is readable. Measured on a contact sheet, not
-  // reasoned about. The default 30% ramps already keep the crossover from
-  // showing empty space, which is what the overlap rule exists to prevent.
-  // First cue is the greet form - a pinned stage is fully on screen roughly a
-  // viewport before its own progress leaves 0. The last closes at 1 rather than
-  // holding: only the final act on a page may hold.
-  const PIN_CUES = ['0 0.28 0', '0.24 0.52', '0.48 0.76', '0.72 1'];
+  // The four claims are cards that fly in from beyond their own corner and lock
+  // into a 2x2. Windows overlap so the arrivals read as one continuous
+  // assembly rather than four separate events, and the composition holds for
+  // the last third of the act — the landing IS the payoff, so the stage must
+  // not empty out the way a text cue does.
+  const CARDS = [
+    { from: 0.04, to: 0.34, dx: -520, dy: -190, rotate: -7 },
+    { from: 0.17, to: 0.47, dx: 520, dy: -150, rotate: 6 },
+    { from: 0.30, to: 0.60, dx: -460, dy: 230, rotate: 5 },
+    { from: 0.43, to: 0.73, dx: 500, dy: 260, rotate: -6 },
+  ];
 
   const statsRef = useRef(null);
   const { scrollYProgress: statsP } = useScroll({
@@ -538,26 +544,31 @@ const Home = ({ language }) => {
                 thumb. Everything is in the DOM either way, so the reading order
                 and the accessibility tree do not change. */}
             {pinned ? (
-              <div ref={pinRef} className="relative h-[300vh] mb-14">
-                <div className="sticky top-0 h-screen flex items-center">
-                  <ol className="relative w-full max-w-4xl h-56">
+              <div ref={pinRef} className="relative h-[260vh] mb-14">
+                <div className="sticky top-0 h-screen flex items-center overflow-hidden">
+                  <ol className="grid grid-cols-2 gap-6 w-full max-w-5xl mx-auto list-none">
                     {t.projects.features.map((feature, index) => (
-                      <Cue
+                      <Assemble
                         key={index}
                         progress={pinP}
-                        spec={PIN_CUES[index]}
-                        className="absolute inset-0 flex gap-6"
+                        {...CARDS[index]}
+                        className="bg-surface border border-line p-8 min-h-[15rem] flex flex-col"
                       >
-                        <li className="flex gap-6 list-none">
-                          <span className="font-display italic text-5xl text-accent leading-none select-none shrink-0 w-16" aria-hidden="true">
+                        <li className="list-none flex flex-col h-full">
+                          <span
+                            className="font-display italic text-4xl text-accent leading-none select-none mb-5"
+                            aria-hidden="true"
+                          >
                             {['i', 'ii', 'iii', 'iv'][index]}.
                           </span>
-                          <div className="max-w-2xl">
-                            <h3 className="text-2xl md:text-3xl font-display font-semibold mb-4 text-content">{feature.title}</h3>
-                            <p className="text-content-3 font-body text-lg leading-relaxed">{feature.desc}</p>
-                          </div>
+                          <h3 className="text-xl md:text-2xl font-display font-semibold mb-3 text-content">
+                            {feature.title}
+                          </h3>
+                          <p className="text-content-3 font-body text-base leading-relaxed">
+                            {feature.desc}
+                          </p>
                         </li>
-                      </Cue>
+                      </Assemble>
                     ))}
                   </ol>
                 </div>
