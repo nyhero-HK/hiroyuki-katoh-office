@@ -5,6 +5,7 @@ import hiroPhoto from '../assets/Katoh2.jpeg';
 import SEO from '../components/SEO';
 import Monogram from '../components/Monogram';
 import { Assemble, Count, Cue, Kinetic, Plane } from '../scroll/devices';
+import { useLerped } from '../scroll/useLerped';
 
 const Home = ({ language }) => {
   const content = {
@@ -321,10 +322,13 @@ const Home = ({ language }) => {
   const heroRef = useRef(null);
   const plateRef = useRef(null);
 
-  const { scrollYProgress: heroP } = useScroll({
+  const { scrollYProgress: heroRaw } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
   });
+  // Every scroll-driven value on this page goes through the lerp. Writing raw
+  // scroll progress reproduces the gaps between wheel events.
+  const heroP = useLerped(heroRaw, { off: reduce });
   // Planes travel `rate * (p - 0.5) * 100` PIXELS, not viewport fractions.
   // Adjacent planes differ by 10-30%; beyond that it reads as things sliding
   // around rather than as distance. The copy is NOT a plane: it rides at 1x,
@@ -359,20 +363,27 @@ const Home = ({ language }) => {
   // own progress leaves 0, so measuring from 'start start' leaves the stage
   // sitting empty for that entire approach — which is exactly what reads as a
   // rendering fault. The first cards are already arriving by the time it pins.
-  const { scrollYProgress: pinP } = useScroll({
+  const { scrollYProgress: pinRaw } = useScroll({
     target: pinRef,
     offset: ['start end', 'end end'],
   });
+  const pinP = useLerped(pinRaw, { off: reduce });
   // The four claims are cards that fly in from beyond their own corner and lock
   // into a 2x2. Windows overlap so the arrivals read as one continuous
   // assembly rather than four separate events, and the composition holds for
   // the last third of the act — the landing IS the payoff, so the stage must
   // not empty out the way a text cue does.
+  // Longer windows over shorter travel. The first pass flew each card ~500px
+  // inside 30% of the act, which is a high enough velocity that the gaps
+  // between wheel notches are visible as steps however well it is smoothed.
+  // Halving the distance and widening each window to 45% lowers the px-per-
+  // notch without slowing the assembly down, and the heavier overlap keeps
+  // something in motion at every point instead of four separate arrivals.
   const CARDS = [
-    { from: 0.04, to: 0.34, dx: -520, dy: -190, rotate: -7 },
-    { from: 0.17, to: 0.47, dx: 520, dy: -150, rotate: 6 },
-    { from: 0.30, to: 0.60, dx: -460, dy: 230, rotate: 5 },
-    { from: 0.43, to: 0.73, dx: 500, dy: 260, rotate: -6 },
+    { from: 0.02, to: 0.47, dx: -300, dy: -120, rotate: -5 },
+    { from: 0.13, to: 0.58, dx: 300, dy: -96, rotate: 4.5 },
+    { from: 0.24, to: 0.69, dx: -270, dy: 145, rotate: 4 },
+    { from: 0.35, to: 0.80, dx: 290, dy: 160, rotate: -4.5 },
   ];
 
   const statsRef = useRef(null);
@@ -381,10 +392,11 @@ const Home = ({ language }) => {
     offset: ['start 90%', 'start 45%'],
   });
 
-  const { scrollYProgress: plateP } = useScroll({
+  const { scrollYProgress: plateRaw } = useScroll({
     target: plateRef,
     offset: ['start end', 'start 35%'],
   });
+  const plateP = useLerped(plateRaw, { off: reduce });
   // the plate does not fade in; it is uncovered, which is a change of state
   const plateClip = useTransform(plateP, [0, 1],
     reduce ? ['inset(0% 0 0 0)', 'inset(0% 0 0 0)'] : ['inset(100% 0 0 0)', 'inset(0% 0 0 0)']);
