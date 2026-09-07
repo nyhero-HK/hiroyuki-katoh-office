@@ -380,11 +380,17 @@ const Home = ({ language }) => {
   // notch without slowing the assembly down, and the heavier overlap keeps
   // something in motion at every point instead of four separate arrivals.
   const CARDS = [
-    { from: 0.02, to: 0.47, dx: -300, dy: -120, rotate: -5 },
-    { from: 0.13, to: 0.58, dx: 300, dy: -96, rotate: 4.5 },
-    { from: 0.24, to: 0.69, dx: -270, dy: 145, rotate: 4 },
-    { from: 0.35, to: 0.80, dx: 290, dy: 160, rotate: -4.5 },
+    { from: 0.04, to: 0.52, dx: -300, dy: -120, rotate: -5 },
+    { from: 0.16, to: 0.64, dx: 300, dy: -96, rotate: 4.5 },
+    { from: 0.28, to: 0.76, dx: -270, dy: 145, rotate: 4 },
+    { from: 0.40, to: 0.88, dx: 290, dy: 160, rotate: -4.5 },
   ];
+  // The link belongs WITH the cards. Left in flow it sat 1.71 viewports below
+  // the landing, because the assembled grid is centred in a full-height sticky
+  // stage that must then scroll past before anything else appears. Cueing it
+  // inside the stage puts it under the grid where it is expected, and spends
+  // the tail of the act on something instead of leaving dead scroll.
+  const LINK_CUE = '0.80 1 0.10 0';
 
   const statsRef = useRef(null);
   const { scrollYProgress: statsP } = useScroll({
@@ -556,8 +562,8 @@ const Home = ({ language }) => {
                 thumb. Everything is in the DOM either way, so the reading order
                 and the accessibility tree do not change. */}
             {pinned ? (
-              <div ref={pinRef} className="relative h-[260vh] mb-14">
-                <div className="sticky top-0 h-screen flex items-center overflow-hidden">
+              <div ref={pinRef} className="relative h-[215vh] mb-14">
+                <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
                   <ol className="grid grid-cols-2 gap-6 w-full max-w-5xl mx-auto list-none">
                     {t.projects.features.map((feature, index) => (
                       <Assemble
@@ -583,6 +589,11 @@ const Home = ({ language }) => {
                       </Assemble>
                     ))}
                   </ol>
+                  <Cue progress={pinP} spec={LINK_CUE} className="mt-10 text-center">
+                    <Link to="/patient-education" className="link-editorial font-body font-bold text-lg">
+                      {t.projects.cta} →
+                    </Link>
+                  </Cue>
                 </div>
               </div>
             ) : (
@@ -607,11 +618,13 @@ const Home = ({ language }) => {
               </motion.ol>
             )}
 
-            <motion.div variants={rise} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-              <Link to="/patient-education" className="link-editorial font-body font-bold text-lg">
-                {t.projects.cta} →
-              </Link>
-            </motion.div>
+            {!pinned && (
+              <motion.div variants={rise} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+                <Link to="/patient-education" className="link-editorial font-body font-bold text-lg">
+                  {t.projects.cta} →
+                </Link>
+              </motion.div>
+            )}
           </div>
         </section>
 
