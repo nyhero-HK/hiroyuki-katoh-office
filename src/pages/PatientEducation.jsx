@@ -373,7 +373,7 @@ const PatientEducation = ({ language }) => {
               className="max-w-3xl"
             >
               <p className="section-label mb-6">{t.hero.kicker}</p>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold leading-[1.2] mb-8">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-semibold leading-[1.2] mb-8">
                 {language === 'ja' ? (
                   <>
                     <span className="inline-block">患者教育</span>
@@ -408,7 +408,7 @@ const PatientEducation = ({ language }) => {
             >
               <p className="section-label mb-4">§1 {t.mission.title}</p>
               <blockquote>
-                <p className="text-3xl md:text-4xl font-display font-bold text-content leading-snug mb-4">
+                <p className="text-3xl md:text-4xl font-display font-semibold text-content leading-snug mb-4">
                   {t.mission.quote}
                 </p>
                 <footer className="fig-caption mb-8">{t.mission.quoteAuthor}</footer>
@@ -431,7 +431,7 @@ const PatientEducation = ({ language }) => {
               className="mb-16 max-w-3xl"
             >
               <p className="section-label mb-4">{t.sites.label}</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold">{t.sites.title}</h2>
+              <h2 className="text-3xl md:text-4xl font-display font-semibold">{t.sites.title}</h2>
             </motion.div>
 
             {/* Three site cards */}
@@ -452,7 +452,7 @@ const PatientEducation = ({ language }) => {
                   className="group panel panel-hover flex flex-col p-8"
                 >
                   <div className="flex items-start justify-between mb-1">
-                    <h3 className="text-2xl font-display font-bold text-content group-hover:text-accent transition-colors">
+                    <h3 className="text-2xl font-display font-semibold text-content group-hover:text-accent transition-colors">
                       {site.name}
                     </h3>
                     <span className="text-content-4 group-hover:text-accent group-hover:translate-x-1 transition-all font-display" aria-hidden="true">↗</span>
@@ -491,7 +491,7 @@ const PatientEducation = ({ language }) => {
                 </svg>
               </div>
               <div className="flex-grow">
-                <h3 className="text-xl font-display font-bold text-content group-hover:text-accent transition-colors mb-1">
+                <h3 className="text-xl font-display font-semibold text-content group-hover:text-accent transition-colors mb-1">
                   {t.sites.youtube.name}
                 </h3>
                 <p className="text-content-3 font-body text-base leading-relaxed">{t.sites.youtube.desc}</p>
@@ -514,7 +514,7 @@ const PatientEducation = ({ language }) => {
               className="mb-16 max-w-3xl"
             >
               <p className="section-label mb-4">§3 {t.problem.title}</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold">{t.problem.subtitle}</h2>
+              <h2 className="text-3xl md:text-4xl font-display font-semibold">{t.problem.subtitle}</h2>
             </motion.div>
 
             <motion.div
@@ -529,7 +529,7 @@ const PatientEducation = ({ language }) => {
                   <div className="font-display italic text-3xl text-accent mb-4 select-none" aria-hidden="true">
                     {Romans[index]}.
                   </div>
-                  <h3 className="text-2xl font-display font-bold mb-4 text-content">{item.title}</h3>
+                  <h3 className="text-2xl font-display font-semibold mb-4 text-content">{item.title}</h3>
                   <p className="text-content-3 font-body leading-relaxed">{item.desc}</p>
                 </motion.div>
               ))}
@@ -548,7 +548,7 @@ const PatientEducation = ({ language }) => {
               className="mb-16 max-w-3xl"
             >
               <p className="section-label mb-4">§4 {t.solution.title}</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">{t.solution.subtitle}</h2>
+              <h2 className="text-3xl md:text-4xl font-display font-semibold mb-6">{t.solution.subtitle}</h2>
               <p className="text-lg text-content-3 font-body leading-relaxed">{t.solution.description}</p>
               {t.solution.note && (
                 <p className="text-sm text-content-4 font-body leading-relaxed mt-4 border-l-2 border-accent pl-4">
@@ -568,7 +568,7 @@ const PatientEducation = ({ language }) => {
                     viewport={{ once: true }}
                     className="border-t-2 border-line-strong pt-6 mb-8"
                   >
-                    <h3 className="text-2xl font-display font-bold text-content">{lib.site}</h3>
+                    <h3 className="text-2xl font-display font-semibold text-content">{lib.site}</h3>
                     <p className="text-sm text-content-4 font-body mt-1">
                       {lib.tagline} · <span className="font-display italic text-content-2">{lib.meta}</span>
                     </p>
@@ -592,7 +592,7 @@ const PatientEducation = ({ language }) => {
                           <span className="shrink-0 w-8 font-display italic text-xl text-content-4 select-none" aria-hidden="true">
                             {romans[index]}.
                           </span>
-                          <h4 className="text-lg font-display font-bold text-content">{category.title}</h4>
+                          <h4 className="text-lg font-display font-semibold text-content">{category.title}</h4>
                         </div>
                         <p className="md:col-span-2 text-sm font-body text-content-4 tracking-wide md:pt-0 pl-12 md:pl-0">
                           {category.type}
@@ -617,7 +617,7 @@ const PatientEducation = ({ language }) => {
                 className="panel mt-12 p-8"
               >
                 <div className="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-10">
-                  <h4 className="shrink-0 text-lg font-display font-bold text-content">{t.solution.premium.title}</h4>
+                  <h4 className="shrink-0 text-lg font-display font-semibold text-content">{t.solution.premium.title}</h4>
                   <ul className="flex flex-wrap gap-x-8 gap-y-2">
                     {t.solution.premium.items.map((item, index) => (
                       <li key={index} className="flex items-baseline text-sm text-content-2 font-body">
@@ -643,7 +643,7 @@ const PatientEducation = ({ language }) => {
               className="mb-16 max-w-3xl"
             >
               <p className="section-label mb-4">{t.features.label}</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold">{t.features.title}</h2>
+              <h2 className="text-3xl md:text-4xl font-display font-semibold">{t.features.title}</h2>
             </motion.div>
 
             <motion.ol
@@ -659,7 +659,7 @@ const PatientEducation = ({ language }) => {
                     {romans[index]}.
                   </span>
                   <div>
-                    <h3 className="text-xl font-display font-bold mb-2 text-content">{feature.title}</h3>
+                    <h3 className="text-xl font-display font-semibold mb-2 text-content">{feature.title}</h3>
                     <p className="text-content-3 font-body text-base leading-relaxed">{feature.desc}</p>
                   </div>
                 </motion.li>
@@ -679,7 +679,7 @@ const PatientEducation = ({ language }) => {
               className="mb-16 max-w-3xl"
             >
               <p className="section-label mb-4">§6 {t.forProfessionals.subtitle}</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">{t.forProfessionals.title}</h2>
+              <h2 className="text-3xl md:text-4xl font-display font-semibold mb-6">{t.forProfessionals.title}</h2>
               <p className="text-lg text-content-3 font-body leading-relaxed">{t.forProfessionals.description}</p>
             </motion.div>
 
@@ -695,7 +695,7 @@ const PatientEducation = ({ language }) => {
                   <div className="font-display italic text-3xl text-accent mb-4 select-none" aria-hidden="true">
                     {Romans[index]}.
                   </div>
-                  <h3 className="text-xl font-display font-bold mb-5 text-content">{partner.title}</h3>
+                  <h3 className="text-xl font-display font-semibold mb-5 text-content">{partner.title}</h3>
                   <ul className="space-y-2.5">
                     {partner.items.map((item, itemIndex) => (
                       <li key={itemIndex} className="flex items-start text-sm text-content-2 font-body leading-relaxed">
@@ -718,7 +718,7 @@ const PatientEducation = ({ language }) => {
               <span className="block mb-8" aria-hidden="true">
                 <Monogram dark className="text-5xl" />
               </span>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-content mb-6 leading-snug">
+              <h2 className="text-3xl md:text-4xl font-display font-semibold text-content mb-6 leading-snug">
                 <span className="inline-block">{t.cta.title}</span>
               </h2>
               <p className="text-lg text-content-3 font-body mb-12 max-w-2xl mx-auto leading-relaxed">

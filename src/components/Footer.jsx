@@ -65,7 +65,7 @@ const Footer = ({ language }) => {
               <Monogram dark className="text-[2rem]" />
               <span className="w-px h-10 bg-line" aria-hidden="true"></span>
               <div className="flex flex-col">
-                <span className="font-display font-bold text-2xl text-content">加藤裕幸事務所</span>
+                <span className="font-display font-semibold text-2xl text-content">加藤裕幸事務所</span>
                 <span className="text-[11px] text-content-4 font-body tracking-label uppercase">Katoh Office</span>
               </div>
             </div>

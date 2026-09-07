@@ -149,7 +149,7 @@ const SpecifiedCommercial = ({ language }) => {
             <p className="section-label mb-6">
               {language === 'ja' ? '加藤事務所 — 公式文書' : 'Katoh Office — Official Document'}
             </p>
-            <h1 className="text-3xl md:text-4xl font-display font-bold leading-snug mb-5">
+            <h1 className="text-3xl md:text-4xl font-display font-semibold leading-snug mb-5">
               {t.title}
             </h1>
             <p className="text-sm text-content-4 font-body">{t.lastUpdated}</p>
@@ -179,7 +179,7 @@ const SpecifiedCommercial = ({ language }) => {
 
           {/* ——— Additional notes ——— */}
           <div className="mt-12 border-l-2 border-accent pl-6">
-            <h2 className="text-lg font-display font-bold text-content mb-3">
+            <h2 className="text-lg font-display font-semibold text-content mb-3">
               {language === 'ja' ? 'お問い合わせ' : 'Contact'}
             </h2>
             <p className="text-content-3 font-body text-base leading-relaxed">

@@ -1,8 +1,10 @@
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import hiroPhoto from '../assets/Katoh2.jpeg';
 import SEO from '../components/SEO';
 import Monogram from '../components/Monogram';
+import { Count, Cue, Kinetic, Plane } from '../scroll/devices';
 
 const Home = ({ language }) => {
   const content = {
@@ -311,6 +313,76 @@ const Home = ({ language }) => {
     visible: { transition: { staggerChildren: 0.12 } },
   };
 
+  // ——— Scroll as the timeline ———————————————————————————————————
+  // Every value below is driven by scroll POSITION, not by a timer, so the
+  // page responds to the reader's own hand and reverses when they scroll back.
+  // prefers-reduced-motion collapses all of it to the static composition.
+  const reduce = useReducedMotion();
+  const heroRef = useRef(null);
+  const plateRef = useRef(null);
+
+  const { scrollYProgress: heroP } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  // Planes travel `rate * (p - 0.5) * 100` PIXELS, not viewport fractions.
+  // Adjacent planes differ by 10-30%; beyond that it reads as things sliding
+  // around rather than as distance. The copy is NOT a plane: it rides at 1x,
+  // because text the reader is trying to read must not move against the thing
+  // they are reading it on.
+  const GROUND_RATE = reduce ? 0 : -1.4;   // 140px, the full-bleed bed
+  const PLATE_RATE  = reduce ? 0 : -1.05;  // 105px, 25% ahead of the bed
+
+  // §1's four claims are an argument, so they get the `pin`: the frame holds
+  // and the states cross over inside it. The three sites are a comparison and
+  // stay a grid.
+  const pinRef = useRef(null);
+  // Resolved on the FIRST render, not in an effect. With a false initial value
+  // the pinned branch does not exist during the first paint, so `pinRef` is
+  // null when useScroll measures, framer silently falls back to tracking the
+  // whole document, and the act's progress is compressed to the fraction of the
+  // page the act occupies — measured at 4x here, which left cues iii and iv
+  // permanently unreachable. Nothing about that is visible in a screenshot.
+  const [wide, setWide] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(min-width: 768px)').matches,
+  );
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    const on = () => setWide(mq.matches);
+    on();
+    mq.addEventListener('change', on);
+    return () => mq.removeEventListener('change', on);
+  }, []);
+  const pinned = wide && !reduce;
+  const { scrollYProgress: pinP } = useScroll({
+    target: pinRef,
+    offset: ['start start', 'end end'],
+  });
+  // Cue windows. devices.md's prose says "overlap by roughly 15%", but its own
+  // worked example overlaps by 4% ("0.02 0.34" / "0.30 0.66" / "0.62") and the
+  // example is the one that renders: at 15% two states sit superimposed at half
+  // opacity each and neither is readable. Measured on a contact sheet, not
+  // reasoned about. The default 30% ramps already keep the crossover from
+  // showing empty space, which is what the overlap rule exists to prevent.
+  // First cue is the greet form - a pinned stage is fully on screen roughly a
+  // viewport before its own progress leaves 0. The last closes at 1 rather than
+  // holding: only the final act on a page may hold.
+  const PIN_CUES = ['0 0.28 0', '0.24 0.52', '0.48 0.76', '0.72 1'];
+
+  const statsRef = useRef(null);
+  const { scrollYProgress: statsP } = useScroll({
+    target: statsRef,
+    offset: ['start 90%', 'start 45%'],
+  });
+
+  const { scrollYProgress: plateP } = useScroll({
+    target: plateRef,
+    offset: ['start end', 'start 35%'],
+  });
+  // the plate does not fade in; it is uncovered, which is a change of state
+  const plateClip = useTransform(plateP, [0, 1],
+    reduce ? ['inset(0% 0 0 0)', 'inset(0% 0 0 0)'] : ['inset(100% 0 0 0)', 'inset(0% 0 0 0)']);
+
   return (
     <>
       <SEO
@@ -321,8 +393,9 @@ const Home = ({ language }) => {
       />
       <div className="min-h-screen">
         {/* ——— Hero ——— */}
-        <section className="relative bg-ground bg-ruled overflow-hidden">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-24">
+        <section ref={heroRef} className="relative bg-ground overflow-hidden">
+          <Plane progress={heroP} rate={GROUND_RATE} className="absolute inset-0 -top-32 -bottom-32 bg-ruled" aria-hidden="true" />
+          <Cue progress={heroP} spec="0 0.92 0" className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-24">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 items-center">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -331,9 +404,9 @@ const Home = ({ language }) => {
                 className="lg:col-span-7"
               >
                 <p className="section-label mb-6">{t.hero.kicker}</p>
-                <h1 className="text-3xl sm:text-4xl lg:text-[2.9rem] xl:text-5xl font-display font-bold leading-[1.2] mb-8">
-                  <span className="inline-block">{t.hero.title}</span>
-                  <span className="inline-block mt-2 text-accent">{t.hero.titleHighlight}</span>
+                <h1 className="text-3xl sm:text-4xl lg:text-[2.9rem] xl:text-5xl font-display font-semibold leading-[1.2] mb-8">
+                  <Kinetic still={reduce} lines={[t.hero.title]} delay={0.1} />
+                  <Kinetic still={reduce} lines={[t.hero.titleHighlight]} delay={0.22} className="block mt-2 text-accent" />
                 </h1>
                 <p className="text-lg md:text-lg text-content-3 font-body mb-10 max-w-xl leading-relaxed">
                   {t.hero.subtitle}
@@ -355,7 +428,7 @@ const Home = ({ language }) => {
                 transition={{ duration: 0.7, delay: 0.15, ease: 'easeOut' }}
                 className="lg:col-span-5"
               >
-                <div className="relative max-w-sm mx-auto lg:ml-auto">
+                <Plane progress={heroP} rate={PLATE_RATE} className="relative max-w-sm mx-auto lg:ml-auto">
                   <figure className="plate relative">
                     <img
                       src={hiroPhoto}
@@ -370,10 +443,10 @@ const Home = ({ language }) => {
                       <Monogram className="text-2xl" />
                     </span>
                   </figure>
-                </div>
+                </Plane>
               </motion.div>
             </div>
-          </div>
+          </Cue>
           {/* Section close rule */}
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="rule-double"></div>
@@ -391,7 +464,7 @@ const Home = ({ language }) => {
               className="mb-16 max-w-3xl"
             >
               <p className="section-label mb-4">{t.projects.label}</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">{t.projects.title}</h2>
+              <h2 className="text-3xl md:text-4xl font-display font-semibold mb-6">{t.projects.title}</h2>
               <p className="text-lg text-content-3 font-body leading-relaxed">{t.projects.subtitle}</p>
             </motion.div>
 
@@ -413,7 +486,7 @@ const Home = ({ language }) => {
                   className="group panel panel-hover flex flex-col p-8"
                 >
                   <div className="flex items-start justify-between mb-1">
-                    <h3 className="text-2xl font-display font-bold text-content group-hover:text-accent transition-colors">
+                    <h3 className="text-2xl font-display font-semibold text-content group-hover:text-accent transition-colors">
                       {site.name}
                     </h3>
                     <span className="text-content-4 group-hover:text-accent group-hover:translate-x-1 transition-all font-display" aria-hidden="true">↗</span>
@@ -423,7 +496,7 @@ const Home = ({ language }) => {
                   <div className="rule-fine pt-4 flex gap-8">
                     {site.stats.map((s) => (
                       <div key={s.label}>
-                        <div className="text-xl font-display font-bold text-content">{s.value}</div>
+                        <div className="text-xl font-display font-semibold text-content">{s.value}</div>
                         <div className="text-xs text-content-4 font-body tracking-wide">{s.label}</div>
                       </div>
                     ))}
@@ -449,7 +522,7 @@ const Home = ({ language }) => {
                 </svg>
               </div>
               <div className="flex-grow">
-                <h3 className="text-xl font-display font-bold text-content group-hover:text-accent transition-colors mb-1">
+                <h3 className="text-xl font-display font-semibold text-content group-hover:text-accent transition-colors mb-1">
                   {t.projects.youtube.name}
                 </h3>
                 <p className="text-content-3 font-body text-base leading-relaxed">{t.projects.youtube.desc}</p>
@@ -459,26 +532,57 @@ const Home = ({ language }) => {
               </span>
             </motion.a>
 
-            {/* Editorial numbered features */}
-            <motion.ol
-              variants={stagger}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 mb-14 max-w-4xl"
-            >
-              {t.projects.features.map((feature, index) => (
-                <motion.li key={index} variants={rise} className="flex gap-5">
-                  <span className="font-display italic text-2xl text-content-4 leading-none select-none" aria-hidden="true">
-                    {['i', 'ii', 'iii', 'iv'][index]}.
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-display font-bold mb-1 text-content">{feature.title}</h3>
-                    <p className="text-content-3 font-body text-sm leading-relaxed">{feature.desc}</p>
-                  </div>
-                </motion.li>
-              ))}
-            </motion.ol>
+            {/* Editorial numbered features — `pin`: the frame holds, the four
+                claims cross over inside it. Below md, and under reduced motion,
+                this is an ordinary list; a pinned act on a phone fights the
+                thumb. Everything is in the DOM either way, so the reading order
+                and the accessibility tree do not change. */}
+            {pinned ? (
+              <div ref={pinRef} className="relative h-[300vh] mb-14">
+                <div className="sticky top-0 h-screen flex items-center">
+                  <ol className="relative w-full max-w-4xl h-56">
+                    {t.projects.features.map((feature, index) => (
+                      <Cue
+                        key={index}
+                        progress={pinP}
+                        spec={PIN_CUES[index]}
+                        className="absolute inset-0 flex gap-6"
+                      >
+                        <li className="flex gap-6 list-none">
+                          <span className="font-display italic text-5xl text-accent leading-none select-none shrink-0 w-16" aria-hidden="true">
+                            {['i', 'ii', 'iii', 'iv'][index]}.
+                          </span>
+                          <div className="max-w-2xl">
+                            <h3 className="text-2xl md:text-3xl font-display font-semibold mb-4 text-content">{feature.title}</h3>
+                            <p className="text-content-3 font-body text-lg leading-relaxed">{feature.desc}</p>
+                          </div>
+                        </li>
+                      </Cue>
+                    ))}
+                  </ol>
+                </div>
+              </div>
+            ) : (
+              <motion.ol
+                variants={stagger}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 mb-14 max-w-4xl"
+              >
+                {t.projects.features.map((feature, index) => (
+                  <motion.li key={index} variants={rise} className="flex gap-5">
+                    <span className="font-display italic text-2xl text-content-4 leading-none select-none" aria-hidden="true">
+                      {['i', 'ii', 'iii', 'iv'][index]}.
+                    </span>
+                    <div>
+                      <h3 className="text-lg font-display font-semibold mb-1 text-content">{feature.title}</h3>
+                      <p className="text-content-3 font-body text-sm leading-relaxed">{feature.desc}</p>
+                    </div>
+                  </motion.li>
+                ))}
+              </motion.ol>
+            )}
 
             <motion.div variants={rise} initial="hidden" whileInView="visible" viewport={{ once: true }}>
               <Link to="/patient-education" className="link-editorial font-body font-bold text-lg">
@@ -489,7 +593,7 @@ const Home = ({ language }) => {
         </section>
 
         {/* ——— §2 Services — the peak: the one inverted field on the page ——— */}
-        <section className="on-plate relative py-28 md:py-40 bg-ground overflow-hidden">
+        <motion.section ref={plateRef} style={{ clipPath: plateClip }} className="on-plate relative py-28 md:py-40 bg-ground overflow-hidden">
           <div className="absolute inset-0 bg-noise" aria-hidden="true"></div>
           <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
@@ -500,7 +604,7 @@ const Home = ({ language }) => {
               className="mb-20 max-w-3xl"
             >
               <p className="section-label mb-5 text-accent">{t.services.label}</p>
-              <h2 className="text-4xl md:text-5xl font-display font-bold text-content leading-[1.2]">
+              <h2 className="text-4xl md:text-5xl font-display font-semibold text-content leading-[1.2]">
                 {t.services.titleLines.map((line, i) => (
                   <span key={i} className="inline-block">
                     {line}
@@ -519,19 +623,22 @@ const Home = ({ language }) => {
               {t.services.items.map((service) => (
                 <motion.article
                   key={service.numeral}
-                  variants={rise}
+                  initial={reduce ? false : { opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-15% 0px -25% 0px' }}
+                  transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                   className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-10"
                 >
                   <div className="md:col-span-2">
                     <span
-                      className="font-display italic text-5xl md:text-6xl text-accent leading-none select-none"
+                      className="font-display italic font-normal text-5xl md:text-6xl text-accent leading-none select-none"
                       aria-hidden="true"
                     >
                       {service.numeral}.
                     </span>
                   </div>
                   <div className="md:col-span-10 max-w-3xl">
-                    <h3 className="text-2xl md:text-3xl font-display font-bold text-content mb-4">
+                    <h3 className="text-2xl md:text-3xl font-display font-semibold text-content mb-4">
                       {service.title}
                     </h3>
                     <p className="text-content-2 font-body leading-relaxed mb-5">{service.desc}</p>
@@ -554,7 +661,7 @@ const Home = ({ language }) => {
               ))}
             </motion.div>
           </div>
-        </section>
+        </motion.section>
 
         {/* ——— §3 Academic Activities ——— */}
         <section className="py-24 bg-ground">
@@ -567,7 +674,7 @@ const Home = ({ language }) => {
               className="mb-12 max-w-3xl"
             >
               <p className="section-label mb-4">{t.academic.label}</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">{t.academic.title}</h2>
+              <h2 className="text-3xl md:text-4xl font-display font-semibold mb-6">{t.academic.title}</h2>
               <p className="text-sm text-content-4 font-body leading-relaxed border-l-2 border-accent pl-4">
                 {t.academic.note}
               </p>
@@ -583,7 +690,7 @@ const Home = ({ language }) => {
               {t.academic.items.map((item) => {
                 const inner = (
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 py-6 md:items-baseline">
-                    <h3 className={`md:col-span-4 text-xl font-display font-bold ${item.url ? 'group-hover:text-accent transition-colors' : ''} text-content`}>
+                    <h3 className={`md:col-span-4 text-xl font-display font-semibold ${item.url ? 'group-hover:text-accent transition-colors' : ''} text-content`}>
                       {item.name}
                     </h3>
                     <p className="md:col-span-6 text-content-3 font-body text-base leading-relaxed">{item.desc}</p>
@@ -628,7 +735,7 @@ const Home = ({ language }) => {
               className="mb-16 max-w-3xl"
             >
               <p className="section-label mb-4">{t.credentials.label}</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold">{t.credentials.title}</h2>
+              <h2 className="text-3xl md:text-4xl font-display font-semibold">{t.credentials.title}</h2>
             </motion.div>
 
             {/* Stats — set like a data table in a paper */}
@@ -637,11 +744,14 @@ const Home = ({ language }) => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-100px' }}
+              ref={statsRef}
               className="grid grid-cols-2 md:grid-cols-4 border-y-2 border-line-strong divide-x divide-line mb-16"
             >
               {t.credentials.stats.map((s) => (
                 <motion.div key={s.label} variants={rise} className="py-10 px-6 text-center">
-                  <div className="text-4xl md:text-5xl font-display font-bold text-content mb-2">{s.number}</div>
+                  <div className="text-4xl md:text-5xl font-display font-semibold text-content mb-2">
+                    <Count progress={statsP} spec="0.05 1 0.45 0" target={s.number} still={reduce} />
+                  </div>
                   <div className="text-content-4 font-body text-sm leading-snug">{s.label}</div>
                 </motion.div>
               ))}
@@ -655,7 +765,7 @@ const Home = ({ language }) => {
               viewport={{ once: true }}
               className="max-w-4xl"
             >
-              <h3 className="text-2xl font-display font-bold mb-8">{t.credentials.highlights.title}</h3>
+              <h3 className="text-2xl font-display font-semibold mb-8">{t.credentials.highlights.title}</h3>
               <div className="grid md:grid-cols-2 gap-x-12 gap-y-5">
                 {t.credentials.highlights.items.map((item, index) => (
                   <div key={index} className="flex items-baseline">
@@ -676,7 +786,7 @@ const Home = ({ language }) => {
               <span className="block mb-8" aria-hidden="true">
                 <Monogram className="text-5xl" />
               </span>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-content mb-6 leading-snug">
+              <h2 className="text-3xl md:text-4xl font-display font-semibold text-content mb-6 leading-snug">
                 <span className="inline-block">{t.cta.titleLines[0]}</span>{' '}
                 <span className="inline-block">{t.cta.titleLines[1]}</span>
               </h2>

@@ -80,7 +80,7 @@ const Support = ({ language }) => {
               className="max-w-3xl"
             >
               <p className="section-label mb-6">{t.contact.title}</p>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold leading-snug mb-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-semibold leading-snug mb-6">
                 {t.title}
               </h1>
               <p className="text-lg text-content-3 font-body leading-relaxed">
@@ -113,7 +113,7 @@ const Support = ({ language }) => {
               <p className="section-label mb-6">{t.contact.email}</p>
               <a
                 href="mailto:hiroyuki.katoh.office@gmail.com"
-                className="link-editorial inline-block font-display font-bold text-xl sm:text-2xl break-all mb-4"
+                className="link-editorial inline-block font-display font-semibold text-xl sm:text-2xl break-all mb-4"
               >
                 hiroyuki.katoh.office@gmail.com
               </a>
@@ -135,7 +135,7 @@ const Support = ({ language }) => {
               <div className="flex items-center gap-4 mb-4">
                 <Monogram className="text-3xl" />
                 <div>
-                  <div className="font-display font-bold text-content">加藤裕幸事務所</div>
+                  <div className="font-display font-semibold text-content">加藤裕幸事務所</div>
                   <div className="text-sm text-content-4 font-body">Katoh Office</div>
                 </div>
               </div>
@@ -159,7 +159,7 @@ const Support = ({ language }) => {
               className="mb-12"
             >
               <p className="section-label mb-4">FAQ</p>
-              <h2 className="text-2xl md:text-3xl font-display font-bold">{t.faq.title}</h2>
+              <h2 className="text-2xl md:text-3xl font-display font-semibold">{t.faq.title}</h2>
             </motion.div>
 
             <motion.div
@@ -178,7 +178,7 @@ const Support = ({ language }) => {
                     {['i', 'ii', 'iii'][index]}.
                   </span>
                   <div>
-                    <h3 className="text-xl font-display font-bold text-content mb-3">{item.q}</h3>
+                    <h3 className="text-xl font-display font-semibold text-content mb-3">{item.q}</h3>
                     <p className="text-content-3 font-body leading-relaxed">{item.a}</p>
                   </div>
                 </motion.div>

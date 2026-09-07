@@ -253,7 +253,7 @@ const About = ({ language }) => {
               className="max-w-3xl"
             >
               <p className="section-label mb-6">{t.hero.subtitle}</p>
-              <h1 className="text-4xl md:text-5xl font-display font-bold leading-[1.2]">
+              <h1 className="text-4xl md:text-5xl font-display font-semibold leading-[1.2]">
                 <span className="inline-block">{t.hero.title}</span>
               </h1>
             </motion.div>
@@ -299,7 +299,7 @@ const About = ({ language }) => {
                 className="md:col-span-8"
               >
                 <p className="section-label mb-4">§1</p>
-                <h2 className="text-3xl md:text-4xl font-display font-bold mb-8">{t.bio.title}</h2>
+                <h2 className="text-3xl md:text-4xl font-display font-semibold mb-8">{t.bio.title}</h2>
                 <div className="space-y-5 max-w-2xl">
                   {t.bio.content.map((paragraph, index) => (
                     <p key={index} className="text-content-2 font-body text-lg leading-relaxed">
@@ -323,7 +323,7 @@ const About = ({ language }) => {
               className="mb-12 max-w-3xl"
             >
               <p className="section-label mb-4">§2</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold">{t.education.title}</h2>
+              <h2 className="text-3xl md:text-4xl font-display font-semibold">{t.education.title}</h2>
             </motion.div>
 
             <motion.div
@@ -340,7 +340,7 @@ const About = ({ language }) => {
                   className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 py-6 md:items-baseline"
                 >
                   <p className="md:col-span-3 font-display italic text-2xl text-accent">{item.year}</p>
-                  <h3 className="md:col-span-4 text-xl font-display font-bold text-content">{item.title}</h3>
+                  <h3 className="md:col-span-4 text-xl font-display font-semibold text-content">{item.title}</h3>
                   <p className="md:col-span-5 text-content-3 font-body text-base leading-relaxed">{item.desc}</p>
                 </motion.div>
               ))}
@@ -359,7 +359,7 @@ const About = ({ language }) => {
               className="mb-12 max-w-3xl"
             >
               <p className="section-label mb-4">§3</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold">{t.experience.title}</h2>
+              <h2 className="text-3xl md:text-4xl font-display font-semibold">{t.experience.title}</h2>
             </motion.div>
 
             <motion.div
@@ -376,7 +376,7 @@ const About = ({ language }) => {
                   className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 py-6 md:items-baseline"
                 >
                   <p className="md:col-span-3 font-display italic text-2xl text-accent">{item.period}</p>
-                  <h3 className="md:col-span-4 text-xl font-display font-bold text-content">{item.title}</h3>
+                  <h3 className="md:col-span-4 text-xl font-display font-semibold text-content">{item.title}</h3>
                   <p className="md:col-span-5 text-content-3 font-body text-base leading-relaxed">{item.role}</p>
                 </motion.div>
               ))}
@@ -395,7 +395,7 @@ const About = ({ language }) => {
               className="mb-16 max-w-3xl"
             >
               <p className="section-label mb-4">§4</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold">{t.expertise.title}</h2>
+              <h2 className="text-3xl md:text-4xl font-display font-semibold">{t.expertise.title}</h2>
             </motion.div>
 
             <motion.ol
@@ -411,7 +411,7 @@ const About = ({ language }) => {
                     {['i', 'ii', 'iii', 'iv'][index]}.
                   </span>
                   <div>
-                    <h3 className="text-2xl font-display font-bold mb-2 text-content">{area.name}</h3>
+                    <h3 className="text-2xl font-display font-semibold mb-2 text-content">{area.name}</h3>
                     <p className="text-content-3 font-body leading-relaxed">{area.desc}</p>
                   </div>
                 </motion.li>
@@ -426,7 +426,7 @@ const About = ({ language }) => {
           <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div variants={rise} initial="hidden" whileInView="visible" viewport={{ once: true }} className="mb-12">
               <p className="font-body text-sm font-bold tracking-label uppercase text-accent mb-4">§5 {t.philosophy.subtitle}</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-content">
+              <h2 className="text-3xl md:text-4xl font-display font-semibold text-content">
                 <span className="inline-block">{t.philosophy.title}</span>
               </h2>
             </motion.div>
@@ -458,7 +458,7 @@ const About = ({ language }) => {
               className="mb-12 max-w-3xl"
             >
               <p className="section-label mb-4">§6</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold">{t.societies.title}</h2>
+              <h2 className="text-3xl md:text-4xl font-display font-semibold">{t.societies.title}</h2>
             </motion.div>
 
             <motion.div

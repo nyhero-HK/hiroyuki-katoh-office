@@ -45,33 +45,33 @@
    Values are "R G B" triplets so Tailwind's /opacity modifiers still work.
    —————————————————————————————————————————————————————————————— */
 :root {
-  --ground:       15  18  20;   /* page */
-  --surface:      23  28  31;   /* lifted band, panels */
-  --surface-2:    20  25  28;   /* close, footer */
-  --line:         44  51  57;   /* hairlines, dividers */
-  --line-strong: 242 241 237;   /* structural rules, stat bands */
-  --content:     242 241 237;   /* headings */
-  --content-2:   214 211 204;   /* body */
-  --content-3:   170 166 158;   /* secondary */
-  --content-4:   138 134 126;   /* captions, muted */
+  --ground:       12  18  32;   /* page — deep navy */
+  --surface:      20  28  46;   /* lifted band, panels */
+  --surface-2:    16  23  38;   /* close, footer */
+  --line:         38  49  74;   /* hairlines, dividers */
+  --line-strong: 240 241 238;   /* structural rules, stat bands */
+  --content:     240 241 238;   /* headings */
+  --content-2:   205 210 220;   /* body */
+  --content-3:   160 168 184;   /* secondary */
+  --content-4:   131 140 158;   /* captions, muted */
   --accent:      226 175 106;   /* 琥珀 */
   --accent-soft: 240 205 158;
-  --accent-ink:   15  18  20;   /* text on an accent fill */
+  --accent-ink:   12  18  32;   /* text on an accent fill */
 }
 
 .on-plate {
-  --ground:      242 241 237;
+  --ground:      237 239 243;   /* the lit band — cool paper, not warm bone */
   --surface:     255 255 255;
-  --surface-2:   236 234 229;
-  --line:        207 204 196;
-  --line-strong:  15  18  20;
-  --content:      15  18  20;
-  --content-2:    45  50  54;
-  --content-3:    82  88  93;
-  --content-4:    97 102 107;
-  --accent:      138  90  20;
-  --accent-soft: 106  68  14;
-  --accent-ink:  242 241 237;
+  --surface-2:   226 230 237;
+  --line:        199 206 218;
+  --line-strong:  12  18  32;
+  --content:      12  18  32;
+  --content-2:    40  50  70;
+  --content-3:    78  90 112;
+  --content-4:    94 105 126;
+  --accent:      133  86  16;
+  --accent-soft: 102  66  12;
+  --accent-ink:  240 241 238;
 }
 
 @tailwind base;

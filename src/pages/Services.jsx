@@ -419,7 +419,7 @@ const Services = ({ language }) => {
               className="max-w-3xl"
             >
               <p className="section-label mb-6">{t.hero.subtitle}</p>
-              <h1 className="text-4xl md:text-5xl font-display font-bold leading-[1.2] mb-8">
+              <h1 className="text-4xl md:text-5xl font-display font-semibold leading-[1.2] mb-8">
                 <span className="inline-block">{t.hero.title}</span>
               </h1>
               <p className="text-lg text-content-3 font-body leading-relaxed">
@@ -449,13 +449,13 @@ const Services = ({ language }) => {
               >
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
                   <div className="md:col-span-2">
-                    <span className="font-display italic text-5xl md:text-6xl text-accent leading-none select-none" aria-hidden="true">
+                    <span className="font-display italic font-normal text-5xl md:text-6xl text-accent leading-none select-none" aria-hidden="true">
                       {service.numeral}.
                     </span>
                   </div>
                   <div className="md:col-span-10 max-w-3xl">
                     <p className="section-label mb-4">§{serviceIndex + 1} {service.subtitle}</p>
-                    <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">{service.title}</h2>
+                    <h2 className="text-3xl md:text-4xl font-display font-semibold mb-6">{service.title}</h2>
                     <p className="text-lg text-content-3 font-body leading-relaxed">{service.description}</p>
                   </div>
                 </div>
@@ -471,7 +471,7 @@ const Services = ({ language }) => {
               >
                 {service.features.map((feature, index) => (
                   <motion.div key={feature.name} variants={rise} className="rule-fine pt-5">
-                    <h3 className="text-2xl font-display font-bold text-content mb-5">
+                    <h3 className="text-2xl font-display font-semibold text-content mb-5">
                       <span className="font-display italic text-content-4 mr-3 select-none" aria-hidden="true">
                         {['i', 'ii', 'iii', 'iv'][index]}.
                       </span>
@@ -498,7 +498,7 @@ const Services = ({ language }) => {
                 className="grid grid-cols-1 md:grid-cols-12 border-y-2 border-line-strong md:divide-x md:divide-line"
               >
                 <div className="md:col-span-4 py-8 md:pr-8">
-                  <div className="text-2xl md:text-3xl font-display font-bold text-content">{service.pricing.type}</div>
+                  <div className="text-2xl md:text-3xl font-display font-semibold text-content">{service.pricing.type}</div>
                 </div>
                 <div className="md:col-span-8 py-2 pb-8 md:py-8 md:pl-8">
                   <p className="text-content-3 font-body text-base leading-relaxed">{service.pricing.note}</p>
@@ -519,7 +519,7 @@ const Services = ({ language }) => {
               className="mb-16 max-w-3xl"
             >
               <p className="section-label mb-4">§4</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold">{t.process.title}</h2>
+              <h2 className="text-3xl md:text-4xl font-display font-semibold">{t.process.title}</h2>
             </motion.div>
 
             <motion.ol
@@ -534,7 +534,7 @@ const Services = ({ language }) => {
                   <div className="font-display italic text-3xl text-content-4 mb-4 select-none" aria-hidden="true">
                     {step.number}
                   </div>
-                  <h3 className="text-xl font-display font-bold text-content mb-3">{step.title}</h3>
+                  <h3 className="text-xl font-display font-semibold text-content mb-3">{step.title}</h3>
                   <p className="text-content-3 font-body text-base leading-relaxed">{step.desc}</p>
                 </motion.li>
               ))}
@@ -553,7 +553,7 @@ const Services = ({ language }) => {
               className="mb-16 max-w-3xl"
             >
               <p className="section-label mb-4">§5</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold">{t.why.title}</h2>
+              <h2 className="text-3xl md:text-4xl font-display font-semibold">{t.why.title}</h2>
             </motion.div>
 
             <motion.div
@@ -567,7 +567,7 @@ const Services = ({ language }) => {
                 <motion.div key={reason.title} variants={rise} className="flex items-baseline">
                   <span className="shrink-0 text-accent font-display mr-3 select-none" aria-hidden="true">¶</span>
                   <div>
-                    <h3 className="text-xl font-display font-bold text-content mb-2">{reason.title}</h3>
+                    <h3 className="text-xl font-display font-semibold text-content mb-2">{reason.title}</h3>
                     <p className="text-content-3 font-body text-base leading-relaxed">{reason.desc}</p>
                   </div>
                 </motion.div>
@@ -584,7 +584,7 @@ const Services = ({ language }) => {
               <span className="block mb-8" aria-hidden="true">
                 <Monogram dark className="text-5xl" />
               </span>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-content mb-6 leading-snug">
+              <h2 className="text-3xl md:text-4xl font-display font-semibold text-content mb-6 leading-snug">
                 <span className="inline-block">{t.cta.titleLines[0]}</span>
                 {t.cta.titleLines[1] ? (
                   <span className="inline-block">{'\u00A0'}{t.cta.titleLines[1]}</span>

@@ -1,3 +1,4 @@
+import { motion, useScroll, useSpring } from 'framer-motion';
 import { Link, NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import Monogram from './Monogram';
@@ -44,8 +45,18 @@ const Navbar = ({ language, setLanguage }) => {
       isActive ? 'text-accent border-accent' : 'text-content-2 border-transparent hover:text-content'
     }`;
 
+  // Reading position, drawn on the one element that is always on screen.
+  // Spring-smoothed so a trackpad flick reads as travel rather than a jump.
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 });
+
   return (
     <nav className="fixed w-full z-50 bg-ground">
+      <motion.div
+        style={{ scaleX: progress }}
+        className="absolute bottom-0 left-0 right-0 h-[2px] bg-accent origin-left motion-reduce:hidden"
+        aria-hidden="true"
+      />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Wordmark — set like a journal masthead */}
@@ -53,7 +64,7 @@ const Navbar = ({ language, setLanguage }) => {
             <Monogram className="text-[2rem] shrink-0 group-hover:opacity-80 transition-opacity" />
             <span className="w-px h-10 bg-line shrink-0" aria-hidden="true"></span>
             <span className="flex flex-col">
-              <span className="font-display font-bold text-2xl text-content leading-tight group-hover:text-accent transition-colors">
+              <span className="font-display font-semibold text-2xl text-content leading-tight group-hover:text-accent transition-colors">
                 加藤裕幸事務所
               </span>
               <span className="hidden sm:block text-[11px] text-content-4 font-body tracking-label uppercase">

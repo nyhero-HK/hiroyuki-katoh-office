@@ -8,7 +8,7 @@
 const Monogram = ({ className = '', dark = false }) => (
   <span
     aria-hidden="true"
-    className={`font-display font-bold leading-none tracking-[-0.04em] select-none text-content ${className}`}
+    className={`font-display font-normal leading-none tracking-[-0.04em] select-none text-content ${className}`}
   >
     HK<span className="text-accent">.</span>
   </span>

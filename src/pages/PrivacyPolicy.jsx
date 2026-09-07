@@ -133,7 +133,7 @@ const PrivacyPolicy = ({ language }) => {
             <p className="section-label mb-6">
               {language === 'ja' ? '加藤事務所 — 公式文書' : 'Katoh Office — Official Document'}
             </p>
-            <h1 className="text-3xl md:text-4xl font-display font-bold leading-snug mb-5">
+            <h1 className="text-3xl md:text-4xl font-display font-semibold leading-snug mb-5">
               {t.title}
             </h1>
             <p className="text-sm text-content-4 font-body">{t.lastUpdated}</p>
@@ -144,7 +144,7 @@ const PrivacyPolicy = ({ language }) => {
           <div className="divide-y divide-line">
             {t.sections.map((section, index) => (
               <article key={index} className="py-10 first:pt-0 last:pb-0">
-                <h2 className="text-2xl font-display font-bold text-content mb-5">
+                <h2 className="text-2xl font-display font-semibold text-content mb-5">
                   {section.title}
                 </h2>
                 <div className="text-content-2 font-body text-base whitespace-pre-line leading-relaxed">
