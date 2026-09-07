@@ -380,17 +380,17 @@ const Home = ({ language }) => {
   // notch without slowing the assembly down, and the heavier overlap keeps
   // something in motion at every point instead of four separate arrivals.
   const CARDS = [
-    { from: 0.04, to: 0.52, dx: -300, dy: -120, rotate: -5 },
-    { from: 0.16, to: 0.64, dx: 300, dy: -96, rotate: 4.5 },
-    { from: 0.28, to: 0.76, dx: -270, dy: 145, rotate: 4 },
-    { from: 0.40, to: 0.88, dx: 290, dy: 160, rotate: -4.5 },
+    { from: 0.06, to: 0.56, dx: -300, dy: -120, rotate: -5 },
+    { from: 0.18, to: 0.68, dx: 300, dy: -96, rotate: 4.5 },
+    { from: 0.30, to: 0.80, dx: -270, dy: 145, rotate: 4 },
+    { from: 0.42, to: 0.92, dx: 290, dy: 160, rotate: -4.5 },
   ];
   // The link belongs WITH the cards. Left in flow it sat 1.71 viewports below
   // the landing, because the assembled grid is centred in a full-height sticky
   // stage that must then scroll past before anything else appears. Cueing it
   // inside the stage puts it under the grid where it is expected, and spends
   // the tail of the act on something instead of leaving dead scroll.
-  const LINK_CUE = '0.80 1 0.10 0';
+  const LINK_CUE = '0.84 1 0.10 0';
 
   const statsRef = useRef(null);
   const { scrollYProgress: statsP } = useScroll({
@@ -400,7 +400,7 @@ const Home = ({ language }) => {
 
   const { scrollYProgress: plateRaw } = useScroll({
     target: plateRef,
-    offset: ['start end', 'start 35%'],
+    offset: ['start end', 'start 86%'],
   });
   const plateP = useLerped(plateRaw, { off: reduce });
   // the plate does not fade in; it is uncovered, which is a change of state
@@ -478,7 +478,7 @@ const Home = ({ language }) => {
         </section>
 
         {/* ——— §1 Patient Education Platforms ——— */}
-        <section className="py-24 bg-ground">
+        <section className={pinned ? 'pt-24 pb-0 bg-ground' : 'py-24 bg-ground'}>
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               variants={rise}
@@ -562,7 +562,7 @@ const Home = ({ language }) => {
                 thumb. Everything is in the DOM either way, so the reading order
                 and the accessibility tree do not change. */}
             {pinned ? (
-              <div ref={pinRef} className="relative h-[215vh] mb-14">
+              <div ref={pinRef} className="relative h-[240vh]">
                 <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
                   <ol className="grid grid-cols-2 gap-6 w-full max-w-5xl mx-auto list-none">
                     {t.projects.features.map((feature, index) => (
