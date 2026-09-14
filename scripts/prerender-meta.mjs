@@ -96,7 +96,11 @@ const escape = (s) =>
 const template = readFileSync(join(dist, 'index.html'), 'utf8');
 
 const headFor = (route, meta) => {
-  const url = `${SITE}${route === '/' ? '/' : route}`;
+  // Cloudflare Pages serves dist/<route>/index.html at "/<route>/" and 308s the
+  // slashless form to it. og:url and canonical must name the URL that actually
+  // answers 200, or the crawler sees the address it fetched and the address the
+  // page claims disagree — which is what made LinkedIn give up the first time.
+  const url = `${SITE}${route === '/' ? '/' : `${route}/`}`;
   const image = `${SITE}${meta.image}`;
   return `    <title>${escape(meta.title)}</title>
     <meta name="description" content="${escape(meta.description)}" />
