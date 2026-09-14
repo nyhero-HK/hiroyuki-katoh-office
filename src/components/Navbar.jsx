@@ -11,6 +11,7 @@ const Navbar = ({ language, setLanguage }) => {
       home: 'ホーム',
       about: '事務所について',
       services: 'サービス',
+      advisory: 'アドバイザリー',
       education: '患者教育',
       contact: 'お問い合わせ',
     },
@@ -18,6 +19,7 @@ const Navbar = ({ language, setLanguage }) => {
       home: 'Home',
       about: 'About',
       services: 'Services',
+      advisory: 'Advisory',
       education: 'Patient Education',
       contact: 'Contact',
     },
@@ -29,6 +31,7 @@ const Navbar = ({ language, setLanguage }) => {
     { to: '/', label: t.home, end: true },
     { to: '/about', label: t.about },
     { to: '/services', label: t.services },
+    { to: '/advisory', label: t.advisory },
     { to: '/patient-education', label: t.education },
     { to: '/support', label: t.contact },
   ];

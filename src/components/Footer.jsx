@@ -19,6 +19,7 @@ const Footer = ({ language }) => {
         home: 'ホーム',
         about: '事務所について',
         services: 'サービス',
+        advisory: 'アドバイザリー',
         education: '患者教育',
       },
     },
@@ -38,6 +39,7 @@ const Footer = ({ language }) => {
         home: 'Home',
         about: 'About',
         services: 'Services',
+        advisory: 'Advisory',
         education: 'Patient Education',
       },
     },
@@ -90,6 +92,7 @@ const Footer = ({ language }) => {
               <li><Link to="/" className="text-content-3 hover:text-content transition-colors">{t.nav.home}</Link></li>
               <li><Link to="/about" className="text-content-3 hover:text-content transition-colors">{t.nav.about}</Link></li>
               <li><Link to="/services" className="text-content-3 hover:text-content transition-colors">{t.nav.services}</Link></li>
+              <li><Link to="/advisory" className="text-content-3 hover:text-content transition-colors">{t.nav.advisory}</Link></li>
               <li><Link to="/patient-education" className="text-content-3 hover:text-content transition-colors">{t.nav.education}</Link></li>
               <li><Link to="/support" className="text-content-3 hover:text-content transition-colors">{t.support}</Link></li>
             </ul>
