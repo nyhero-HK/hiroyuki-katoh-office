@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import hiroPhoto from '../assets/Katoh2.jpeg';
+import asumoMark from '../assets/asumo-mark.svg';
 import SEO from '../components/SEO';
 import Monogram from '../components/Monogram';
 import { Assemble, Count, Cue, Kinetic, Plane } from '../scroll/devices';
@@ -58,6 +59,13 @@ const Home = ({ language }) => {
             ],
           },
         ],
+        asumo: {
+          name: 'あすもおでかけ',
+          url: 'https://asumo-odekake.jp/',
+          tagline: '50歳からの健康長寿サイト',
+          desc: 'あすも「行ける」頭と身体を保つ。病気になる前の方へ、動く・食べる・眠る・頭とつながり・見分けるの5つの柱で、長く元気に動き冴えた頭で暮らすための確かな情報を届けます。',
+          cta: 'サイトを見る',
+        },
         youtube: {
           name: 'YouTube — @no-porosis',
           url: 'https://www.youtube.com/@no-porosis',
@@ -204,6 +212,13 @@ const Home = ({ language }) => {
             ],
           },
         ],
+        asumo: {
+          name: 'Asumo Odekake',
+          url: 'https://asumo-odekake.jp/',
+          tagline: 'Healthy longevity from 50',
+          desc: 'Staying able to go out tomorrow, too — a Japanese-language site for people 50 and over, built on five pillars (move, eat, sleep, mind & connection, and telling good health information from bad) to keep body and mind working for the long run.',
+          cta: 'Visit the site',
+        },
         youtube: {
           name: 'YouTube — @no-porosis',
           url: 'https://www.youtube.com/@no-porosis',
@@ -528,6 +543,30 @@ const Home = ({ language }) => {
                 </motion.a>
               ))}
             </motion.div>
+
+            {/* あすもおでかけ row — healthy-longevity site, deliberately not one of the patient-education cards */}
+            <motion.a
+              variants={rise}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              href={t.projects.asumo.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group panel panel-hover flex flex-col sm:flex-row sm:items-center gap-6 p-8 mb-8"
+            >
+              <img src={asumoMark} alt="" aria-hidden="true" className="shrink-0 w-14 h-14" />
+              <div className="flex-grow">
+                <h3 className="text-xl font-display font-semibold text-content group-hover:text-accent transition-colors mb-1">
+                  {t.projects.asumo.name}
+                </h3>
+                <p className="text-sm font-body font-bold text-accent tracking-wide mb-2">{t.projects.asumo.tagline}</p>
+                <p className="text-content-3 font-body text-base leading-relaxed">{t.projects.asumo.desc}</p>
+              </div>
+              <span className="shrink-0 font-body font-bold text-sm text-accent group-hover:text-accent whitespace-nowrap">
+                {t.projects.asumo.cta} ↗
+              </span>
+            </motion.a>
 
             {/* YouTube row */}
             <motion.a

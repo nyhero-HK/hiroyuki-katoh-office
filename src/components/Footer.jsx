@@ -51,6 +51,7 @@ const Footer = ({ language }) => {
     { name: 'SCS for LCS', url: 'https://scs-for-lcs.com/' },
     { name: 'NO-POROSIS', url: 'https://no-porosis.com/' },
     { name: 'porosis-care', url: 'https://porosis-care.com/' },
+    { name: 'あすもおでかけ', url: 'https://asumo-odekake.jp/' },
     { name: 'YouTube @no-porosis', url: 'https://www.youtube.com/@no-porosis' },
   ];
 
