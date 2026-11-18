@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>東海大学スポーツメディカルサポート 予約・コンディショニング 試作デザイン</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/barlow-condensed-500.woff2) format('woff2')}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/barlow-condensed-600.woff2) format('woff2')}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/barlow-condensed-700.woff2) format('woff2')}
+:root{
+  --blue:#004ea2; --blue-d:#00367a; --blue-l:#e6eef8; --sky:#32bdeb;
+  --ink:#0d1b2e; --ink2:#4a5a70; --ink3:#8792a2;
+  --paper:#f3f0e8; --card:#ffffff; --line:#ddd8cb; --line2:#ebe7dc;
+  --coral:#e2562b; --coral-l:#fdeee8; --green:#1f8a5b; --green-l:#e5f4ec;
+  --night:#111c33; --night2:#22304f; --gold:#c9a13b;
+  --jp:'Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic','Noto Sans JP',sans-serif;
+  --num:'Barlow Condensed','Hiragino Sans','Yu Gothic',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--jp);color:var(--ink);background:var(--paper);line-height:1.6;
+  word-break:keep-all;overflow-wrap:break-word;line-break:strict;font-feature-settings:"palt"}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+input,textarea{font:inherit;color:inherit}
+.num{font-family:var(--num);font-weight:600;letter-spacing:.01em}
+
+/* ───── prototype shell ───── */
+.shell{position:sticky;top:0;z-index:50;background:var(--ink);color:#fff;display:flex;align-items:center;gap:20px;padding:10px 24px;flex-wrap:wrap}
+.shell h1{font-size:14px;font-weight:700;letter-spacing:.04em;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.shell h1 b{font-family:var(--num);font-size:17px;letter-spacing:.14em;color:var(--sky);font-weight:600}
+.shell .proto{font-size:11px;border:1px dashed #6c7c96;color:#b8c4d6;border-radius:99px;padding:1px 10px}
+.roles{display:flex;gap:4px;margin-left:auto;background:#1e2d47;border-radius:10px;padding:4px}
+.roles button{font-size:13px;font-weight:700;color:#aab7ca;padding:7px 16px;border-radius:7px;white-space:nowrap}
+.roles button.on{background:#fff;color:var(--ink)}
+.view{display:none}
+.view.on{display:block}
+.stage{display:grid;grid-template-columns:minmax(0,430px) minmax(0,1fr);min-width:0;gap:48px;max-width:1180px;margin:0 auto;padding:36px 24px 60px;align-items:start}
+
+/* notes column */
+.notes h2{font-size:26px;font-weight:900;line-height:1.35;margin-bottom:6px}
+.notes .lead{color:var(--ink2);font-size:15px;margin-bottom:22px;max-width:36em}
+.jump{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:26px}
+.jump button{font-size:13px;font-weight:700;border:1.5px solid var(--ink);border-radius:99px;padding:5px 14px;background:transparent}
+.jump button:hover,.jump button.on{background:var(--ink);color:#fff}
+.nlist{list-style:none;display:grid;gap:10px;max-width:40em}
+.nlist li{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-size:14px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;align-items:start}
+.nlist li p{color:var(--ink2);grid-column:2}
+.nlist li strong{font-weight:700}
+.src{font-size:11px;font-weight:700;border-radius:5px;padding:2px 7px;white-space:nowrap;margin-top:2px}
+.src.a{background:var(--blue-l);color:var(--blue)}
+.src.b{background:var(--green-l);color:var(--green)}
+.src.c{background:#f1ead2;color:#7a5c0b}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--ink2);margin:0 0 14px}
+.legend span{display:flex;align-items:center;gap:6px}
+
+/* ───── phone ───── */
+.phone{width:100%;max-width:400px;height:820px;background:#fff;border-radius:42px;border:10px solid var(--ink);box-shadow:0 30px 60px -20px rgba(13,27,46,.45);overflow:hidden;position:relative;display:flex;flex-direction:column;margin:0 auto}
+.scr{display:none;flex:1;overflow-y:auto;flex-direction:column;background:var(--paper)}
+.scr.on{display:flex}
+.scr>*{flex-shrink:0}
+.tabbar{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);background:#fff;padding:6px 6px 10px}
+.tabbar button{display:grid;justify-items:center;gap:2px;font-size:10.5px;font-weight:700;color:var(--ink3);padding:4px 0}
+.tabbar button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tabbar button.on{color:var(--blue)}
+.tabbar.hide{display:none}
+
+.top{background:var(--blue);color:#fff;padding:18px 20px 22px;position:relative;overflow:hidden}
+.top::after{content:"";position:absolute;right:-40px;top:-30px;width:220px;height:220px;
+  background:repeating-linear-gradient(115deg,transparent 0 16px,rgba(255,255,255,.08) 16px 20px);transform:rotate(8deg);pointer-events:none}
+.top .brand{font-family:var(--num);font-size:12px;letter-spacing:.2em;opacity:.8}
+.top h3{font-size:20px;font-weight:900;margin-top:2px}
+.top .sub{font-size:12.5px;opacity:.85}
+.bar{background:#fff;border-bottom:1px solid var(--line);padding:14px 18px;display:flex;align-items:center;gap:10px}
+.bar h3{font-size:17px;font-weight:900}
+.bar .back{font-size:20px;line-height:1;padding:0 6px 2px 0;color:var(--blue)}
+.pad{padding:16px 16px 24px;display:grid;gap:14px;align-content:start}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px}
+.lab{font-family:var(--num);font-size:12px;letter-spacing:.16em;color:var(--ink3);font-weight:600}
+.ph{font-size:10.5px;font-weight:700;border:1px dashed var(--ink3);color:var(--ink2);border-radius:99px;padding:0 8px;white-space:nowrap;background:#fff}
+.btn{display:block;width:100%;text-align:center;background:var(--blue);color:#fff;font-weight:700;font-size:16px;border-radius:14px;padding:14px}
+.btn.ghost{background:#fff;color:var(--blue);border:1.5px solid var(--blue)}
+.btn.sm{font-size:13.5px;padding:8px 10px;border-radius:10px}
+.btn.warn{background:#fff;color:var(--coral);border:1.5px solid var(--coral)}
+.btn[disabled]{background:#c9cfd8;cursor:not-allowed}
+
+/* login */
+.login{background:var(--blue);color:#fff;justify-content:flex-end;position:relative}
+.login::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,transparent 0 34px,rgba(255,255,255,.06) 34px 40px)}
+.login .hero{position:relative;padding:0 26px 26px}
+.login .hero .en{font-family:var(--num);font-size:46px;line-height:.95;font-weight:700;letter-spacing:.02em}
+.login .hero .en em{font-style:normal;color:var(--sky)}
+.login .hero p{font-size:14px;margin-top:12px;opacity:.9}
+.login form{position:relative;background:#fff;color:var(--ink);border-radius:26px 26px 0 0;padding:24px 22px 26px;display:grid;gap:12px}
+.fld label{font-size:12.5px;font-weight:700;color:var(--ink2);display:block;margin-bottom:4px}
+.fld input,.fld textarea{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;font-size:16px;background:#fbfaf6}
+.fine{font-size:12px;color:var(--ink3)}
+
+/* home */
+.next{background:var(--ink);color:#fff;border-radius:18px;padding:16px 18px;margin:-34px 16px 0;position:relative;z-index:2;box-shadow:0 14px 28px -14px rgba(13,27,46,.6)}
+.next .lab{color:var(--sky)}
+.next .when{display:flex;align-items:baseline;gap:10px;margin:2px 0 4px}
+.next .when .d{font-family:var(--num);font-size:44px;line-height:1;font-weight:700}
+.next .when .w{font-family:var(--num);font-size:18px;letter-spacing:.1em;color:var(--sky)}
+.next .when .t{font-family:var(--num);font-size:30px;margin-left:auto}
+.next .meta{font-size:13px;color:#c5cfdd;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.next .acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.next .acts button{font-size:13.5px;font-weight:700;border:1px solid #47577a;border-radius:10px;padding:8px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;text-align:left;display:grid;gap:6px;min-height:104px;align-content:space-between}
+.tile.main{grid-column:1/-1;background:var(--blue);color:#fff;border-color:var(--blue);grid-template-columns:1fr auto;align-items:center;min-height:0;padding:18px}
+.tile.main b{font-size:19px;font-weight:900}
+.tile.main small{display:block;font-size:12.5px;color:#fff;opacity:.85;font-weight:500}
+.tile.main .go{font-family:var(--num);font-size:30px}
+.tile b{font-size:15.5px;font-weight:900;display:block}
+.tile small{font-size:12px;color:var(--ink2);display:block}
+.tile svg{width:26px;height:26px;stroke:var(--blue);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.tile.off{background:transparent;border-style:dashed}
+.tile .ph{justify-self:start}
+.tile.off b{color:var(--ink2)}
+.news{display:grid;gap:0}
+.news a{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line2);font-size:13.5px;color:inherit;text-decoration:none}
+.news a:first-of-type{border-top:0}
+.news time{font-family:var(--num);color:var(--ink3);font-size:14px}
+.sponsor{border:1px dashed var(--ink3);border-radius:12px;padding:12px;text-align:center;font-size:12px;color:var(--ink2)}
+
+/* booking */
+.steps{display:flex;gap:6px;font-size:11.5px;font-weight:700;color:var(--ink3)}
+.steps span{flex:1;border-top:3px solid var(--line);padding-top:4px}
+.steps span.on{border-color:var(--blue);color:var(--blue)}
+.h4{font-size:14px;font-weight:900;display:flex;align-items:center;gap:8px}
+.h4 i{font-family:var(--num);font-style:normal;background:var(--ink);color:#fff;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:13px}
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.menu button{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;text-align:left}
+.menu button b{font-size:14.5px;display:block}
+.menu button small{font-size:11.5px;color:var(--ink2)}
+.menu button.on{border-color:var(--blue);background:var(--blue-l)}
+.dates{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.dates button{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:8px 4px;display:grid;justify-items:center}
+.dates .m{font-family:var(--num);font-size:24px;line-height:1.05;font-weight:700}
+.dates .w{font-size:11px;color:var(--ink2);font-weight:700}
+.dates .a{font-size:11.5px;font-weight:700;margin-top:3px}
+.dates button.on{border-color:var(--blue);background:var(--blue);color:#fff}
+.dates button.on .w{color:#cfe0f5}
+.a.ok{color:var(--green)} .a.few{color:var(--coral)} .a.no{color:var(--ink3)}
+.dates button.on .a{color:#fff}
+.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.slots button{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:9px 4px;display:grid;justify-items:center}
+.slots .t{font-family:var(--num);font-size:22px;line-height:1.1;font-weight:600}
+.slots .s{font-size:11.5px;font-weight:700;color:var(--green)}
+.slots button.x{background:transparent;border-style:dashed;color:var(--ink3);cursor:not-allowed}
+.slots button.x .s{color:var(--ink3)}
+.slots button.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.slots button.on .s{color:#fff}
+.sticky{position:sticky;bottom:0;background:linear-gradient(transparent,var(--paper) 30%);padding:18px 16px 14px;margin-top:auto}
+.banner{background:var(--coral-l);border:1px solid #f3c4b3;color:#8f2f10;border-radius:12px;padding:10px 12px;font-size:13px;font-weight:700}
+
+/* confirm */
+.sum{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:14px}
+.sum dt{color:var(--ink3);font-weight:700;font-size:12.5px;padding-top:2px}
+.sum dd{font-weight:700}
+.sum dd .num{font-size:22px}
+.kind{display:grid;gap:8px}
+.kind button{text-align:left;border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff;display:grid;grid-template-columns:auto 1fr;gap:2px 12px;align-items:start}
+.kind .dot{width:20px;height:20px;border-radius:50%;border:2px solid var(--ink3);margin-top:3px;grid-row:1/3}
+.kind b{font-size:15.5px;font-weight:900}
+.kind small{font-size:12.5px;color:var(--ink2);line-height:1.55}
+.kind button.on{border-color:var(--blue);background:var(--blue-l)}
+.kind button.on .dot{border:6px solid var(--blue)}
+.kind button.sec.on{border-color:var(--night);background:var(--night);color:#fff}
+.kind button.sec.on small{color:#c5cfdd}
+.kind button.sec.on .dot{border:6px solid var(--sky)}
+.lock{display:inline-block;width:12px;height:12px;vertical-align:-1px}
+.lock svg{width:100%;height:100%;fill:currentColor}
+
+/* done */
+.done{align-items:center;justify-content:center;text-align:center;padding:30px 24px;gap:14px;background:#fff}
+.done .ring{width:84px;height:84px;border-radius:50%;background:var(--green-l);display:grid;place-items:center}
+.done .ring svg{width:40px;height:40px;stroke:var(--green);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.done h3{font-size:22px;font-weight:900}
+.done .big{font-family:var(--num);font-size:40px;font-weight:700;line-height:1.1}
+
+/* mine */
+.bk{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.bk .hd{display:flex;align-items:baseline;gap:10px;padding:14px 16px 4px}
+.bk .hd .d{font-family:var(--num);font-size:32px;font-weight:700;line-height:1}
+.bk .hd .w{font-family:var(--num);letter-spacing:.1em;color:var(--blue);font-size:15px}
+.bk .hd .t{font-family:var(--num);font-size:24px;margin-left:auto}
+.bk .bd{padding:0 16px 12px;font-size:13.5px;color:var(--ink2);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.bk .ft{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line2)}
+.bk .ft button{padding:11px;font-size:14px;font-weight:700;color:var(--blue)}
+.bk .ft button+button{border-left:1px solid var(--line2);color:var(--coral)}
+.bk.cx{opacity:.55}
+.chip{font-size:11.5px;font-weight:700;border-radius:99px;padding:1px 9px;white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
+.chip.n{background:var(--blue-l);color:var(--blue)}
+.chip.s{background:var(--night);color:#fff}
+.chip.c{background:#eee;color:#666}
+.chip.g{background:var(--green-l);color:var(--green)}
+.chip.w{background:var(--coral-l);color:var(--coral)}
+.empty{text-align:center;color:var(--ink3);font-size:14px;padding:30px 0}
+
+/* records */
+.seg{display:grid;grid-template-columns:1fr 1fr;background:#e7e2d5;border-radius:12px;padding:4px}
+.seg button{font-size:14px;font-weight:700;padding:8px;border-radius:9px;color:var(--ink2)}
+.seg button.on{background:#fff;color:var(--ink)}
+.stat{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center}
+.stat div{background:var(--paper);border-radius:10px;padding:8px 2px}
+.stat b{font-family:var(--num);font-size:22px;font-weight:600;display:block;line-height:1.1}
+.stat small{font-size:10.5px;color:var(--ink2);font-weight:700}
+.chart svg{width:100%;height:auto;display:block}
+.cleg{display:flex;gap:14px;font-size:11.5px;color:var(--ink2);flex-wrap:wrap;margin-top:6px}
+.cleg i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:4px;vertical-align:0}
+.err{background:var(--coral-l);border:1px solid var(--coral);color:#8f2f10;border-radius:12px;padding:10px 12px;font-size:13px;font-weight:700;display:none}
+.lv{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.lv button{border:1.5px solid var(--line);border-radius:10px;padding:8px 0;font-family:var(--num);font-size:20px;background:#fff}
+.lv button.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stepper{display:grid;grid-template-columns:40px 1fr 40px;align-items:center;border:1.5px solid var(--line);border-radius:12px;background:#fbfaf6;text-align:center}
+.stepper button{font-size:22px;padding:6px 0;color:var(--blue)}
+.stepper b{font-family:var(--num);font-size:24px;font-weight:600}
+.stepper b small{font-size:13px;color:var(--ink2);font-family:var(--jp);margin-left:2px}
+
+/* team */
+.tlist{display:grid;gap:8px}
+.trow{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:grid;grid-template-columns:64px 1fr auto;align-items:center;gap:10px}
+.trow .t{font-family:var(--num);font-size:26px;font-weight:600;line-height:1}
+.trow b{font-size:15.5px;display:block}
+.trow small{font-size:12px;color:var(--ink2)}
+.trow.cx b,.trow.cx .t{text-decoration:line-through;color:var(--ink3)}
+
+/* ───── coordinator ───── */
+.admin{display:grid;grid-template-columns:200px minmax(0,1fr);max-width:100vw;min-height:calc(100vh - 54px);background:#fff}
+.side{background:var(--ink);color:#c5cfdd;padding:22px 14px}
+.side .brand{font-family:var(--num);letter-spacing:.16em;color:var(--sky);font-size:13px;padding:0 10px}
+.side .who{font-size:13px;padding:2px 10px 18px;color:#fff;font-weight:700}
+.side nav{display:grid;gap:2px}
+.side nav button{text-align:left;padding:9px 10px;border-radius:9px;font-size:14px;font-weight:700;color:#c5cfdd;display:flex;justify-content:space-between;align-items:center;gap:6px}
+.side nav button.on{background:#fff;color:var(--ink)}
+.side nav button[disabled]{color:#6f7f9a;cursor:default}
+.side nav .ph{background:transparent;border-color:#56668a;color:#8d9cb6}
+.amain{padding:24px 28px 50px;min-width:0;background:var(--paper)}
+.ahd{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.ahd h2{font-size:22px;font-weight:900}
+.ahd .day{font-family:var(--num);font-size:40px;font-weight:700;line-height:1}
+.ahd .day small{font-size:17px;letter-spacing:.1em;color:var(--blue);margin-left:6px}
+.ahd .tools{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.tb{font-size:13.5px;font-weight:700;border:1.5px solid var(--ink);border-radius:10px;padding:7px 14px;background:#fff;white-space:nowrap}
+.tb.pri{background:var(--ink);color:#fff}
+.dsel{display:flex;gap:6px}
+.dsel button{font-family:var(--num);font-size:17px;font-weight:600;border:1.5px solid var(--line);background:#fff;border-radius:9px;padding:3px 12px}
+.dsel button.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 16px}
+.kpi b{font-family:var(--num);font-size:34px;font-weight:700;line-height:1.1;display:block}
+.kpi b small{font-size:16px;color:var(--ink3);font-weight:500}
+.kpi span{font-size:12.5px;font-weight:700;color:var(--ink2)}
+.kpi.sec{background:var(--night);color:#fff;border-color:var(--night)}
+.kpi.sec span{color:#c5cfdd}
+.acols{display:grid;grid-template-columns:minmax(0,1fr) 264px;gap:16px;align-items:start}
+.grid{background:#fff;border:1px solid var(--line);border-radius:14px;overflow-x:auto}
+.grid table{border-collapse:collapse;width:100%;min-width:736px;table-layout:fixed}
+.grid th{font-size:13px;font-weight:900;padding:10px 8px;border-bottom:2px solid var(--ink);text-align:left}
+.grid th small{display:block;font-weight:500;color:var(--ink2);font-size:11.5px}
+.grid th:first-child,.grid td:first-child{width:64px;text-align:center}
+.grid td{border-top:1px solid var(--line2);padding:4px;height:54px;vertical-align:top}
+.grid td:first-child{font-family:var(--num);font-size:19px;font-weight:600;vertical-align:middle;color:var(--ink2)}
+.cell{width:100%;height:100%;min-height:46px;text-align:left;border-radius:8px;padding:5px 8px;background:var(--blue-l);border-left:4px solid var(--blue);display:block}
+.cell b{font-size:13.5px;display:block;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cell small{font-size:11px;color:var(--ink2);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cell.s{background:var(--night);border-left-color:var(--sky);color:#fff}
+.cell.s small{color:#c5cfdd}
+.cell.sel{outline:3px solid var(--coral);outline-offset:1px}
+.cell.chg{position:relative}
+.cell.chg::after{content:"変更";position:absolute;right:5px;top:5px;font-size:10px;font-weight:700;background:var(--coral);color:#fff;border-radius:4px;padding:0 5px;line-height:1.6}
+.cell.free{background:transparent;border-left-color:transparent;border:1px dashed var(--line);color:var(--ink3);text-align:center;font-size:18px}
+.detail{min-width:0;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:12px;position:sticky;top:70px}
+.detail h3{font-size:18px;font-weight:900}
+.detail .acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.share{border-radius:10px;padding:10px 12px;font-size:13px;font-weight:700}
+.share.y{background:var(--blue-l);color:var(--blue-d)}
+.share.n{background:var(--night);color:#fff}
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-bottom:16px;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.flow div{padding:12px 16px;border-left:1px solid var(--line2);font-size:13px;color:var(--ink2)}
+.flow div:first-child{border-left:0}
+.flow div b{display:block;font-size:15px;color:var(--ink)}
+.flow div i{font-family:var(--num);font-style:normal;font-size:13px;letter-spacing:.14em;color:var(--ink3)}
+.flow div.on{background:var(--blue);color:#dbe7f6}
+.flow div.on b,.flow div.on i{color:#fff}
+.flow div.ok i{color:var(--green)}
+.otbl{background:#fff;border:1px solid var(--line);border-radius:14px;overflow-x:auto}
+.otbl table{border-collapse:collapse;width:100%;min-width:560px}
+.otbl th,.otbl td{padding:10px 14px;font-size:14px;text-align:right;border-top:1px solid var(--line2);white-space:nowrap}
+.otbl th{font-size:12.5px;color:var(--ink2);border-top:0;border-bottom:2px solid var(--ink)}
+.otbl th:first-child,.otbl td:first-child{text-align:left;font-weight:700}
+.otbl td.num{font-size:19px}
+.otbl tfoot td{background:var(--paper);font-weight:900;border-top:2px solid var(--ink)}
+.anote{font-size:12.5px;color:var(--ink2);margin-top:10px}
+
+@media (max-width:900px){
+  .stage{grid-template-columns:minmax(0,1fr);gap:28px;padding:20px 14px 40px}
+  .acols{grid-template-columns:1fr}
+  .detail{position:static}
+  .admin{grid-template-columns:minmax(0,1fr)}
+  .side{min-width:0}
+  .ahd .tools{margin-left:0}
+  .side{padding:12px}
+  .side nav{grid-auto-flow:column;grid-auto-columns:max-content;overflow-x:auto}
+  .side .who{padding-bottom:8px}
+  .kpis{grid-template-columns:1fr 1fr}
+  .amain{padding:16px 14px 40px}
+}
+@media (max-width:520px){
+  .shell{padding:8px 10px;gap:8px}
+  .shell h1{font-size:12px;white-space:nowrap}
+  .shell h1 b{font-size:13px;letter-spacing:.08em}
+  .shell h1 span{display:none}
+  .shell .proto{display:none}
+  .roles{margin-left:0;width:100%}
+  .roles button{flex:1;padding:6px 4px;font-size:12px}
+  .stage{padding:0 0 30px}
+  .phone{max-width:none;border:0;border-radius:0;box-shadow:none;height:calc(100svh - 84px)}
+  .notes{padding:0 16px}
+  .flow{grid-template-columns:1fr}
+  .flow div{border-left:0;border-top:1px solid var(--line2)}
+}
+</style>
+</head>
+<body>
+
+<header class="shell">
+  <h1><b>TOKAI SPORTS MEDICAL SUPPORT</b><span>予約・コンディショニング</span></h1>
+  <span class="proto">試作デザイン v1 ／ データはすべて架空</span>
+  <div class="roles" id="roles">
+    <button data-role="student" class="on">選手</button>
+    <button data-role="team">チームスタッフ</button>
+    <button data-role="coord">コーディネーター</button>
+  </div>
+</header>
+
+<!-- ═════════ 選手 ═════════ -->
+<section class="view on" id="v-student">
+ <div class="stage">
+  <div class="phone" id="phone">
+
+   <div class="scr login on" data-scr="login">
+     <div class="hero">
+       <div class="en">MEDICAL<br>SUPPORT<br><em>FOR ATHLETES</em></div>
+       <p>東海大学スポーツメディカルサポート</p>
+     </div>
+     <form onsubmit="return false">
+       <div class="fld"><label>学籍番号</label><input value="0AXX0000" inputmode="latin"></div>
+       <div class="fld"><label>大学のメールアドレス</label><input value="misaki.s@example.ac.jp" type="email"></div>
+       <button class="btn" data-go="home">確認コードを送る</button>
+       <p class="fine">大学メールに届く6桁のコードでログインします。<wbr>パスワードは不要です。</p>
+     </form>
+   </div>
+
+   <div class="scr" data-scr="home">
+     <div class="top" style="padding-bottom:52px">
+       <div class="brand">TOKAI SPORTS MEDICAL SUPPORT</div>
+       <h3>佐藤 美咲 さん</h3>
+       <div class="sub">陸上競技部・2年</div>
+     </div>
+     <div id="homeNext"></div>
+     <div class="pad">
+       <div class="tiles">
+         <button class="tile main" data-go="book"><span><b>メディカル予約</b><small>毎週水曜・空き枠から選ぶ</small></span><span class="go">→</span></button>
+         <button class="tile" data-go="rec" data-rec="temp">
+           <svg viewBox="0 0 24 24"><path d="M3 17l4-5 4 3 4-8 6 6"/><path d="M3 21h18"/></svg>
+           <span><b>基礎体温</b><small>グラフで確認</small></span>
+         </button>
+         <button class="tile" data-go="rec" data-rec="cond">
+           <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.5-7 10-7 10z"/></svg>
+           <span><b>コンディション</b><small>今日の記録をつける</small></span>
+         </button>
+         <div class="tile off"><span class="ph">第2段階</span><span><b>健診フィードバック</b><small>医師からのコメント</small></span></div>
+         <div class="tile off"><span class="ph">要検討</span><span><b>医療相談</b><small>チャットで相談</small></span></div>
+       </div>
+       <div class="card">
+         <div class="lab">NEWS</div>
+         <div class="news">
+           <a href="#"><time>11.16</time><span>箱根駅伝予選会で医療スタッフが選手をサポート</span></a>
+           <a href="#"><time>11.13</time><span>第5回 Sports Doctor セミナーを開催しました</span></a>
+           <a href="#"><time>04.08</time><span>アスリートアカデミー開催のご案内</span></a>
+         </div>
+       </div>
+       <div class="sponsor">協賛バナー枠（運営費に充当）</div>
+     </div>
+   </div>
+
+   <div class="scr" data-scr="book">
+     <div class="bar"><button class="back" data-go="home">‹</button><h3 id="bookTitle">メディカル予約</h3></div>
+     <div class="pad">
+       <div class="steps"><span class="on">1 選ぶ</span><span>2 確認</span><span>3 完了</span></div>
+       <div id="editBanner"></div>
+       <div class="h4"><i>1</i>相談先</div>
+       <div class="menu" id="menu"></div>
+       <div class="h4"><i>2</i>日にち <span class="fine">毎週水曜</span></div>
+       <div class="dates" id="dates"></div>
+       <div class="h4"><i>3</i>時間 <span class="fine">1枠20分</span></div>
+       <div class="slots" id="slots"></div>
+     </div>
+     <div class="sticky"><button class="btn" id="toConfirm" disabled>時間を選んでください</button></div>
+   </div>
+
+   <div class="scr" data-scr="confirm">
+     <div class="bar"><button class="back" data-go="book" data-keep="1">‹</button><h3>予約内容の確認</h3></div>
+     <div class="pad">
+       <div class="steps"><span class="on">1 選ぶ</span><span class="on">2 確認</span><span>3 完了</span></div>
+       <div class="card"><dl class="sum" id="sum"></dl></div>
+       <div class="h4">チームへの共有</div>
+       <div class="kind" id="kind">
+         <button data-kind="normal" class="on"><span class="dot"></span><b>通常予約</b>
+           <small>チームスタッフに日時と予約状況だけが共有されます。<wbr>相談内容は共有されません。</small></button>
+         <button data-kind="secret" class="sec"><span class="dot"></span><b>シークレット予約</b>
+           <small>チームには通知されず、<wbr>チームの画面にも表示されません。<wbr>メディカルスタッフだけが確認します。</small></button>
+       </div>
+       <p class="fine">生命の危険がある場合や法令上必要な場合は、<wbr>例外として必要な範囲で共有することがあります。</p>
+       <div class="fld"><label>相談したいこと（任意・チームには共有されません）</label><textarea rows="2" placeholder="例：右ひざの痛みが2週間続いている"></textarea></div>
+     </div>
+     <div class="sticky"><button class="btn" id="doBook">予約を確定する</button></div>
+   </div>
+
+   <div class="scr done" data-scr="done">
+     <div class="ring"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+     <h3 id="doneTitle">予約が完了しました</h3>
+     <div class="big" id="doneWhen"></div>
+     <div id="doneMeta" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"></div>
+     <p class="fine">確認メールを大学メールに送りました。<wbr>前日にもお知らせします。</p>
+     <div style="width:100%;display:grid;gap:8px;margin-top:10px">
+       <button class="btn" data-go="mine">予約を確認する</button>
+       <button class="btn ghost" data-go="home">ホームに戻る</button>
+     </div>
+   </div>
+
+   <div class="scr" data-scr="mine">
+     <div class="bar"><h3>マイ予約</h3></div>
+     <div class="pad" id="mineList"></div>
+   </div>
+
+   <div class="scr" data-scr="rec">
+     <div class="bar"><h3>記録</h3></div>
+     <div class="pad">
+       <div class="seg" id="recSeg"><button data-rec="temp" class="on">基礎体温</button><button data-rec="cond">コンディション</button></div>
+
+       <div id="recTemp" style="display:grid;gap:14px">
+         <div class="card chart">
+           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+             <div class="lab" id="tempRange">BASAL BODY TEMPERATURE</div><span class="ph">第3段階</span>
+           </div>
+           <div class="stat" id="tempStat"></div>
+           <div id="tempChart" style="margin-top:10px"></div>
+           <div class="cleg"><span><i style="background:var(--blue)"></i>実測</span><span><i style="border:2px solid var(--blue);background:#fff"></i>予測</span><span><i style="background:var(--coral);border-radius:2px"></i>月経（本人入力）</span></div>
+         </div>
+         <div class="err" id="csvErr"></div>
+         <label class="btn ghost" style="cursor:pointer">体温計アプリのCSVを取り込む<input type="file" id="csvIn" accept=".csv" hidden></label>
+         <p class="fine">オムロンの体温計アプリから書き出したCSVに対応します。<wbr>この試作ではファイルは端末の外に送信されません。</p>
+       </div>
+
+       <div id="recCond" style="display:none;gap:14px">
+         <div class="card" style="display:grid;gap:14px">
+           <div style="display:flex;justify-content:space-between;align-items:center"><div class="lab">TODAY 11.18 WED</div><span class="ph">第1段階</span></div>
+           <div class="row2">
+             <div class="fld"><label>体重</label><div class="stepper"><button>−</button><b>52.4<small>kg</small></b><button>＋</button></div></div>
+             <div class="fld"><label>睡眠</label><div class="stepper"><button>−</button><b>7.0<small>時間</small></b><button>＋</button></div></div>
+           </div>
+           <div class="fld"><label>疲労度（1 軽い 〜 5 強い）</label><div class="lv" data-lv><button>1</button><button class="on">2</button><button>3</button><button>4</button><button>5</button></div></div>
+           <div class="fld"><label>痛み（0 なし 〜 4 強い）</label><div class="lv" data-lv><button class="on">0</button><button>1</button><button>2</button><button>3</button><button>4</button></div></div>
+           <button class="btn">今日の記録を保存</button>
+         </div>
+         <div class="card"><div class="lab">LAST 14 DAYS ／ 疲労度</div><div id="condBars" style="margin-top:8px"></div></div>
+       </div>
+     </div>
+   </div>
+
+   <nav class="tabbar hide" id="tabbar">
+     <button data-go="home"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"/></svg>ホーム</button>
+     <button data-go="book"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>予約する</button>
+     <button data-go="mine"><svg viewBox="0 0 24 24"><path d="M6 4h12v17l-6-4-6 4z"/></svg>マイ予約</button>
+     <button data-go="rec"><svg viewBox="0 0 24 24"><path d="M3 17l4-5 4 3 4-8 6 6"/></svg>記録</button>
+   </nav>
+  </div>
+
+  <aside class="notes">
+    <h2>選手の画面</h2>
+    <p class="lead">スマートフォンのブラウザで開く前提です。<wbr>相談先・日にち・時間を選び、<wbr>確認画面で通常かシークレットかを決めます。</p>
+    <div class="jump" id="jump">
+      <button data-go="login">ログイン</button><button data-go="home">ホーム</button><button data-go="book">予約する</button>
+      <button data-go="mine">マイ予約</button><button data-go="rec" data-rec="temp">基礎体温</button><button data-go="rec" data-rec="cond">コンディション</button>
+    </div>
+    <div class="legend"><span><b class="src a">構想案</b>11/16 開発構想（案）</span><span><b class="src b">打合せ</b>11/17 打合せ</span><span><b class="src c">仮置き</b>試作上の仮の値</span></div>
+    <ul class="nlist">
+      <li><b class="src b">打合せ</b><strong>アカウントは学籍番号と大学メールに紐付け</strong><p>学生が大学メールを開くきっかけになります。</p></li>
+      <li><b class="src c">仮置き</b><strong>パスワードなし、メールに届くコードでログイン</strong><p>認証の方式は未決です。</p></li>
+      <li><b class="src a">構想案</b><strong>空き枠を見て選ぶ予約</strong><p>飲食店予約と同じ流れで、相談先・水曜の日にち・時間の順に選びます。埋まった枠は選べません。</p></li>
+      <li><b class="src a">構想案</b><strong>通常予約とシークレット予約</strong><p>本人が毎回選びます。シークレットはチームへの通知も表示もありません。</p></li>
+      <li><b class="src b">打合せ</b><strong>基礎体温はCSVの取り込みでグラフ化</strong><p>オムロンの書き出し形式（測定日・基礎体温・測定方式・機種）をそのまま読みます。グラフの数値は架空です。</p></li>
+      <li><b class="src c">仮置き</b><strong>枠は15:00〜18:00・20分刻み、相談先は4職種</strong><p>場所（健康推進室）と変更の締切（前日17時）も仮の値です。実際の運用に差し替えます。</p></li>
+      <li><b class="src c">仮置き</b><strong>確認メールと前日のお知らせ</strong><p>メール通知は別に費用がかかるため、入れるかどうかは未決です。</p></li>
+      <li><b class="src c">仮置き</b><strong>医療相談と健診フィードバックは枠だけ</strong><p>構想案では医療相談が第1段階、健診フィードバックが第2段階です。打合せでは予約から着手となったため、中身は作っていません。</p></li>
+    </ul>
+  </aside>
+ </div>
+</section>
+
+<!-- ═════════ チームスタッフ ═════════ -->
+<section class="view" id="v-team">
+ <div class="stage">
+  <div class="phone">
+    <div class="scr on">
+      <div class="top">
+        <div class="brand">TEAM STAFF</div>
+        <h3>陸上競技部</h3>
+        <div class="sub">学生トレーナー 田中 さん</div>
+      </div>
+      <div class="pad">
+        <div class="h4">メディカルサポートの予約</div>
+        <div class="dates" id="tDates"></div>
+        <div class="tlist" id="tList"></div>
+        <button class="btn ghost">選手の代わりに予約する</button>
+        <p class="fine">表示されるのは所属選手の日時と予約状況です。<wbr>相談内容は表示されません。</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    <h2>チームスタッフの画面</h2>
+    <p class="lead">自分のクラブの通常予約だけが、<wbr>日時と状況の一覧で見えます。</p>
+    <ul class="nlist">
+      <li><b class="src a">構想案</b><strong>見えるのは日時と予約状況だけ</strong><p>相談先・相談内容・他クラブの情報は出しません。</p></li>
+      <li><b class="src a">構想案</b><strong>シークレット予約は存在が推測できない</strong><p>件数の合計や「空き」の表示を置かず、一覧だけにしています。コーディネーター画面の11/25には陸上競技部の予約が3件あり、<wbr>こちらには2件だけ出ています。</p></li>
+      <li><b class="src b">打合せ</b><strong>所属選手の予約を代わりに入れる・直す</strong><p>打合せでは「閲覧・編集」、構想案では「確認のみ」です。どちらにするかは未決で、ボタンだけ置いています。</p></li>
+      <li><b class="src c">仮置き</b><strong>選手画面で入れた予約がここに反映されます</strong><p>選手タブで通常予約を入れるとこの一覧に出ます。シークレットで入れると出ません。</p></li>
+    </ul>
+  </aside>
+ </div>
+</section>
+
+<!-- ═════════ コーディネーター ═════════ -->
+<section class="view" id="v-coord">
+ <div class="admin">
+  <div class="side">
+    <div class="brand">COORDINATOR</div>
+    <div class="who">メディカルサポート管理</div>
+    <nav id="anav">
+      <button data-a="res" class="on">予約管理</button>
+      <button data-a="ord">製品発注 <span class="ph">追加機能</span></button>
+      <button disabled>予約枠の設定</button>
+      <button disabled>選手・チーム</button>
+      <button disabled>基礎体温 <span class="ph">第3段階</span></button>
+      <button disabled>お知らせ配信 <span class="ph">第2段階</span></button>
+    </nav>
+  </div>
+  <div class="amain">
+    <div id="a-res">
+      <div class="ahd">
+        <div><h2>予約管理</h2><div class="day" id="aDay"></div></div>
+        <div class="dsel" id="aDates"></div>
+        <div class="tools"><button class="tb" id="csvOut">CSV出力</button><button class="tb pri">＋ 予約を入れる</button></div>
+      </div>
+      <div class="kpis" id="kpis"></div>
+      <div class="acols">
+        <div class="grid"><table id="grid"></table></div>
+        <div class="detail" id="detail"></div>
+      </div>
+      <p class="anote">紺色の枠はシークレット予約です。コーディネーターとメディカルスタッフには表示され、チームスタッフの画面とチーム向けCSVには出ません。</p>
+    </div>
+    <div id="a-ord" style="display:none">
+      <div class="ahd"><div><h2>製品発注</h2><div class="day">2026.11<small>NOV</small></div></div>
+        <div class="tools"><button class="tb">CSV出力</button><button class="tb pri">担当者に確認を依頼</button></div></div>
+      <div class="flow">
+        <div class="ok"><i>STEP 1 ✓</i><b>月次集計</b>各クラブの申請を月末に自動集計</div>
+        <div class="on"><i>STEP 2</i><b>担当者確認</b>数量と納品先を確認</div>
+        <div><i>STEP 3</i><b>発注</b>確認済みの内容で発注書を作成</div>
+      </div>
+      <div class="otbl"><table id="otbl"></table></div>
+      <p class="anote">打合せで出た流れ（月次集計→担当者確認→発注）を画面にしたものです。製品名と数量は架空です。</p>
+    </div>
+  </div>
+ </div>
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>
